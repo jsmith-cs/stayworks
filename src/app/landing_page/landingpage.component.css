@@ -1,0 +1,48 @@
+
+header{
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.landing_nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background-color: rgb(255, 255, 255);
+    text-shadow: 2px ;
+    z-index: 2;
+}
+
+.landing_nav_title {
+    display: relative;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    margin-left:10px;
+}
+.landing_nav_button{
+    display: relative;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+}
+
+.landing_nav_account{
+    margin-right: 10px;
+}
+.content-landing-start h1{
+    display: flex;
+    font-size: 50px;
+    word-wrap: break-word;
+    justify-content: center;
+    align-items: center;
+}
+.content-landing-start{
+    padding-top: 30px;
+    background: #A1FFCE;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FAFFD1, #A1FFCE);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FAFFD1, #A1FFCE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 70vh;
+    z-index: 1;
+}
