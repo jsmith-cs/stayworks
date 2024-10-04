@@ -1,12 +1,19 @@
 <div>
   <div class="dashboard-sidebar">
-    <p-button label="Profile" [text]="true"/>
-    <p-button label="Documents" [text]="true"/>
-    <p-button label="Property Management" [text]="true"/>
-    <p-button class="sidebar-signout" label="Sign Out" [text]="true"/>
+    <ul style="list-style-type: 'none';">
+      <li *ngFor="let button of sidebar_buttons">
+        <p-button
+          type="button"
+          [label]="button.label"
+          [icon]="button.icon"
+          [routerLink]="button.routerLink"
+          routerLinkActive="{{ button.routerLinkActive }}"
+        ></p-button>
+      </li>
+    </ul>
   </div>
 
-<body class="dashboard-body">
-  <router-outlet></router-outlet>
-</body>
+  <body class="dashboard-body">
+    <router-outlet></router-outlet>
+  </body>
 </div>
