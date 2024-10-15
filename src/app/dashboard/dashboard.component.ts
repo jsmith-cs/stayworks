@@ -13,6 +13,7 @@ import { Card, CardModule } from 'primeng/card';
 import { SidebarModule } from 'primeng/sidebar';
 import { SplitterModule } from 'primeng/splitter';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -29,6 +30,7 @@ import { CommonModule } from '@angular/common';
     RouterLinkActive,
     RouterModule,
     RouterOutlet,
+    ReactiveFormsModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
@@ -42,9 +44,9 @@ export class DashboardComponent implements OnInit {
     this.primengConfig.ripple = true;
     this.sidebar_buttons = [
       {
-        label: 'profile',
+        label: 'overview',
         icon: 'pi pi-fw pi-home',
-        routerLink: ['/dashboard/profile'],
+        routerLink: ['/dashboard/overview'],
         routerLinkActive: 'router-link-active',
       },
       {
@@ -56,7 +58,7 @@ export class DashboardComponent implements OnInit {
       {
         label: 'propertymanagement',
         icon: 'pi pi-fw pi-phone',
-        routerLink: ['/dashboard/property-management'],
+        routerLink: ['/dashboard/property_management'],
         routerLinkActive: 'router-link-active',
       },
       {

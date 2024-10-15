@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { LandingPageComponent } from './landing_page/landingpage.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './features/login/login.component';
+import { SignupComponent } from './features/signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DocumentsComponent } from './dashboard/documents/documents.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
@@ -17,7 +17,7 @@ export const routes: Routes = [
     children: [
       { path: 'profile', component: ProfileComponent },
       { path: 'documents', component: DocumentsComponent },
-      { path: 'propertymanagement', component: PropertiesComponent },
+      { path: 'property_management', component: PropertiesComponent },
     ],
   },
 ];

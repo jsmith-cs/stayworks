@@ -9,7 +9,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { Card, CardModule } from 'primeng/card';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -22,6 +24,8 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     RouterLink,
     RouterLinkActive,
+    ReactiveFormsModule,
+    HttpClientModule,
     RouterModule,
   ],
   templateUrl: './app.component.html',

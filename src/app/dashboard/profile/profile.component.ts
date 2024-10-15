@@ -13,6 +13,7 @@ import { Card, CardModule } from 'primeng/card';
 import { SidebarModule } from 'primeng/sidebar';
 import { SplitterModule } from 'primeng/splitter';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -27,6 +28,7 @@ import { CommonModule } from '@angular/common';
     CardModule,
     RouterLink,
     RouterLinkActive,
+    ReactiveFormsModule,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',

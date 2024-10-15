@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { PrimeNGConfig } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { Card, CardModule } from 'primeng/card';
+import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -21,10 +22,11 @@ import { Card, CardModule } from 'primeng/card';
     CardModule,
     RouterLink,
     RouterLinkActive,
+    ReactiveFormsModule,
     RouterModule,
   ],
   templateUrl: './landingpage.component.html',
-  styleUrl: './landingpage.component.css',
+  styleUrls: ['./landingpage.component.css'],
 })
 export class LandingPageComponent implements OnInit {
   constructor(private primengConfig: PrimeNGConfig) {}
