@@ -1,23 +1,39 @@
 <div>
-  <div class="dashboard-sidebar">
-    <ul style="list-style-type: none">
-      <li *ngFor="let button of sidebar_buttons">
-        <a
-          [routerLink]="button.routerLink"
-          routerLinkActive="{{ button.routerLinkActive }}"
-        >
-          <p-button
-            type="button"
-            [label]="button.label"
-            [icon]="button.icon"
-          ></p-button>
-        </a>
-      </li>
-    </ul>
+  <div>
+    <div class="dashboard-header">
+      <div class="dashboard-title">
+        <h3>Stayworks</h3>
+      </div>
+      <div class="navbar-header">
+        <ul>
+          <li><a routerLink="/dashboard/overview">Overview</a></li>
+        </ul>
+        <div class="navbar-account">
+          <ul>
+            <li><a routerLink="/dashboard/profile">Profile</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-sidebar">
+      <ul style="list-style-type: none">
+        <li *ngFor="let button of sidebar_buttons">
+          <a
+            [routerLink]="button.routerLink"
+            routerLinkActive="{{ button.routerLinkActive }}"
+          >
+            <button type="button">
+              <i *ngIf="button.icon" class="button.icon"> </i>
+              >{{ button.label }}
+            </button>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
-  <body class="dashboard-body">
-    <router-outlet>
-    </router-outlet>
-  </body>
+  <div>
+    <body class="dashboard-body"></body>
+  </div>
 </div>
