@@ -2,6 +2,7 @@
   <div>
     <div class="dashboard-header">
       <div class="dashboard-title">
+        <img id="stayworks_logo" src= "stayworks_logo.png" alt="stayworks_logo" height="100" width="50" style=""/>
         <h3>Stayworks</h3>
       </div>
       <div class="navbar-header">
@@ -23,10 +24,10 @@
           <a
             [routerLink]="button.routerLink"
             routerLinkActive="{{ button.routerLinkActive }}"
-          >
+          > 
             <button type="button">
               <i *ngIf="button.icon" class="button.icon"> </i>
-              >{{ button.label }}
+              {{ button.label }}
             </button>
           </a>
         </li>

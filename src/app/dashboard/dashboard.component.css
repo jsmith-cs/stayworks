@@ -13,9 +13,17 @@ html,  body{
     padding-top: 0.5rem;
     padding-left: 2rem;
     justify-content: center;
-    border: black 1px solid ;
 }
+.dashboard-title h3{
+    margin: 0;
+    padding: 0;
+    font-family: 'Biko';
 
+} 
+.dashboard-title img{
+    object-fit: contain;
+    margin-right: 15px;
+}
 .navbar-account{
     display: relative;
     border: black solid 1px;
@@ -91,9 +99,9 @@ html,  body{
     height: 87.75vh; 
     font-size: 0.875rem;
     line-height: 5rem; 
-    background-color: #eaea84; 
+    background-color: #3A7CA5; 
     z-index: 1;
-    border: black 1px solid;  
+    border: #2F6690 1px solid;  
     
 }
  .dashboard-sidebar button {
@@ -121,6 +129,6 @@ html,  body{
     box-sizing: border-box;
     z-index: 1;
     color: white;
-    background-color: #0b0b0b;
+    background-color: #2F6690;
     border-radius: 0.25rem;
 }
