@@ -4,7 +4,8 @@ html,  body{
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #ebebeb;
+    box-sizing: border-box;
+    background-color: #f1f1f1;
 }
 .dashboard-title{
     display: flex;
@@ -14,17 +15,7 @@ html,  body{
     justify-content: center;
     border: black 1px solid ;
 }
-.navbar-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 50%;
-    border: black 1px solid;
-    padding-right: 10rem;
-    padding-left: 5rem;
-    margin-left: 100px;
-    margin-right: 50px;
-}
+
 .navbar-account{
     display: relative;
     border: black solid 1px;
@@ -44,23 +35,44 @@ html,  body{
     padding-bottom: 0.75rem;
     align-items: center;
     justify-content: space-between;
+    top: 0;
+    z-index: 2;
 }
+.navbar-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border: black 1px solid;
+    padding-right: 10rem;
+    padding-left: 5rem;
+    margin-right: 50px;
+    margin-left: 50px;
+    z-index: 2;
+}
+
 .navbar-header a{
     width: 100px; 
     height: 50px;
     padding: 20px;
     margin: 0;
     padding: 0;
+    color: black;
+    text-decoration: inherit;
 }
+
 .navbar-header li{
     display: inline-block;
     list-style-type: none;
     margin: 0;
     padding: 0;
-
 }
+
+.navbar-header a:hover {
+    background-color: #eaea84;
+}   
 .dashboard-sidebar{
-    display: absolute; 
+    display: relative; 
     overflow: hidden; 
     top: 0; 
     left: 0;
@@ -99,7 +111,15 @@ html,  body{
 }
 
 .dashboard-body {
-    display:flex;
-    flex-grow: 1;
+    position: relative; 
+    height: 87.75vh;
+    margin-left: 300px;
+    margin-right: 10px;
+    bottom: 87.75vh;
+    padding: 30px;
+    box-sizing: border-box;
     z-index: 1;
+    color: white;
+    background-color: #0b0b0b;
+    border-radius: 0.25rem;
 }
