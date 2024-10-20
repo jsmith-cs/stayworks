@@ -19,7 +19,33 @@
 
 .property_card_img{
 
+
 }
+.add-documents {
+    display: relative;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 70px;
+    margin-bottom: 50px;
+    
+}
+.add-documents button{
+    width: fit-content;
+    background-color: #2F6690;
+    color: white;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #2F6690;
+    font-size: 15px;
+}
+.add-documents button:hover{
+    transition: all 0.1s ease-in-out;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+
 
 .property_card_address{
     display: flex;

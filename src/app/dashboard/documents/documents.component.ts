@@ -45,6 +45,7 @@ export class DocumentsComponent implements OnInit {
     this.primengConfig.ripple = true;
     this.properties = [
       {
+        Image: 'image_icon.png',
         label: 'property 1',
         content: 'Lorem ipsum dolor sit amet 1',
         class: 'card-one',
