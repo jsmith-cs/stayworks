@@ -43,11 +43,6 @@ export class OverviewComponent implements OnInit {
 
     this.overview_card = [
       {
-        label: 'Overview',
-        content: 'Lorem ipsum dolor sit ',
-        class: 'overview-card',
-      },
-      {
         label: 'Documents',
         content: 'Lorem ipsum dolor sit ',
         class: 'documents-card',

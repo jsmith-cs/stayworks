@@ -12,7 +12,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { Card, CardModule } from 'primeng/card';
 import { SidebarModule } from 'primeng/sidebar';
 import { SplitterModule } from 'primeng/splitter';
-import { CommonModule } from '@angular/common';
+import { CommonModule, LocationStrategy } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-dashboard',
@@ -36,7 +36,14 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
-  constructor(private primengConfig: PrimeNGConfig) {}
+  navbar_title: string;
+
+  constructor(
+    private primengConfig: PrimeNGConfig,
+    private url: LocationStrategy
+  ) {
+    this.navbar_title = '';
+  }
 
   sidebar_buttons: any[] = [];
 
@@ -44,31 +51,50 @@ export class DashboardComponent implements OnInit {
     this.primengConfig.ripple = true;
     this.sidebar_buttons = [
       {
-        label: 'overview',
+        label: 'Overview',
         icon: 'pi pi-fw pi-home',
         routerLink: ['/dashboard/overview'],
         routerLinkActive: 'router-link-active',
       },
       {
-        label: 'documents',
+        label: 'Documents',
         icon: 'pi pi-fw pi-info',
         routerLink: ['/dashboard/documents'],
         routerLinkActive: 'router-link-active',
       },
       {
-        label: 'properties',
+        label: 'Properties',
         icon: 'pi pi-fw pi-phone',
         routerLink: ['/dashboard/property_management'],
         routerLinkActive: 'router-link-active',
       },
       {
-        label: 'sign-out',
+        label: 'Contractors',
         icon: 'pi pi-fw pi-sign-out',
-        routerLink: ['/'],
+        routerLink: ['/dashboard/contractor'],
         routerLinkActive: 'router-link-active',
       },
+      
     ];
+
+    if (this.url.path() == '/dashboard/overview') {
+      this.title = 'Dashboard';
+    } else if (this.url.path() == '/dashboard/profile') {
+      this.title = 'Profile';
+    } else if (this.url.path() == '/dashboard/documents') {
+      this.title = 'Documents';
+    }else if (this.url.path() == '/dashboard/property_management') {
+      this.title = 'Properties';
+    }
+
+  }
+
+  logout() {
+    localStorage.clear();
+    window.location.reload();
   }
 
   title = 'stayworks_test';
 }
+
+
