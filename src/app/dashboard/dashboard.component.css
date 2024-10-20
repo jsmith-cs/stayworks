@@ -5,24 +5,35 @@ html,  body{
     padding: 0;
     overflow: hidden;
     box-sizing: border-box;
-    background-color: #f1f1f1;
+    background-color: #e6e6e6;
 }
 .dashboard-title{
     display: flex;
+    position: relative;
     align-items: center;
     padding-top: 0.5rem;
     padding-left: 2rem;
-    justify-content: center;
+    justify-content: flex-start;
+    height: 70px;
+    margin-top: auto;
+    margin-bottom: 10px;
 }
 .dashboard-title h3{
     margin: 0;
     padding: 0;
     font-family: 'Biko';
-
 } 
 .dashboard-title img{
+    vertical-align: middle;
     object-fit: contain;
     margin-right: 15px;
+}
+.dashboard-title a {
+    display: flex;
+    color: black;
+    text-decoration: none;
+    align-items: center;
+    justify-content: flex-start;
 }
 .navbar-account{
     display: relative;
@@ -99,7 +110,7 @@ html,  body{
     height: 87.75vh; 
     font-size: 0.875rem;
     line-height: 5rem; 
-    background-color: #3A7CA5; 
+    background-color: #2F6690; 
     z-index: 1;
     border: #2F6690 1px solid;  
     
@@ -111,7 +122,7 @@ html,  body{
      border-radius: 25px;
     background-color: white;
     border: #fffffe 1px solid;  
-    
+    cursor:pointer ;
 }
 
 .dashboard-sidebar button:hover {
@@ -119,16 +130,30 @@ html,  body{
     text-decoration: black;
 }
 
+.navbar-search{
+    display: flex;
+    position: relative;
+    align-items: center;
+    border: black 1px solid;    
+}
+.navbar-search input[type="text"]{
+    width: 200px;
+    height: 50px;
+    padding: 5px;
+    border: black 1px solid;
+    border-radius: 3px;
+}
+
 .dashboard-body {
     position: relative; 
     height: 87.75vh;
     margin-left: 300px;
     margin-right: 10px;
-    bottom: 87.75vh;
+    bottom: 87.75vh; 
     padding: 30px;
     box-sizing: border-box;
     z-index: 1;
-    color: white;
-    background-color: #2F6690;
+    color: white; 
+    /* background-color: #16425B;  */
     border-radius: 0.25rem;
 }

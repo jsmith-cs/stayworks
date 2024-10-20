@@ -34,10 +34,22 @@ import { CommonModule } from '@angular/common';
   styleUrl: './documents.component.css',
 })
 export class DocumentsComponent implements OnInit {
+
+  properties: any[] = []
   constructor(private primengConfig: PrimeNGConfig) {}
+
+
+
 
   ngOnInit() {
     this.primengConfig.ripple = true;
+    this.properties = [
+      {
+        label: 'property 1',
+        content: 'Lorem ipsum dolor sit amet 1',
+        class: 'card-one',
+      }
+    ]
   }
 
   title = 'stayworks_test';

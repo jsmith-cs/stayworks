@@ -2,18 +2,31 @@
   <div>
     <div class="dashboard-header">
       <div class="dashboard-title">
-        <img id="stayworks_logo" src= "stayworks_logo.png" alt="stayworks_logo" height="100" width="50" style=""/>
-        <h3>Stayworks</h3>
+        <a href="">
+          <img
+            id="stayworks_logo"
+            src="stayworks_logo.png"
+            alt="stayworks_logo"
+            height="100"
+            width="50"
+          />
+          <h3>Stayworks</h3>
+        </a>
       </div>
       <div class="navbar-header">
         <ul>
           <li><a routerLink="/dashboard/overview">Overview</a></li>
         </ul>
-        <div class="navbar-notification"></div>
-        <div class="navbar-account">
-          <ul>
-            <li><a routerLink="/dashboard/profile">Profile</a></li>
-          </ul>
+
+        <div class="navbar-right">
+          <div class="navbar-search">
+            <input type="text" placeholder="Search..." />
+          </div>
+          <div  class="navbar-account">
+            <ul>
+              <li><a routerLink="/dashboard/profile">Profile</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -24,7 +37,7 @@
           <a
             [routerLink]="button.routerLink"
             routerLinkActive="{{ button.routerLinkActive }}"
-          > 
+          >
             <button type="button">
               <i *ngIf="button.icon" class="button.icon"> </i>
               {{ button.label }}
@@ -36,7 +49,7 @@
 
     <body>
       <div class="dashboard-body">
-        <h1>this is where the stuff goes</h1>
+        <router-outlet></router-outlet>
       </div>
     </body>
   </div>

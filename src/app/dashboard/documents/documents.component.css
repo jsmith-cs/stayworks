@@ -1,0 +1,47 @@
+.documents-table{
+    width: 100%;
+
+}
+
+.property_card{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: solid black 1px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: black;
+    color: white
+}
+
+
+.property_card_img{
+
+}
+
+.property_card_address{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+
+}
+
+.property_recently_used_card{
+    display: flex;
+    width: 80%;
+    float:inline-start;
+    border: solid black 1px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 30px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin: 30px; 
+    background-color: black;
+    border-radius: 10px;
+
+
+}

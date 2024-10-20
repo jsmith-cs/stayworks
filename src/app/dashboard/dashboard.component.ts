@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit {
         routerLinkActive: 'router-link-active',
       },
       {
-        label: 'propertymanagement',
+        label: 'properties',
         icon: 'pi pi-fw pi-phone',
         routerLink: ['/dashboard/property_management'],
         routerLinkActive: 'router-link-active',

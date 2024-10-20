@@ -35,12 +35,18 @@ import { SplitterModule } from 'primeng/splitter';
   ],
 })
 export class LoginComponent {
+   
   loginForm = new FormGroup({
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    email: new FormControl(''),
+    password: new FormControl(''),
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      email: [''],
+      password: [''],
+    });
+  }
 
   onSubmit() {
     if (this.loginForm.valid) {
