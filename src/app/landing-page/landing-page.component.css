@@ -1,0 +1,272 @@
+.content {
+  flex-grow: 1;
+  background-color: #D9DCD6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.logo-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.top-logo {
+  max-width: 350px;
+  height: auto;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #16425B;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  text-align: center;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #2F6690;
+  margin-bottom: 30px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.cta-buttons button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 12px 24px;
+  border: 2px solid #16425B;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.get-started {
+  background-color: #16425B;
+  color: white;
+}
+
+.get-started:hover {
+  background-color: white;
+  color: #16425B;
+}
+
+.watch-demo {
+  background-color: white;
+  color: #16425B;
+}
+
+.watch-demo:hover {
+  background-color: #16425B;
+  color: white;
+}
+
+.cta-buttons button:hover {
+  opacity: 1;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 40px; 
+  text-align: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 1200px; 
+  height: auto;
+  display: block;
+  margin: 10px auto;
+}
+
+.features-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.feature-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.features-title {
+  flex: 0 0 20%;
+  text-align: left;
+  padding-right: 0px;
+}
+
+.features-title h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #16425B;
+  margin-top: 17px;
+  line-height: 1.2;
+}
+
+.feature-divider {
+  width: 2px;
+  background-color: #16425B;
+}
+
+.feature {
+  flex: 0 0 22%;
+  text-align: left;
+  padding: 0 10px;
+}
+
+.feature-heading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #16425B;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.feature-description {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #2F6690;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.management-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 0 20px 0;
+  padding: 0 20px;
+}
+
+.management-headline {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: #16425B;
+  text-align: center;
+  margin-bottom: 40px;
+  line-height: 1.2;
+}
+
+.management-features {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.management-feature {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 300px;
+}
+
+.feature-icon {
+  width: 60px;
+  height: auto;
+  margin-bottom: 0;
+}
+
+.feature-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #16425B;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  line-height: 1.3;
+  align-self: flex-start;
+}
+
+.feature-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #2F6690;
+  line-height: 1.5;
+  text-align: left;
+  align-self: flex-start;
+  margin-top: 0px;
+}
+
+.analytics-section {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 0px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.analytics-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.analytics-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: #16425B;
+  margin-right: 20px;
+}
+
+.conversion-image {
+  width: 60px;
+  height: auto;
+}
+
+.analytics-description {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #2F6690;
+  line-height: 1.5;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.analytics-hero {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.analytics-hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
