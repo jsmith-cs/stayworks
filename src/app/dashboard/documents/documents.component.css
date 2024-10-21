@@ -1,72 +1,75 @@
-.documents-table{
-    width: 100%;
-
+a {
+  text-decoration: none;
+  color: white;
+}
+th {
+  color: black;
+  font-family: "Biko";
+  font-size: 20px;
+  text-align: center;
+}
+.documents-table {
+  width: 100%;
 }
 
-.property_card{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
-    background-color: #3A7CA5;
-    color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.property_card {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #3a7ca5;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-
-.property_card_img{
-
-
+.property_card_img {
+  flex-shrink: 0;
 }
+
 .add-documents {
-    display: relative;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin-right: 70px;
-    margin-bottom: 50px;
-    
+  display: relative;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-right: 70px;
+  margin-bottom: 50px;
 }
-.add-documents button{
-    width: fit-content;
-    background-color: #2F6690;
-    color: white;
-    border-radius: 20px;
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #2F6690;
-    font-size: 15px;
+.add-documents button {
+  width: fit-content;
+  background-color: #2f6690;
+  color: white;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #2f6690;
+  font-size: 15px;
 }
-.add-documents button:hover{
-    transition: all 0.1s ease-in-out;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    cursor: pointer;
-}
-
-
-.property_card_address{
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    width: 100%;
-
+.add-documents button:hover {
+  transition: all 0.1s ease-in-out;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
 }
 
-.property_recently_used_card{
-    display: flex;
-    width: 80%;
-    float:inline-start;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-left: 30px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    margin: 30px; 
-    background-color: #3A7CA5;
-    border-radius: 10px;
+.property_card_address {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 100%;
+}
 
-
+.property_recently_used_card {
+  display: flex;
+  width: 80%;
+  float: inline-start;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-left: 30px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin: 30px; 
+  border: #2f6690 3px solid;
+  border-radius: 10px;
 }

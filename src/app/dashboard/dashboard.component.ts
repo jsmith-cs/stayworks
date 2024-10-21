@@ -65,16 +65,15 @@ export class DashboardComponent implements OnInit {
       {
         label: 'Properties',
         icon: 'pi pi-fw pi-phone',
-        routerLink: ['/dashboard/property_management'],
+        routerLink: ['/dashboard/propertymanagement'],
         routerLinkActive: 'router-link-active',
       },
       {
         label: 'Contractors',
         icon: 'pi pi-fw pi-sign-out',
-        routerLink: ['/dashboard/contractor'],
+        routerLink: ['/dashboard/contractors'],
         routerLinkActive: 'router-link-active',
       },
-      
     ];
 
     if (this.url.path() == '/dashboard/overview') {
@@ -83,10 +82,11 @@ export class DashboardComponent implements OnInit {
       this.title = 'Profile';
     } else if (this.url.path() == '/dashboard/documents') {
       this.title = 'Documents';
-    }else if (this.url.path() == '/dashboard/property_management') {
+    } else if (this.url.path() == '/dashboard/propertymanagement') {
       this.title = 'Properties';
+    } else if (this.url.path() == '/dashboard/contractors') {
+      this.title = 'Contractors';
     }
-
   }
 
   logout() {
@@ -96,5 +96,3 @@ export class DashboardComponent implements OnInit {
 
   title = 'stayworks_test';
 }
-
-

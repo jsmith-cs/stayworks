@@ -34,23 +34,37 @@ import { CommonModule } from '@angular/common';
   styleUrl: './documents.component.css',
 })
 export class DocumentsComponent implements OnInit {
-
-  properties: any[] = []
+  property: any[] = [];
   constructor(private primengConfig: PrimeNGConfig) {}
-
-
-
 
   ngOnInit() {
     this.primengConfig.ripple = true;
-    this.properties = [
+    this.property = [
       {
         Image: 'image_icon.png',
         label: 'property 1',
-        content: 'Lorem ipsum dolor sit amet 1',
         class: 'card-one',
-      }
-    ]
+        address: '128 jon st',
+        documents: '3 documents',
+        recent_files: '',
+      },
+      {
+        Image: 'image_icon.png',
+        label: 'property 1',
+        class: 'card-one',
+        address: '128 jon st',
+        documents: '3 documents',
+        recent_files: '',
+      },
+      {
+        Image: 'image_icon.png',
+        label: 'property 1',
+        class: 'card-one',
+        address: '128 jon st',
+        documents: '3 documents',
+        recent_files: '',
+      },
+    ];
   }
 
   title = 'stayworks_test';

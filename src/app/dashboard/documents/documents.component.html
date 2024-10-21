@@ -1,37 +1,43 @@
 <div class="documents-container">
   <table class="documents-table">
     <tr>
-      <th>Propeties</th>
-        <th>Recently Used</th>
-      </tr>
-      <tr>
+      <th>Properties</th>
+      <th>Recently Used</th>
+    </tr>
+    <tr *ngFor="let property of property">
       <td>
-        <div class="property_card">
-          <div class="property_card_img">
-            <img src="image_icon.png" alt="image icon" height="40" width="40">
+        <a href="" class="property_link">
+          <div class="property_card">
+            <div class="property_card_img">
+              <img
+                src="image_icon.png"
+                alt="image icon"
+                height="40"
+                width="40"
+              />
+            </div>
+            <div class="property_card_address">
+              <p>{{ property.address }}</p>
+            </div>
+            <div class="property_card_documents">
+              <p>{{ property.documents }}</p>
+            </div>
           </div>
-          <div class="property_card_address">
-              <p>Address of property</p>
-          </div>
-          <div class="property_card_documents">
-            <p># of documents</p>
-          </div>
-        </div>
+        </a>
       </td>
       <td>
         <div class="property_recently_used_card">
-            <div class="property_card_doc">
-              <p>docs are in here</p>
-            </div>
+          <div class="property_card_doc">
+            <p>{{ property.recent_files }}</p>
+          </div>
         </div>
       </td>
-    <tr>
-    
-    </table>
+    </tr>
 
-    <div class="add-documents">
-      <button type="button" class="add-documents-button">+ Add Documents</button>
-    </div>
+    <tr></tr>
+  </table>
 
-
+  <div class="add-documents">
+    <button type="button" class="add-documents-button">+ Add Documents</button>
+  </div>
 </div>
