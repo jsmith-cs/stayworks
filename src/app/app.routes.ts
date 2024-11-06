@@ -8,9 +8,10 @@ import { DocumentsComponent } from './dashboard/documents/documents.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { PropertiesComponent } from './dashboard/properties/properties.component';
 import { OverviewComponent } from './dashboard/overview/overview.component';
-import { PropertyDocumentsComponent } from './property-documents/property-documents.component';
+import { ContractorsComponent } from './dashboard/contractors/contractors.component';
+import { PropertyDocumentsComponent } from './dashboard/property-documents/property-documents.component';
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', component: LandingPageComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/dashboard/documents' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   {
@@ -19,11 +20,11 @@ export const routes: Routes = [
     children: [
       { path: 'overview', component: OverviewComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'documents', component: DocumentsComponent, children: [
-
-        {path: 'property_documents/:id', component: PropertyDocumentsComponent}
-      ] },
-      { path: 'property_management', component: PropertiesComponent },
+      { path: 'documents', component: DocumentsComponent },
+      { path: 'documents/pdocs/:propertyId', component: PropertyDocumentsComponent },
+      { path: 'propertymanagement', component: PropertiesComponent },
+      { path: 'contractors', component: ContractorsComponent },
     ],
   },
+
 ];

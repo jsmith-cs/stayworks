@@ -2,17 +2,17 @@ const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 
 const app = express();
 
 const connection = mysql.createConnection({
   host: 'stayworks.duckdns.org',
-  port: '3306',
+  port: '3306', 
   user: 'root',
   password: 'password',
-  database: 'StayworksTestEnv',
+  database: 'STAYWORKSTestEnv',
 });
 
 app.use(cors());

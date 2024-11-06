@@ -74,6 +74,12 @@ export class DashboardComponent implements OnInit {
         routerLink: ['/dashboard/contractors'],
         routerLinkActive: 'router-link-active',
       },
+      {
+        label: 'Tenant Management',
+        icon: 'pi pi-fw pi-sign-out',
+        routerLink: ['/dashboard/tenantmanagement'],
+        routerLinkActive: 'router-link-active',
+      },
     ];
 
     if (this.url.path() == '/dashboard/overview') {

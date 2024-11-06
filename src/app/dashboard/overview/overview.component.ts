@@ -43,42 +43,37 @@ export class OverviewComponent implements OnInit {
 
     this.overview_card = [
       {
-        label: 'Documents',
+        label: 'Current MRR',
         content: 'Lorem ipsum dolor sit ',
         class: 'documents-card',
       },
       {
-        label: 'Properties Owned',
+        label: 'Current Customers',
         content: 'Lorem ipsum dolor sit ',
         class: 'properties-card',
       },
       {
-        label: 'Payments received',
+        label: 'Active Customers',
         content: 'Lorem ipsum dolor sit ',
         class: 'payments-card',
       },
       {
-        label: 'Payment due',
+        label: 'Churn Rate',
         content: 'Lorem ipsum dolor sit ',
         class: 'payment-due-card',
       },
       {
-        label: 'transactions',
-        content: 'Lorem ipsum dolor sit ',
-        class: 'transactions-card',
-      },
-      {
-        label: 'trend',
+        label: 'Trend',
         content: 'Lorem ipsum dolor sit ',
         class: 'trend-card',
       },
       {
-        label: 'support tickets',
+        label: 'Support Tickets',
         content: 'Lorem ipsum dolor sit ',
         class: 'support-tickets-card',
       },
       {
-        label: 'sales',
+        label: 'Sales',
         content: 'Lorem ipsum dolor sit ',
         class: 'sales-card',
       },

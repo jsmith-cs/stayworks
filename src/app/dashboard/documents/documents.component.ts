@@ -1,71 +1,78 @@
-import { DashboardComponent } from './../dashboard.component';
-import { Component, OnInit } from '@angular/core';
-import {
-  RouterLink,
-  RouterLinkActive,
-  RouterModule,
-  RouterOutlet,
-} from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { ButtonModule } from 'primeng/button';
-import { PrimeNGConfig } from 'primeng/api';
-import { MenubarModule } from 'primeng/menubar';
-import { Card, CardModule } from 'primeng/card';
-import { SidebarModule } from 'primeng/sidebar';
-import { SplitterModule } from 'primeng/splitter';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-documents',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    MatButtonModule,
-    ButtonModule,
-    SidebarModule,
-    SplitterModule,
-    MenubarModule,
-    CommonModule,
-    CardModule,
-    RouterLink,
-    RouterLinkActive,
-    RouterModule,
-  ],
+  imports: [CommonModule, FormsModule],
   templateUrl: './documents.component.html',
   styleUrl: './documents.component.css',
 })
-export class DocumentsComponent implements OnInit {
-  property: any[] = [];
-  constructor(private primengConfig: PrimeNGConfig) {}
+export class DocumentsComponent {
+  constructor(private router: Router) {}
+  tenantAmount: string = '2';
+  selectedProvince: string = '';
 
-  ngOnInit() {
-    this.primengConfig.ripple = true;
-    this.property = [
-      {
-        Image: 'image_icon.png',
-        label: 'property 1',
-        class: 'card-one',
-        address: '128 jon st',
-        documents: '3 documents',
-        recent_files: '',
-      },
-      {
-        Image: 'image_icon.png',
-        label: 'property 1',
-        class: 'card-one',
-        address: '128 jon st',
-        documents: '3 documents',
-        recent_files: '',
-      },
-      {
-        Image: 'image_icon.png',
-        label: 'property 1',
-        class: 'card-one',
-        address: '128 jon st',
-        documents: '3 documents',
-        recent_files: '',
-      },
-    ];
+  property = [
+    {
+      propertyId: 1,
+      street_address:
+        '128 jon stsssssssssssssssssssssssssss sssssssssssssssssssssssssss',
+      city: 'Ottawa',
+      province: 'Ontario',
+      country: 'Canada',
+      documents: '3 documents',
+      recent_files: `assets/pdf.png`,
+      file_name: 'Recent file 1',
+      tenantAmount: '2',
+    },
+    {
+      propertyId: 2,
+      street_address: '256 smith st',
+      city: 'Ottawa',
+      province: 'Alberta',
+      country: 'Canada',
+      documents: '5 documents',
+      recent_files: `assets/pdf.png`,
+      file_name: 'Recent file 1',
+      tenantAmount: '2',
+    },
+    {
+      propertyId: 3,
+      street_address: '384 oak st',
+      city: 'Ottawa',
+      province: 'Ontario',
+      country: 'Canada',
+      documents: '2 documents',
+      recent_files: `assets/pdf.png`,
+      file_name: 'Recent file 1',
+      tenantAmount: '2',
+    },
+  ];
+
+
+  getUniqueProvinces() {
+    return [...new Set(this.property.map((property) => property.province))];
   }
 
-  title = 'stayworks_test';
+  onProvinceChange(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    this.selectedProvince = target.value;
+    console.log('Selected province:', this.selectedProvince);
+  }
+
+  onPropertyClick(id: number) {
+    console.log('Clicked property:', id);
+    this.router.navigate(['/dashboard/pdocs', id]);
+  }
+
+  onAddPropertyClick() {
+    console.log('Clicked add property');
+  }
+
+  onResetFilter(){
+    this.selectedProvince = '';
+  }
 }

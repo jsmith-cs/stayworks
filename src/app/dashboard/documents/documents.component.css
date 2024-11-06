@@ -1,35 +1,185 @@
+
 a {
   text-decoration: none;
   color: white;
 }
 th {
+  position: relative;
+  text-align: center;
+  justify-content: center;
   color: black;
   font-family: "Biko";
   font-size: 20px;
-  text-align: center;
 }
+table{
+  display: flex;
+  height: 70vh;
+  overflow-y: auto;
+}
+.documents-filter {
+  display: flex;
+  position: relative;
+  width: 100%;
+  border: black 1px solid;
+  justify-content: center;
+}
+.documents-filter .filter-title{
+  position: relative;
+  border: #3a7ca5 1px solid;
+  border-radius: 10px;
+  background-color: #3a7ca5;
+  width: 100px;
+  height: 50px;
+  align-items: left;
+  text-align: center;
+  vertical-align: middle;
+  margin: 5px
+}
+
 .documents-table {
   width: 100%;
 }
+.documents-header {
+  border: black 1px solid;  
+  position: flex;
+  width: 70%;
+
+  padding-right:20px;
+}
+.documents-header .recently_used {
+  display: flex;
+  position: relative;
+  width: 100%;
+  left: 0;
+  justify-content: center; 
+  align-items: center;
+  font-weight: 100;
+  font-size: 17px;
+  padding: 5px;
+  border-bottom: #3a7ca5 1px solid;
+}
 
 .property_card {
-  width: 100%;
   display: flex;
+  position: relative;
+  width: calc(100% - 20px);
+  height: 100px;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
   margin: 10px;
-  border-radius: 10px;
+  border-radius: 3px;
   background-color: #3a7ca5;
   color: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  overflow: hidden;
+}
+.property_card:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: box-shadow 0.1s ease-in-out;
 }
-
 .property_card_img {
+  position: flex;
+  line-height: 0;
+  display: run-in;
   flex-shrink: 0;
+  height: 100%;
+  border-radius: 10px;
+  margin: -10px;
+  height: 100%;
 }
 
-.add-documents {
+.property_card_img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100%;
+  background: linear-gradient(to left, #3a7ca5, transparent);
+}
+
+.property_card_img img {
+  display: block;
+  height: 100%;
+  width: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  filter: brightness(90%);
+}
+
+.property_card_address {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 100%;
+  font-size: 20px;
+}
+
+.property_card_address {
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 10px;
+  text-align: left;
+  justify-content: left;
+}
+
+.property_card_address h6 {
+  font-weight: 300;
+  border-bottom: #6dc6fd 1px solid;
+}
+.property_card_address p {
+  font-weight: 200;
+  font-size: 17px;
+  max-width: 200px;
+  overflow: hidden;
+  text-wrap: nowrap;
+}
+.property_card_address .street_address {
+  position: relative;
+  width: 250px;
+}
+.property_card_address .tenantAmount {
+  width: 180px;
+}
+.property_card_address > * {
+  text-align: center;
+  padding: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: 100;
+}
+
+.property_card_documents {
+  display: flex;
+  width: 100%;
+  justify-content: right;
+  align-items: center;
+  text-align: center;
+  padding-right: 10px;
+  margin-right: 30px;
+}
+.property_card_documents p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+}
+
+.property_recently_used_card {
+  width: 100%;
+  height: 120px;
+  margin: 10px;
+  margin-left: 40px;
+  padding: 10px;
+  border-radius: 5px;
+  color: black !important;
+}
+.property_recently_used_card img {
+  width: 70px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .add-property {
   display: relative;
   position: absolute;
   right: 0;
@@ -37,7 +187,7 @@ th {
   margin-right: 70px;
   margin-bottom: 50px;
 }
-.add-documents button {
+.add-property button {
   width: fit-content;
   background-color: #2f6690;
   color: white;
@@ -47,29 +197,8 @@ th {
   border: 1px solid #2f6690;
   font-size: 15px;
 }
-.add-documents button:hover {
+.add-property button:hover {
   transition: all 0.1s ease-in-out;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
-}
-
-.property_card_address {
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  width: 100%;
-}
-
-.property_recently_used_card {
-  display: flex;
-  width: 80%;
-  float: inline-start;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-left: 30px;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  margin: 30px; 
-  border: #2f6690 3px solid;
-  border-radius: 10px;
-}
+} */
