@@ -1,0 +1,121 @@
+.dashboard-container {
+  padding: 40px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #D9DCD6;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 70px;
+}
+
+h1 {
+  color: #16425B;
+  margin: 0;
+}
+
+.logout-btn {
+  background-color: #D9DCD6;
+  color: #16425B;
+  border: 2px solid #16425B;
+  border-radius: 25px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.logout-btn:hover {
+  background-color: #16425B;
+  color: #D9DCD6;
+}
+
+.user-info {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.user-info p {
+  color: #16425B;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.dashboard-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  max-width: 1200px;
+}
+
+.feature-tile {
+  background-color: #16425B;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  max-width: 200px;
+}
+
+.feature-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.feature-tile h3 {
+  color: #D9DCD6;
+  margin: 0 0 10px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.feature-tile p {
+  color: #D9DCD6;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.arrow-icon {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  color: #D9DCD6;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.feature-tile:hover .arrow-icon {
+  opacity: 1;
+}

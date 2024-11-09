@@ -1,0 +1,23 @@
+<div class="view-panel-overlay">
+    <div class="view-panel">
+      <h2>Tenant Details</h2>
+      <div class="tenant-info">
+        <p><strong>Name:</strong> {{tenant.first_name}} {{tenant.last_name}}</p>
+        <p><strong>Email:</strong> {{tenant.email}}</p>
+        <p><strong>Phone:</strong> {{tenant.phone}}</p>
+        <p><strong>Date of Birth:</strong> {{tenant.date_of_birth ? (tenant.date_of_birth | date) : 'Not provided'}}</p>
+        <p><strong>Address:</strong> {{tenant.street_address}}, {{tenant.city}}, {{tenant.province}} {{tenant.postal_code}}</p>
+        <p><strong>Lease Start:</strong> {{tenant.lease_start_date ? (tenant.lease_start_date | date) : 'Not set'}}</p>
+        <p><strong>Lease End:</strong> {{tenant.lease_end_date ? (tenant.lease_end_date | date) : 'Not set'}}</p>
+        <p><strong>Rent Amount:</strong> {{tenant.rent_amount ? (tenant.rent_amount | currency) : 'Not set'}}</p>
+        <p><strong>Security Deposit:</strong> {{tenant.security_deposit ? (tenant.security_deposit | currency) : 'Not set'}}</p>
+        <p><strong>Emergency Contact:</strong> {{tenant.emergency_contact_name ? (tenant.emergency_contact_name + ' (' + tenant.emergency_contact_phone + ')') : 'Not provided'}}</p>
+        <p><strong>Occupation:</strong> {{tenant.occupation || 'Not provided'}}</p>
+        <p><strong>Employer:</strong> {{tenant.employer || 'Not provided'}}</p>
+        <p><strong>Has Pets:</strong> {{tenant.has_pets ? 'Yes' : 'No'}}</p>
+        <p *ngIf="tenant.has_pets"><strong>Pet Details:</strong> {{tenant.pet_details || 'Not provided'}}</p>
+        <p><strong>Lease Signed:</strong> {{tenant.lease_signed ? (tenant.lease_signed | date) : 'Not signed'}}</p>
+      </div>
+      <button (click)="close.emit()" class="close-button">Close</button>
+    </div>
+  </div>

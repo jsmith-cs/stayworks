@@ -1,0 +1,160 @@
+<div class="form-overlay">
+    <div class="form-container">
+      <h3>{{ tenant.id ? 'Edit' : 'Add' }} Tenant</h3>
+      <form [formGroup]="tenantForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input id="firstName" formControlName="firstName" required placeholder="e.g., John">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input id="lastName" formControlName="lastName" required placeholder="e.g., Doe">
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" formControlName="email" required placeholder="e.g., john.doe@example.com">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input id="phone" formControlName="phone" placeholder="e.g., 1234567890" maxlength="12" (input)="formatPhoneNumber($event)">
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label>Date of Birth:</label>
+          <div class="date-inputs">
+            <input type="number" formControlName="dobDay" min="1" max="31" placeholder="DD">
+            <select formControlName="dobMonth">
+              <option value="">Month</option>
+              <option *ngFor="let month of months" [value]="month">{{month}}</option>
+            </select>
+            <input type="number" class="year-input" formControlName="dobYear" min="1924" [max]="maxYear" placeholder="YYYY">
+          </div>
+        </div>
+  
+        <div class="address-section">
+          <div class="form-group">
+            <label for="streetAddress">Street Address:</label>
+            <input id="streetAddress" formControlName="streetAddress" placeholder="e.g., 123 Main St">
+          </div>
+          <div class="form-row city-province-row">
+            <div class="form-group">
+              <label for="city">City:</label>
+              <input id="city" formControlName="city" placeholder="e.g., Toronto">
+            </div>
+            <div class="form-group">
+              <label for="province">Province:</label>
+              <input id="province" formControlName="province" placeholder="e.g., Ontario">
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group">
+            <label for="postalCode">Postal Code:</label>
+            <input id="postalCode" formControlName="postalCode" placeholder="e.g., A1A 1A1">
+          </div>
+          <div class="form-group">
+            <label for="country">Country:</label>
+            <input id="country" formControlName="country" value="Canada" readonly>
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group">
+            <label>Lease Start Date:</label>
+            <div class="date-inputs">
+              <input type="number" formControlName="leaseStartDay" min="1" max="31" placeholder="DD">
+              <select formControlName="leaseStartMonth">
+                <option value="">Month</option>
+                <option *ngFor="let month of months" [value]="month">{{month}}</option>
+              </select>
+              <input type="number" class="year-input" formControlName="leaseStartYear" placeholder="YYYY">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Lease End Date:</label>
+            <div class="date-inputs">
+              <input type="number" formControlName="leaseEndDay" min="1" max="31" placeholder="DD">
+              <select formControlName="leaseEndMonth">
+                <option value="">Month</option>
+                <option *ngFor="let month of months" [value]="month">{{month}}</option>
+              </select>
+              <input type="number" class="year-input" formControlName="leaseEndYear" placeholder="YYYY">
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rentAmount">Rent Amount:</label>
+            <input id="rentAmount" formControlName="rentAmount" type="number" min="0" step="1" placeholder="e.g., 1000">
+          </div>
+          <div class="form-group">
+            <label for="securityDeposit">Security Deposit:</label>
+            <input id="securityDeposit" formControlName="securityDeposit" type="number" min="0" step="1" placeholder="e.g., 500">
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group">
+            <label for="emergencyContactName">Emergency Contact Name:</label>
+            <input id="emergencyContactName" formControlName="emergencyContactName" placeholder="e.g., Jane Doe">
+          </div>
+          <div class="form-group">
+            <label for="emergencyContactPhone">Emergency Contact Phone:</label>
+            <input id="emergencyContactPhone" formControlName="emergencyContactPhone" placeholder="e.g., 1234567890" maxlength="12" (input)="formatPhoneNumber($event)">
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group">
+            <label for="occupation">Occupation:</label>
+            <input id="occupation" formControlName="occupation" placeholder="e.g., Software Developer">
+          </div>
+          <div class="form-group">
+            <label for="employer">Employer:</label>
+            <input id="employer" formControlName="employer" placeholder="e.g., Tech Co.">
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label>Has Pets:</label>
+          <div class="pet-radio-group">
+            <label>
+              <input type="radio" formControlName="hasPets" [value]="true"> Yes
+            </label>
+            <label>
+              <input type="radio" formControlName="hasPets" [value]="false"> No
+            </label>
+          </div>
+        </div>
+  
+        <div class="form-group" *ngIf="tenantForm.get('hasPets')?.value">
+          <label for="petDetails">Pet Details:</label>
+          <textarea id="petDetails" formControlName="petDetails" placeholder="e.g., 1 dog (Labrador), 2 cats"></textarea>
+        </div>
+  
+        <div class="form-group lease-signed-date">
+          <label>Lease Signed Date:</label>
+          <div class="date-inputs">
+            <input type="number" formControlName="leaseSignedDay" min="1" max="31" placeholder="DD">
+            <select formControlName="leaseSignedMonth">
+              <option value="">Month</option>
+              <option *ngFor="let month of months" [value]="month">{{month}}</option>
+            </select>
+            <input type="number" class="year-input" formControlName="leaseSignedYear" placeholder="YYYY">
+          </div>
+        </div>
+  
+        <div class="form-actions">
+          <button type="button" (click)="onSubmit()" class="save-button" [disabled]="!tenantForm.dirty">Save</button>
+          <button type="button" (click)="onCancel()" class="cancel-button">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>

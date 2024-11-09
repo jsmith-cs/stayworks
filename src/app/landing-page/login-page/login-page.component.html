@@ -1,0 +1,85 @@
+<div class="top-pane">
+  <div class="logo">
+    <img src="assets/Nav_Bar_Banner.png" alt="Stayworks Logo">
+  </div>
+  <div class="nav-buttons">
+    <button routerLink="/">Home</button>
+    <button routerLink="/features">Features</button>
+    <button routerLink="/pricing">Pricing</button>
+    <button routerLink="/about">About Us</button>
+    <button routerLink="/contact">Contact Us</button>
+  </div>
+  <div class="auth-buttons">
+    <button class="signup" routerLink="/signup">Sign Up</button>
+  </div>
+</div>
+
+<div class="content">
+  <div class="login-container">
+    <h1>Login</h1>
+    <p>Access your Stayworks account to get helpful property management tools right at your fingertips.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" formControlName="password" required>
+      </div>
+
+      <div *ngIf="loginError" class="error-message">
+        {{ loginError }}
+      </div>
+
+      <button type="submit" [disabled]="!loginForm.valid">Login</button>
+    </form>
+
+    <p class="noAccount">Don't have an account? <a routerLink="/signup">Sign up</a></p>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="assets/footer-logo.png" alt="Stayworks Logo">
+    </div>
+    <div class="footer-links">
+      <div class="footer-section">
+        <h3>Learn More</h3>
+        <ul>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/terms" target="_blank">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/signup">Sign Up</a></li>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Support Line: +1 800-456-7890</p>
+        <p>Email Support: stayworks&#64;support.ca</p>
+      </div>
+      <div id="social-media" class="footer-section">
+        <h3>Social Media</h3>
+        <div class="social-icons">
+          <a href="#" class="social-icon facebook"></a>
+          <a href="#" class="social-icon instagram"></a>
+          <a href="#" class="social-icon twitter"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <hr>
+    <p>&copy; 2024 Stayworks | All Rights Reserved</p>
+  </div>
+</footer>
