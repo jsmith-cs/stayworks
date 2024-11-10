@@ -1,5 +1,5 @@
 <div class="property-documents-main-container">
-  <div class="property-container" (click)="showPropertyDocuments = !showPropertyDocuments" onclick="ToggleShowPropertyDocumentsTable()">
+  <div class="property-container">
     <table class="property-table">
       <tr>
         <th>Address</th>
@@ -19,32 +19,51 @@
         <td>{{ propertyDetails.country }}</td>
         <td>{{ propertyDetails.postal_code }}</td>
         <td>{{ propertyDetails.occupied_status }}</td>
-        <td class="info_icon"><img src="assets/information_icon.svg" alt="information icon" /></td>
+        <td class="info_icon">
+          <img src="assets/information_icon.svg" alt="information icon" />
+        </td>
       </tr>
     </table>
 
-    <table class="property-documents-table" ng-show="showPropertyDocuments" >
+    <table class="property-documents-table" *ngIf="showPropertyDocuments">
       <tr>
+        <th>Document ID</th>
         <th>Document Name</th>
+        <th>Date Uploaded</th>
+        <th>Document Type</th>
+        <th>File</th>
       </tr>
+        <tr *ngFor="let document of documents">
+          <td>{{ document.document_id }}</td>
+          <td>{{ document.document_name }}</td>
+          <td>{{ document.date_uploaded }}</td>
+          <td>{{ document.document_type }}</td>
+          <td class="file_icon">
+            <img src="assets/file_icon.svg" alt="file icon" />
+          </td>
+        </tr>
     </table>
-
-    <div class="show-hide-documents">
-        <div class="show-documents">
-            <p>Show Documents</p>
-            <img src="assets/chevron-down.svg" height="30" alt="down chevron">
+    <button
+      class="show-hide-button-wrapper"
+      type="button"
+      (click)="ToggleShowPropertyDocumentsTable()"
+    >
+      <div class="show-hide-documents">
+        <div class="show-documents" *ngIf="!showPropertyDocuments">
+          <p>Show Documents</p>
+          <img src="assets/chevron-down.svg" height="30" alt="down chevron" />
         </div>
-        <div class="hide-documents">
-            <img src="assets/chevron-up.svg" height="30" alt="up chevron">
-            <p>Hide Documents</p>
+        <div class="hide-documents" *ngIf="showPropertyDocuments">
+          <img src="assets/chevron-up.svg" height="30" alt="up chevron" />
+          <p>Hide Documents</p>
         </div>
-    </div>
-    
+      </div>
+    </button>
   </div>
 
   <div class="tenant-list-documents">
     <div class="tentant-documents-container">
-      <table class="property-documents-table">
+      <table class="tenant-documents-table">
         <tr>
           <th><input type="checkbox" name="selectAll" /></th>
           <th>Name</th>
@@ -69,4 +88,3 @@
     <button type="button" class="add-documents-button">+ Add Documents</button>
   </div> -->
 </div>
- 

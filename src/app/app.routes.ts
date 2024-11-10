@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Routes } from '@angular/router';
+import { Component, NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './landing_page/landingpage.component';
 import { LoginComponent } from './features/login/login.component';
 import { SignupComponent } from './features/signup/signup.component';

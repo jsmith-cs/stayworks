@@ -14,11 +14,15 @@ import { SidebarModule } from 'primeng/sidebar';
 import { SplitterModule } from 'primeng/splitter';
 import { CommonModule, LocationStrategy } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PropertyDocumentsComponent } from './property-documents/property-documents.component';
+import { DocumentsComponent } from './documents/documents.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
+    CommonModule,
     RouterOutlet,
+    DocumentsComponent,
     MatButtonModule,
     ButtonModule,
     SidebarModule,
