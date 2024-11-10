@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './features/login/login.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -14,6 +14,6 @@ import { LoginComponent } from './features/login/login.component';
     ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [],
 })
 export class AppModule {}
