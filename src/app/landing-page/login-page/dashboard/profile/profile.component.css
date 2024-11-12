@@ -1,0 +1,25 @@
+.dashboard-sidebar{
+    display: flex; 
+    overflow: hidden; 
+    top: 0; 
+    left: 0; 
+    padding-left: 0.75rem;
+    padding-right: 0.75rem; 
+    margin-top: 0.5rem; 
+    margin-left: 0.5rem; 
+    margin-top: 0.75rem; 
+    flex-direction: column; 
+    justify-content: center; 
+    border-radius: 0.25rem; 
+    border-top-width: 1px; 
+    width: 300px;
+    height: 97.75vh; 
+    font-size: 0.875rem;
+    line-height: 5rem; 
+    background-color: #eaea84; 
+    
+}
+button .dashboard-sidebar {
+     width: 100%;
+     padding: 10px;
+ }

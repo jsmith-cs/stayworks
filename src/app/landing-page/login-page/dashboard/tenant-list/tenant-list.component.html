@@ -1,0 +1,52 @@
+<div class="app-container">
+    <header class="top-pane">
+      <div class="header-left">
+        <img src="assets/tenant-management-title.png" alt="Stayworks Logo" class="logo">
+        <h1 class="title">Tenant Management</h1>
+      </div>
+      <button (click)="logout()" class="logout-btn">Logout</button>
+    </header>
+    <div class="content-wrapper">
+      <div class="left-pane">
+        <nav>
+          <button routerLink="/dashboard" class="nav-button">Back to Dashboard</button>
+          <button routerLink="/properties" class="nav-button">Manage Properties</button>
+          <button routerLink="/analytics" class="nav-button">View Analytics</button>
+          <button routerLink="/account" class="nav-button">My Account</button>
+        </nav>
+      </div>
+      <div class="main-content">
+        <button (click)="showAddForm()" class="add-button">Add Tenant</button>
+        <div *ngIf="tenants.length === 0" class="no-tenants">
+          No tenants yet. Click the button above to add a tenant.
+        </div>
+        <ul class="tenant-list" *ngIf="tenants.length > 0">
+          <li *ngFor="let tenant of tenants" class="tenant-item">
+            <div class="tenant-info">
+              <h3 class="tenant-name">{{ tenant.first_name }} {{ tenant.last_name }}</h3>
+              <p class="tenant-contact">
+                <span class="email">{{ tenant.email }}</span>
+                <span class="phone">{{ tenant.phone }}</span>
+              </p>
+            </div>
+            <div class="tenant-actions">
+              <button (click)="viewTenant(tenant)" class="view-button">View</button>
+              <button (click)="editTenant(tenant)" class="edit-button">Edit</button>
+              <button (click)="confirmDeleteTenant(tenant.id)" class="delete-button">Delete</button>
+            </div>
+          </li>
+        </ul>
+        <app-tenant-form 
+          *ngIf="showForm" 
+          [tenant]="selectedTenant" 
+          (save)="saveTenant($event)" 
+          (cancel)="cancelForm()">
+        </app-tenant-form>
+        <app-tenant-view
+          *ngIf="showViewPanel"
+          [tenant]="selectedTenant"
+          (close)="closeViewPanel()">
+        </app-tenant-view>
+      </div>
+    </div>
+  </div>

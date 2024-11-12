@@ -1,0 +1,138 @@
+<div class="top-pane">
+  <div class="logo">
+    <img src="assets/Nav_Bar_Banner.png" alt="Stayworks Logo">
+  </div>
+  <div class="nav-buttons">
+    <button routerLink="/">Home</button>
+    <button routerLink="/features">Features</button>
+    <button routerLink="/pricing">Pricing</button>
+    <button routerLink="/about">About Us</button>
+    <button routerLink="/contact">Contact Us</button>
+  </div>
+  <div class="auth-buttons">
+    <button class="login" routerLink="/login">Login</button>
+  </div>
+</div>
+
+<div class="content">
+  <div class="signup-container">
+    <h1>Sign Up</h1>
+    <p>Join Stayworks today and start managing your properties efficiently!</p>
+
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" formControlName="firstName" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" formControlName="lastName" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" formControlName="email" required>
+          <div *ngIf="emailExists" class="error-message">This email is already registered.</div>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="tel" id="phoneNumber" formControlName="phoneNumber" required>
+        </div>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="password">Password</label>
+        <input type="password" id="password" formControlName="password" required>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" formControlName="confirmPassword" required>
+      </div>
+
+      <div *ngIf="signupForm.hasError('mismatch')" class="error-message">
+        Passwords do not match.
+      </div>
+
+      <div class="password-requirements" [ngClass]="{'requirements-met': allRequirementsMet}" *ngIf="signupForm.get('password')?.value">
+        <p [ngClass]="{'centered-text': allRequirementsMet}">{{ allRequirementsMet ? 'Password meets requirements.' : 'Password must contain:' }}</p>
+        <ul *ngIf="!allRequirementsMet">
+          <li *ngIf="!passwordRequirements.length">8+ characters in length</li>
+          <li *ngIf="!passwordRequirements.uppercase">At least one capital letter</li>
+          <li *ngIf="!passwordRequirements.number">At least one number</li>
+          <li *ngIf="!passwordRequirements.special">At least one special character '!&#64;#$%^&*'</li>
+        </ul>
+      </div>
+
+      <div class="form-group">
+        <label class="dob-label">Date of Birth</label>
+        <div class="dob-container">
+          <select formControlName="dobMonth" required>
+            <option *ngFor="let month of months" [value]="month">{{month}}</option>
+          </select>
+          <select formControlName="dobDay" required>
+            <option *ngFor="let day of days" [value]="day">{{day}}</option>
+          </select>
+          <select formControlName="dobYear" required>
+            <option *ngFor="let year of years" [value]="year">{{year}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="agreeToTerms" formControlName="agreeToTerms" required>
+        <label for="agreeToTerms">I agree to the <a href="/terms" target="_blank">terms and conditions.</a></label>
+      </div>
+
+      <button type="submit" [disabled]="!signupForm.valid">Create an account</button>
+    </form>
+
+    <p class="alreadyAccount">Already have an account? <a routerLink="/login">Log in</a></p>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="assets/footer-logo.png" alt="Stayworks Logo">
+    </div>
+    <div class="footer-links">
+      <div class="footer-section">
+        <h3>Learn More</h3>
+        <ul>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/terms" target="_blank">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Support Line: +1 800-456-7890</p>
+        <p>Email Support: stayworks&#64;support.ca</p>
+      </div>
+      <div id="social-media" class="footer-section">
+        <h3>Social Media</h3>
+        <div class="social-icons">
+          <a href="#" class="social-icon facebook"></a>
+          <a href="#" class="social-icon instagram"></a>
+          <a href="#" class="social-icon twitter"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <hr>
+    <p>&copy; 2024 Stayworks | All Rights Reserved</p>
+  </div>
+</footer>

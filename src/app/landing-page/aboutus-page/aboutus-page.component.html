@@ -1,0 +1,178 @@
+<div class="top-pane">
+    <div class="logo">
+      <img src="assets/Nav_Bar_Banner.png" alt="Stayworks Logo">
+    </div>
+    <div class="nav-buttons">
+      <button routerLink="/">Home</button>
+      <button routerLink="/features">Features</button>
+      <button routerLink="/pricing">Pricing</button>
+      <button routerLink="/contact">Contact Us</button>
+    </div>
+    <div class="auth-buttons">
+      <button class="login" routerLink="/login">Login</button>
+      <span>|</span>
+      <button class="signup" routerLink="/signup">Sign Up</button>
+    </div>
+  </div>
+  
+  <div class="about-container">
+      <div class="hero-section">
+          <h1>About Stayworks</h1>
+          <p class="tagline">Transforming Property Management Through Innovation</p>
+      </div>
+  
+      <div class="mission-section">
+          <div class="mission-content">
+              <h2>Our Mission</h2>
+              <p>To revolutionize property management by providing innovative, user-friendly solutions that empower landlords and property managers to efficiently manage their properties while delivering exceptional experiences to their tenants.</p>
+          </div>
+      </div>
+  
+      <div class="story-section">
+          <div class="story-card">
+              <div class="story-content">
+                  <h2>Our Story</h2>
+                  <p>Founded in 2024 by a group of students from McMaster University, Stayworks emerged from a simple observation: property management shouldn't be complicated. Our team of industry experts and tech innovators came together with a shared vision of creating a platform that simplifies the complexities of property management.</p>
+                  <p>Today, we're proud to serve thousands of property managers and landlords across Canada, helping them streamline their operations and grow their businesses with the help of Stayworks.</p>
+              </div>
+          </div>
+      </div>
+  
+      <div class="values-section">
+          <h2>Our Core Values</h2>
+          <div class="values-grid">
+              <div class="value-card" (mouseenter)="showValue($event)" (mouseleave)="hideValue($event)">
+                  <div class="value-icon">🎯</div>
+                  <h3>Innovation</h3>
+                  <p>Continuously evolving our platform to meet the changing needs of property management</p>
+              </div>
+              <div class="value-card" (mouseenter)="showValue($event)" (mouseleave)="hideValue($event)">
+                  <div class="value-icon">🤝</div>
+                  <h3>Trust</h3>
+                  <p>Building lasting relationships through transparency and reliability</p>
+              </div>
+              <div class="value-card" (mouseenter)="showValue($event)" (mouseleave)="hideValue($event)">
+                  <div class="value-icon">⚡</div>
+                  <h3>Efficiency</h3>
+                  <p>Streamlining processes to save time and reduce complexity</p>
+              </div>
+              <div class="value-card" (mouseenter)="showValue($event)" (mouseleave)="hideValue($event)">
+                  <div class="value-icon">🛡️</div>
+                  <h3>Security</h3>
+                  <p>Protecting your data with enterprise-grade security measures</p>
+              </div>
+          </div>
+      </div>
+  
+      <div class="stats-section">
+          <h2>Our Impact</h2>
+          <div class="stats-grid">
+              <div class="stat-card">
+                  <div class="stat-number" #statNumber>5000+</div>
+                  <div class="stat-label">Properties Managed</div>
+              </div>
+              <div class="stat-card">
+                  <div class="stat-number" #statNumber>1800+</div>
+                  <div class="stat-label">Active Users</div>
+              </div>
+              <div class="stat-card">
+                  <div class="stat-number" #statNumber>97%</div>
+                  <div class="stat-label">Customer Satisfaction</div>
+              </div>
+              <div class="stat-card">
+                  <div class="stat-number" #statNumber>24/7</div>
+                  <div class="stat-label">Support Available</div>
+              </div>
+          </div>
+      </div>
+  
+      <div class="team-section">
+          <h2>Meet Our Leadership Team</h2>
+          <div class="team-grid">
+              <div class="team-card">
+                  <div class="team-image"></div>
+                  <h3>James Smith</h3>
+                  <p>Chief Executive Officer</p>
+              </div>
+              <div class="team-card">
+                  <div class="team-image"><img src="assets/rishav1.png" alt="Rishav Sharma">"</div>
+                  <h3>Rishav Sharma</h3>
+                  <p>Chief Technology Officer</p>
+              </div>
+              <div class="team-card">
+                  <div class="team-image"></div>
+                  <h3>Manipal Osahan</h3>
+                  <p>Head of Customer Success</p>
+              </div>
+              <div class="team-card">
+                  <div class="team-image"></div>
+                  <h3>Robert Dinh</h3>
+                  <p>Chief Product Officer</p>
+              </div>
+          </div>
+      </div>
+  
+      <div class="contact-section">
+          <h2>Get in Touch</h2>
+          <div class="contact-cards">
+              <div class="contact-card">
+                  <div class="contact-icon">📍</div>
+                  <h3>Visit Us</h3>
+                  <p>123 Business Street<br>Toronto, ON M5V 2T6</p>
+              </div>
+              <div class="contact-card">
+                  <div class="contact-icon">📞</div>
+                  <h3>Call Us</h3>
+                  <p>+1 800-456-7890</p>
+              </div>
+              <div class="contact-card">
+                  <div class="contact-icon">✉️</div>
+                  <h3>Email Us</h3>
+                  <p>stayworks&#64;support.ca</p>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="assets/footer-logo.png" alt="Stayworks Logo">
+        </div>
+        <div class="footer-links">
+            <div class="footer-section">
+                <h3>Learn More</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="/terms" target="_blank">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a routerLink="/">Home</a></li>
+                    <li><a href="/signup">Sign Up</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Support Line: +1 800-456-7890</p>
+                <p>Email Support: stayworks&#64;support.ca</p>
+            </div>
+            <div id="social-media" class="footer-section">
+                <h3>Social Media</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon facebook"></a>
+                    <a href="#" class="social-icon instagram"></a>
+                    <a href="#" class="social-icon twitter"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <hr />
+        <p>&copy; 2024 Stayworks | All Rights Reserved</p>
+    </div>
+</footer>

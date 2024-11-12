@@ -1,0 +1,17 @@
+<div>
+    <div class="overview">
+
+        <div class="overview-card"  *ngFor="let overview of overview_card" [ngClass]="[overview.class]">
+            <div class="overview-card-title">
+                <h4>{{overview.label}}</h4>
+            </div>
+            <div class="overview-card-content">
+                <p>{{overview.content}}</p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
