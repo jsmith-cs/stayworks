@@ -1,7 +1,14 @@
+html {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+
 .dashboard-container {
   padding: 40px;
-  font-family: 'Poppins', sans-serif;
-  background-color: #D9DCD6;
+  font-family: "Poppins", sans-serif;
+  background-color: #d9dcd6;
   min-height: 100vh;
 }
 
@@ -28,25 +35,25 @@
 }
 
 h1 {
-  color: #16425B;
+  color: #16425b;
   margin: 0;
 }
 
 .logout-btn {
-  background-color: #D9DCD6;
-  color: #16425B;
-  border: 2px solid #16425B;
+  background-color: #d9dcd6;
+  color: #16425b;
+  border: 2px solid #16425b;
   border-radius: 25px;
   padding: 10px 20px;
   cursor: pointer;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   transition: all 0.3s ease;
   font-weight: 500;
 }
 
 .logout-btn:hover {
-  background-color: #16425B;
-  color: #D9DCD6;
+  background-color: #16425b;
+  color: #d9dcd6;
 }
 
 .user-info {
@@ -58,7 +65,7 @@ h1 {
 }
 
 .user-info p {
-  color: #16425B;
+  color: #16425b;
   font-size: 1.1rem;
   margin: 0;
 }
@@ -72,7 +79,7 @@ h1 {
 }
 
 .feature-tile {
-  background-color: #16425B;
+  background-color: #16425b;
   padding: 25px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -94,14 +101,14 @@ h1 {
 }
 
 .feature-tile h3 {
-  color: #D9DCD6;
+  color: #d9dcd6;
   margin: 0 0 10px 0;
   font-size: 1.3rem;
   font-weight: 600;
 }
 
 .feature-tile p {
-  color: #D9DCD6;
+  color: #d9dcd6;
   margin: 0;
   font-size: 0.9rem;
 }
@@ -110,7 +117,7 @@ h1 {
   position: absolute;
   bottom: 15px;
   right: 15px;
-  color: #D9DCD6;
+  color: #d9dcd6;
   opacity: 0;
   transition: opacity 0.3s ease;
   font-size: 1.2rem;
@@ -118,4 +125,59 @@ h1 {
 
 .feature-tile:hover .arrow-icon {
   opacity: 1;
+}
+.dashboard-sidebar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-sidebar {
+  position: relative;
+  height: 80vh;
+  width: 220px;
+  align-items: center;
+  float: left;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 0.25rem;
+  font-size: 15px;
+  line-height: 5rem;
+  background-color: #16425b;
+  z-index: 1;
+  border: #16425b 1px solid;
+}
+
+.dashboard-sidebar .sidebar-header button {
+  position: relative;
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: white;
+  border: #efefef 1px solid;
+  font-size: 15px;
+  font-family: "biko";
+  cursor: pointer;
+}
+
+.dashboard-sidebar .sidebar-header button:hover {
+  background-color: #f4f2f2;
+  text-decoration: black;
+}
+
+.dashboard-body {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  padding: 30px;
+  box-sizing: border-box;
+  color: black;
+  border-radius: 0.25rem;
+  z-index: 1;
+  overflow-y: auto;
+  border: #16425b 1px solid;
+  max-height: 85vh;
+  overflow-y: auto;
 }

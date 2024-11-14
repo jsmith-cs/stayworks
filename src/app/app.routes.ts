@@ -23,16 +23,30 @@ export const routes: Routes = [
   { path: 'features', component: FeaturesPageComponent },
   { path: 'signup', component: SignupPageComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], children: [
-    { path: 'overview', component: OverviewComponent },
-    { path: 'profile', component: ProfileComponent },
-    { path: 'documents', component: DocumentsComponent },
-    { path: 'propertydocuments', component: PropertyDocumentsComponent },
-    { path: 'propertymanagement', component: PropertiesComponent },
-    { path: 'contractors', component: ContractorsComponent },
-  ] },
-  { path: 'tenant-management', component: TenantListComponent, canActivate: [AuthGuard] },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'overview', component: OverviewComponent },
+      { path: 'profile', component: ProfileComponent },
+      {
+        path: 'documents',
+        component: DocumentsComponent,
+        children: [
+          { path: 'property-documents', component: PropertyDocumentsComponent },
+        ],
+      },
+      { path: 'property-management', component: PropertiesComponent },
+      { path: 'contractors', component: ContractorsComponent },
+    ],
+  },
+  {
+    path: 'tenant-management',
+    component: TenantListComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'about', component: AboutusPageComponent },
   { path: 'contact', component: ContactusPageComponent },
-  { path: 'terms', component: TermsAndConditionsComponent }
+  { path: 'terms', component: TermsAndConditionsComponent },
 ];

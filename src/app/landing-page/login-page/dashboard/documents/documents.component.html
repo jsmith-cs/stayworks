@@ -31,7 +31,7 @@
               </option>
             </select>
           </div>
-          <div class="filter-address-country"> 
+          <div class="filter-address-country">
             <input type="radio" name="country" id="filter-country" />
             <label for="filter-country">Canada</label>
           </div>
@@ -50,56 +50,63 @@
         <th class="recently_used">Recently Used</th>
       </tr>
       <tr class="row_card" *ngFor="let prop of property">
-        <td>
-          <div class="property_card" (click)="onPropertyClick(prop.propertyId)">
-            <div class="property_card_img">
-              <img
-                src="assets/sample_house.webp"
-                alt="image icon"
-                height="100"
-              />
-            </div>
-            <div class="property_card_address">
-              <div class="street_address">
-                <h6>Street Address</h6>
-                <p>{{ prop.street_address }}</p>
+        <div (click)="onPropertyDocumentsIDClick()">
+          <td>
+            <!--This goes in the property_card div right below it -->
+            <!-- (click)="onPropertyClick(prop.propertyId)" -->
+            <div
+              class="property_card"
+       
+            >
+              <div class="property_card_img">
+                <img
+                  src="assets/sample_house.webp"
+                  alt="image icon"
+                  height="100"
+                />
               </div>
-              <div class="city">
-                <h6>City</h6>
-                <p>{{ prop.city }}</p>
+              <div class="property_card_address">
+                <div class="street_address">
+                  <h6>Street Address</h6>
+                  <p>{{ prop.street_address }}</p>
+                </div>
+                <div class="city">
+                  <h6>City</h6>
+                  <p>{{ prop.city }}</p>
+                </div>
+                <div class="province">
+                  <h6>Province</h6>
+                  <p>{{ prop.province }}</p>
+                </div>
+                <div class="country">
+                  <h6>Country</h6>
+                  <p>{{ prop.country }}</p>
+                </div>
+                <div class="tenantAmount">
+                  <h6># of Tenants</h6>
+                  <p>{{ prop.tenantAmount }}</p>
+                </div>
               </div>
-              <div class="province">
-                <h6>Province</h6>
-                <p>{{ prop.province }}</p>
-              </div>
-              <div class="country">
-                <h6>Country</h6>
-                <p>{{ prop.country }}</p>
-              </div>
-              <div class="tenantAmount">
-                <h6># of Tenants</h6>
-                <p>{{ prop.tenantAmount }}</p>
-              </div>
-            </div>
 
-            <div class="property_card_documents">
-              <p>{{ prop.documents }}</p>
-              <div
-                style="
-                  display: relative;
-                  width: 20px;
-                  height: auto;
-                  padding-left: 10px;
-                  margin-bottom: 10px;
-                  top: 0;
-                  bottom: 0;
-                "
-              >
-                &#8594;
+              <div class="property_card_documents">
+                <p>{{ prop.documents }}</p>
+                <div
+                  style="
+                    display: relative;
+                    width: 20px;
+                    height: auto;
+                    padding-left: 10px;
+                    margin-bottom: 10px;
+                    top: 0;
+                    bottom: 0;
+                  "
+                >
+                  &#8594;
+                </div>
               </div>
             </div>
-          </div>
-        </td>
+          </td>
+        </div>
         <td>
           <div class="property_recently_used_card">
             <div class="property_card_doc">

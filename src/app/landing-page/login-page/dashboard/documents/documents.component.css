@@ -12,7 +12,7 @@ th {
   font-size: 20px;
 }
 table{
-  display: flex;
+  display: block;
   height: 70vh;
   overflow-y: auto;
 }

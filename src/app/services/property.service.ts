@@ -19,7 +19,7 @@ interface IAuthService {
   providedIn: 'root',
 })
 export class PropertyService {
-  private apiUrl = 'http://localhost:5000/api/Properties';
+  private apiUrl = 'http://localhost:5000/api/RentalProperty';
   
   constructor(private http: HttpClient, private authService: AuthService) {}
 

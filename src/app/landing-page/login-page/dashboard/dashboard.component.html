@@ -1,15 +1,46 @@
 <div class="dashboard-container">
-    <div class="dashboard-header">
-      <div class="header-left">
-        <div class="logo">
-          <img src="assets/dashboard-icon.png" alt="Stayworks Logo">
-        </div>
-        <h1>Welcome to Your Dashboard</h1>
+<div>
+
+  <div class="dashboard-header">
+    <div class="header-left">
+      <div class="logo">
+        <img src="assets/dashboard-icon.png" alt="Stayworks Logo" />
       </div>
-      <button class="logout-btn" (click)="logout()">Logout</button>
+      <h1>Welcome to Your Dashboard</h1>
+    </div>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+  <div>
+
+    <div class="dashboard-sidebar">
+        <div class="sidebar-header">
+          <ul style="list-style-type: none">
+            <li *ngFor="let button of sidebar_buttons">
+              <a
+                [routerLink]="button.routerLink"
+                routerLinkActive="{{ button.routerLinkActive }}"
+              >
+                <button type="button">
+                  <i *ngIf="button.icon" class="button.icon"> </i>
+                  {{ button.label }}
+                </button>
+              </a>
+            </li>
+            
+          </ul>
+          <button type="button" (click)="navigateToTenantManagement()">
+              Tenant Management
+          </button>
+        </div>
     </div>
 
-    <ng-container *ngIf="!isInTenantManagement">
+      <div class="dashboard-body">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  
+    <!-- <ng-container *ngIf="!isInTenantManagement">
       <div class="user-info">
         <p *ngIf="userId">User ID: {{ userId }}</p>
       </div>
@@ -21,6 +52,5 @@
           <span class="arrow-icon">➜</span>
         </div>
       </div>
-    </ng-container>
-    <router-outlet></router-outlet>
-  </div>
+    </ng-container> -->
+</div>
