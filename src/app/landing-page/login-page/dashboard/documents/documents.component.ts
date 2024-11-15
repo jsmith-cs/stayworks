@@ -127,7 +127,7 @@ export class DocumentsComponent {
   }
 
   getUniqueProvinces() {
-    return [...new Set(this.property.map((property) => property.province))];
+    return [...new Set(this.property.map((property) => property.Province))];
   }
 
   onProvinceChange(event: Event) {
@@ -137,11 +137,7 @@ export class DocumentsComponent {
   }
 
   onPropertyClick(id: number) {
-    this.router.navigate(['/property-documents', id]);
-  }
-
-  onAddPropertyClick() {
-    console.log('Clicked add property');
+    this.router.navigate(['/property-documents/', id]);
   }
 
   onResetFilter() {

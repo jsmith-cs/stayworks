@@ -135,12 +135,12 @@ h1 {
 .dashboard-sidebar {
   position: relative;
   height: 80vh;
-  width: 220px;
+  width: 200px;
   align-items: center;
   float: left;
   align-items: center;
   justify-content: center;
-
+  padding: 15px;
   border-radius: 0.25rem;
   font-size: 15px;
   line-height: 5rem;
@@ -177,7 +177,7 @@ h1 {
   border-radius: 0.25rem;
   z-index: 1;
   overflow-y: auto;
-  border: #16425b 1px solid;
   max-height: 85vh;
-  overflow-y: auto;
+  max-width: 95%;
+  overflow-y: hidden;
 }

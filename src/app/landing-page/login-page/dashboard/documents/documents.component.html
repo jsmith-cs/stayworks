@@ -1,15 +1,15 @@
 <div class="documents-container">
   <div class="documents-filter">
     <div class="filter-title">
-      <h6>Filter</h6>
+      <p>Filter</p>
     </div>
     <div class="documents-filter-options">
       <div class="fiter-tenant-search"></div>
       <div class="filter-address-search"></div>
 
       <div class="filter-address-options">
-        <div>
           <div class="filter-address-city">
+            <label for="filter-city">City: </label>
             <select name="city" id="filter-city">
               <option value="Ottawa">Ottawa</option>
               <option value="Toronto">Toronto</option>
@@ -17,6 +17,7 @@
             </select>
           </div>
           <div class="filter-address-province">
+            <label for="filter-province">Province: </label>
             <select
               name="province"
               id="filter-province"
@@ -38,7 +39,6 @@
           <div class="filter-reset">
             <button (click)="onResetFilter()">Reset</button>
           </div>
-        </div>
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@
         <th class="recently_used">Recently Used</th>
       </tr>
       <tr class="row_card" *ngFor="let prop of property">
-        <div >
+        <div>
           <td>
             <!--This goes in the property_card div right below it -->
             <!-- (click)="onPropertyClick(prop.propertyId)" -->
@@ -68,19 +68,19 @@
               <div class="property_card_address">
                 <div class="street_address">
                   <h6>Street Address</h6>
-                  <p>{{ prop.street_address }}</p>
+                  <p>{{ prop.address }}</p>
                 </div>
                 <div class="city">
                   <h6>City</h6>
-                  <p>{{ prop.city }}</p>
+                  <p>{{ prop.City }}</p>
                 </div>
                 <div class="province">
                   <h6>Province</h6>
-                  <p>{{ prop.province }}</p>
+                  <p>{{ prop.Province }}</p>
                 </div>
                 <div class="country">
                   <h6>Country</h6>
-                  <p>{{ prop.country }}</p>
+                  <p>{{ prop.Country }}</p>
                 </div>
                 <div class="tenantAmount">
                   <h6># of Tenants</h6>
