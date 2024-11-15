@@ -50,13 +50,13 @@
         <th class="recently_used">Recently Used</th>
       </tr>
       <tr class="row_card" *ngFor="let prop of property">
-        <div (click)="onPropertyDocumentsIDClick()">
+        <div >
           <td>
             <!--This goes in the property_card div right below it -->
             <!-- (click)="onPropertyClick(prop.propertyId)" -->
             <div
               class="property_card"
-       
+              (click)="onPropertyClick(prop.propertyId)"
             >
               <div class="property_card_img">
                 <img

@@ -475,6 +475,24 @@ app.delete('/api/Tenants/:id', authenticateToken, (req, res) => {
   );
 });
 
+
+//all property routes
+app.get('/api/RentalProperty', authenticateToken, (req, res) => {
+  const landlordId = req.user.id;
+  pool.execute(
+    'SELECT * FROM RentalProperty WHERE landlordId = ?',
+    [landlordId],
+    (error, results) => {
+      if (error) {
+        console.error('Error fetching properties:', error);
+        return res.status(500).json({ error: 'Error fetching properties', details: error.message });
+      }
+      console.log(`Found ${results.length} properties for landlord ${landlordId}`);
+      res.json(results);
+    }
+  );
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);

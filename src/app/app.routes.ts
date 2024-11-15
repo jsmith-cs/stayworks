@@ -34,7 +34,10 @@ export const routes: Routes = [
         path: 'documents',
         component: DocumentsComponent,
         children: [
-          { path: 'property-documents', component: PropertyDocumentsComponent },
+          {
+            path: 'property-documents/:id',
+            component: PropertyDocumentsComponent,
+          },
         ],
       },
       { path: 'property-management', component: PropertiesComponent },
