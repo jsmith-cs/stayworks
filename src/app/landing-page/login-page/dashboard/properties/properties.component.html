@@ -1,1 +1,93 @@
-<div></div>
+<div class="property-container">
+    <br>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+
+
+
+<form [formGroup]="propertyForm" (ngSubmit)="submitProperty()">
+
+    <div >
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Address</label>
+        <input type="email" class="form-control" id="address" formControlName="address" aria-describedby="emailHelp">
+        </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">City</label>
+        <input type="email" class="form-control" id="city" formControlName="city" aria-describedby="emailHelp">
+        </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Province</label>
+        <input type="email" class="form-control" id="province" formControlName="province" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Country</label>
+        <input type="email" class="form-control" id="country" formControlName="country" aria-describedby="emailHelp">
+        </div>
+    
+    </div>
+        
+    <button class="btn btn-primary"  type="submit">Submit</button>
+</form>
+
+
+
+<br>
+<br>
+
+
+
+<form [formGroup]="myForm" (ngSubmit)="submit()">
+
+<div class="form-group">
+    <label for="name">Name</label>
+    <select class="form-select" aria-label="Default select example" id="fileType" formControlName="fileType">
+        <option value="Lease">Lease Document</option>
+        <option value="Property">Property Document</option>
+        <option value="Other">Other Document</option>
+    </select>
+</div>
+        
+<div class="form-group">
+    <label for="file">File</label>
+    <input 
+        formControlName="file"
+        id="file" 
+        type="file" 
+        class="form-control"
+        (change)="onFileChange($event)">
+</div>
+            
+<button class="btn btn-primary"  type="submit">Submit</button>
+</form>
+
+     
+  <br>
+  <br>
+
+
+  <!-- <button type="button" class="btn btn-primary" (click)="onClickRetrieve()" > Test Button Get File</button> -->
+
+  <table  class="table">
+    <thead>
+        <th scope="col">docId</th>
+        <th scope="col">docType</th>
+        <th scope="col">fileName</th>
+    </thead>
+    <tbody *ngFor="let f of fileList">
+        <tr >
+            <td><a href="" onclick="return false;" (click)="onClickRetrieve(f.docId)">{{f.docId}}</a></td>
+            <td>{{f.docType}}</td>
+            <td>{{f.fileName}}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</div>
