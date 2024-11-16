@@ -8,6 +8,7 @@
 
 # Node
 /stayworks-backend/node_modules
+/stayworks-backend/backend_models/db.js
 /node_modules
 npm-debug.log
 yarn-error.log
