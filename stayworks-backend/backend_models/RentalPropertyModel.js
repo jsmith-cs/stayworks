@@ -38,9 +38,9 @@ const RentalPropertyModel = sequelize.define('RentalProperty', {
   });
   
     // Associations: Set up relationships between models
-    PersonModel.hasMany(RentalPropertyModel, { foreignKey: 'landlordId', as: 'RentalsAsLandlord', where: {role: 'landlord'} });
+    // PersonModel.hasMany(RentalPropertyModel, { foreignKey: 'landlordId', as: 'RentalsAsLandlord', where: {role: 'landlord'} });
 
-    RentalPropertyModel.belongsTo(PersonModel, { foreignKey: 'landlordId', as: 'Landlord' });
+    // RentalPropertyModel.belongsTo(PersonModel, { foreignKey: 'landlordId', as: 'Landlord' });
 
 
     // RentalPropertyModel.hasMany(PropertyTenantsModel, {
