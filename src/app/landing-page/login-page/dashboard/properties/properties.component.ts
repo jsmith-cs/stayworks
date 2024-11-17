@@ -45,6 +45,7 @@ export class PropertiesComponent implements OnInit {
 
 
    private baseUrl = 'http://localhost:3000/';
+   public propertyList = [];
    public fileList = [
      {docType: "Lease", docId:1,fileName:'---'},
      {docType: "Lease",docId:2,fileName:'----'},
@@ -191,10 +192,24 @@ export class PropertiesComponent implements OnInit {
       alert('Uploaded Successfully.');
       this.refreshDocList();
     })
-    
-    
+  }
 
+
+  //getList of Properties
+  getListProperties(): Observable<any> {
+    return this.http.get(`${this.baseUrl}getProperties/${this.landLordId}`,{
+      responseType:'json'
+    });
+  }
+
+  refreshPropertyList()
+  {
+    this.getListProperties().subscribe((data)=> {
+      this.propertyList = data;
+      console.log(this.propertyList);
+    }
     
+    );
   }
 
   title = 'stayworks_test';
