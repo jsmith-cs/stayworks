@@ -72,12 +72,14 @@
         <th scope="col">docId</th>
         <th scope="col">docType</th>
         <th scope="col">fileName</th>
+        <th scope="col">Created At</th>
     </thead>
     <tbody *ngFor="let f of fileList">
         <tr >
             <td><a href="" onclick="return false;" (click)="onClickRetrieve(f.docId)">{{f.docId}}</a></td>
             <td>{{f.docType}}</td>
             <td>{{f.fileName}}</td>
+            <td>{{f.CreatedAt}}</td>
         </tr>
     </tbody>
 </table>

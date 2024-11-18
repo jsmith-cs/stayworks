@@ -47,10 +47,10 @@ export class PropertiesComponent implements OnInit {
    private baseUrl = 'http://localhost:3000/';
    public propertyList = [];
    public fileList = [
-     {docType: "Lease", docId:1,fileName:'---'},
-     {docType: "Lease",docId:2,fileName:'----'},
-     {docType: "Lease",docId:3,fileName:'---'},
-     {docType: "Lease",docId:4,fileName:'---'}
+     {docType: "Lease", docId:1,fileName:'---',CreatedAt:''},
+     {docType: "Lease",docId:2,fileName:'----',CreatedAt:''},
+     {docType: "Lease",docId:3,fileName:'---',CreatedAt:''},
+     {docType: "Lease",docId:4,fileName:'---',CreatedAt:''}
    ];
 
    //Property Form
@@ -71,9 +71,6 @@ export class PropertiesComponent implements OnInit {
      fileSource: new FormControl('', [Validators.required]),
      fileType: new FormControl('', [Validators.required]),
    });
-
-
-
 
 
 
