@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
 }
+h1 {text-align: center;}
 .overview-card{
     display: inline-flex;
     flex-direction: column;
@@ -15,6 +16,19 @@
     padding-right: 30px;
     margin: 10px;
     background-color: #3A7CA5; 
+    color: white;
+    font-family: 'Biko';
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.overview-chart{
+    width:700px;
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 10px;
+    background-color: white; 
     color: white;
     font-family: 'Biko';
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
