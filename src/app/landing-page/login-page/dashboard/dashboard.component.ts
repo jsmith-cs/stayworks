@@ -28,7 +28,6 @@ import { DocumentsComponent } from './documents/documents.component';
   imports: [
     CommonModule,
     RouterOutlet,
-    DocumentsComponent,
     MatButtonModule,
     ButtonModule,
     SidebarModule,
@@ -37,7 +36,6 @@ import { DocumentsComponent } from './documents/documents.component';
     CardModule,
     CommonModule,
     RouterLink,
-    RouterLinkActive,
     RouterModule,
     RouterOutlet,
     ReactiveFormsModule,
@@ -84,7 +82,7 @@ export class DashboardComponent implements OnInit {
       },
       {
         label: 'Properties',
-        routerLink: ['/dashboard/propertymanagement'],
+        routerLink: ['/dashboard/properties'],
         routerLinkActive: 'router-link-active',
       },
       {
@@ -92,6 +90,16 @@ export class DashboardComponent implements OnInit {
         routerLink: ['/dashboard/contractors'],
         routerLinkActive: 'router-link-active',
       },
+      {
+        label: 'property-documents',
+        routerLink: ['/dashboard/property-documents'],
+        routerLinkActive: 'router-link-active',
+      },
+      {
+        label: 'Tenant Management',
+        routerLink: ['/tenant-management'],
+        routerLinkActive: 'router-link-active',
+      }
     ];
     if (isPlatformBrowser(this.platformId)) {
       const token = this.authService.getToken();

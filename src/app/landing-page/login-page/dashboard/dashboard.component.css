@@ -1,22 +1,27 @@
-html {
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-}
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 .dashboard-container {
-  padding: 40px;
-  font-family: "Poppins", sans-serif;
-  background-color: #d9dcd6;
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .dashboard-header {
+  background-color: #16425b;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  padding: 10px 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.title {
+  color: #d9dcd6;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 
 .header-left {
@@ -26,17 +31,28 @@ html {
 }
 
 .logo {
-  display: flex;
-  align-items: center;
+  height: 55px;
 }
 
 .logo img {
   height: 70px;
 }
 
-h1 {
-  color: #16425b;
-  margin: 0;
+.logout-btn:hover {
+  background-color: #16425b;
+  color: #d9dcd6;
+  border-color: #d9dcd6;
+}
+
+.profile-icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #d9dcd6;
+}
+
+.content-wrapper {
+  display: flex;
+  flex: 1;
 }
 
 .logout-btn {
@@ -50,12 +66,49 @@ h1 {
   transition: all 0.3s ease;
   font-weight: 500;
 }
+.left-pane {
+  width: 250px;
+  background-color: #3a7ca5;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.left-pane nav {
+  display: flex;
+  flex-direction: column;
+}
 
 .logout-btn:hover {
   background-color: #16425b;
   color: #d9dcd6;
 }
 
+.nav-button {
+  background-color: #16425b;
+  color: #d9dcd6;
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: #2f6690;
+}
+
+.main-content {
+  flex: 1;
+  background-color: #d9dcd6;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.content-wrapper {
+  display: flex;
+  flex: 1;
+}
 .user-info {
   background-color: white;
   padding: 20px;
@@ -126,7 +179,8 @@ h1 {
 .feature-tile:hover .arrow-icon {
   opacity: 1;
 }
-.dashboard-sidebar ul {
+
+/* .dashboard-sidebar ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -165,8 +219,8 @@ h1 {
   background-color: #f4f2f2;
   text-decoration: black;
 }
-
-.dashboard-body {
+ */
+/* .dashboard-body {
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -180,4 +234,4 @@ h1 {
   max-height: 85vh;
   max-width: 95%;
   overflow-y: hidden;
-}
+} */

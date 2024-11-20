@@ -14,8 +14,8 @@ import { PropertyDocumentsComponent } from './landing-page/login-page/dashboard/
 import { ContractorsComponent } from './landing-page/login-page/dashboard/contractors/contractors.component';
 import { DocumentsComponent } from './landing-page/login-page/dashboard/documents/documents.component';
 import { ProfileComponent } from './landing-page/login-page/dashboard/profile/profile.component';
-import { PropertiesComponent } from './landing-page/login-page/dashboard/properties/properties.component';
 import { OverviewComponent } from './landing-page/login-page/dashboard/overview/overview.component';
+import { PropertiesComponent } from './landing-page/login-page/dashboard/properties/properties.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -34,12 +34,10 @@ export const routes: Routes = [
         path: 'documents',
         component: DocumentsComponent,
       },
-      {
-        path: 'property-documents/:id',
-        component: PropertyDocumentsComponent,
-      },
 
-      { path: 'property-management', component: PropertiesComponent },
+      { path: 'properties', component: PropertiesComponent},
+      { path: 'properties:/propertyId', component: PropertiesComponent},
+      { path: 'property-documents', component: PropertyDocumentsComponent },
       { path: 'contractors', component: ContractorsComponent },
     ],
   },
