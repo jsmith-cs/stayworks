@@ -91,11 +91,6 @@ export class DashboardComponent implements OnInit {
         routerLinkActive: 'router-link-active',
       },
       {
-        label: 'property-documents',
-        routerLink: ['/dashboard/property-documents'],
-        routerLinkActive: 'router-link-active',
-      },
-      {
         label: 'Tenant Management',
         routerLink: ['/tenant-management'],
         routerLinkActive: 'router-link-active',

@@ -18,14 +18,6 @@ td {
   justify-content: center;
 }
 
-/* table > svg {
-    filter: opacity(70%);
-}
-table > svg:hover {
-  cursor: pointer;
-  filter: opacity(100%);
-
-} */
 
 .show-hide-button-wrapper {
   background: none;

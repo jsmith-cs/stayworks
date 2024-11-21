@@ -34,10 +34,12 @@ export const routes: Routes = [
         path: 'documents',
         component: DocumentsComponent,
       },
+      {
+        path: 'property-documents/:propertyId',
+        component: PropertyDocumentsComponent,
+      },
 
-      { path: 'properties', component: PropertiesComponent},
-      { path: 'properties:/propertyId', component: PropertiesComponent},
-      { path: 'property-documents', component: PropertyDocumentsComponent },
+      { path: 'properties', component: PropertiesComponent },
       { path: 'contractors', component: ContractorsComponent },
     ],
   },

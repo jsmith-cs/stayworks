@@ -1,3 +1,4 @@
+import { PropertyService } from './../../../../services/property.service';
 import {
   ChangeDetectorRef,
   Component,
@@ -18,8 +19,9 @@ export class PropertyDocumentsComponent implements OnInit {
   propertyId: number | null = null;
   propertyDocuments: any[] = [];
   showPropertyDocuments: boolean = false;
+  loading: boolean = true;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private PropertyService: PropertyService) {}
 
   documents = [
     {
@@ -53,14 +55,34 @@ export class PropertyDocumentsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.propertyId = +params['propertyId'];
-      // this.propertyDetails();
+      if (this.propertyId){
+        this.loadPropertyDocuments();
+    }
     });
 
     this.showPropertyDocuments = false;
   }
 
-  testButton() {
-    console.log('This is working inside the property documents component');
+  loadPropertyDocuments() {
+  
+    if (!this.propertyId) {
+      return;
+    }
+
+    this.PropertyService.getPropertyById(this.propertyId).subscribe({
+      next: (data: any) => {
+        this.propertyDocuments = data;
+        this.loading = false;
+        console.log(this.propertyDocuments);
+      }
+    })
+
+    this.PropertyService.getPropertyDocuments(this.propertyId).subscribe({
+      next: (data: any) => {
+        this.propertyDocuments = data;
+        this.loading = false;
+      }
+    })
   }
 
   ToggleShowPropertyDocumentsTable() {

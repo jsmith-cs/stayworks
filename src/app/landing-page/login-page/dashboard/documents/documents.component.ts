@@ -136,8 +136,8 @@ export class DocumentsComponent {
     console.log('Selected province:', this.selectedProvince);
   }
 
-  onPropertyClick(id: number) {
-    this.router.navigate(['/property-documents/', id]);
+  onPropertyClick(propertyId: number) {
+    this.router.navigate(['/dashboard/property-documents/', propertyId]);
   }
 
   onResetFilter() {

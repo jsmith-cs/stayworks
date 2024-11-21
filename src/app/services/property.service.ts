@@ -39,4 +39,11 @@ export class PropertyService {
       headers: this.getHeaders(),
     });
   }
+
+  getPropertyDocuments(id: number) {
+    return this.http.get<Property>(`${this.apiUrl}/${id}/documents`, {
+      headers: this.getHeaders(),
+    });
+  }
+
 }
