@@ -41,6 +41,21 @@ app.get('/getProperties/:landlordID', (req, res) => {
  
 });
 
+app.get('/getProperty/:pId', (req, res) => {
+
+  (async () => {
+    try {
+      
+      a = await RentalProperty.getProperty(req.params.pId);
+      res.json(a);
+      // console.log(req.params.name);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  })();
+ 
+});
+
 app.post('/newProperty', upload.none(),(req, res) =>{
 
   (async () => {
