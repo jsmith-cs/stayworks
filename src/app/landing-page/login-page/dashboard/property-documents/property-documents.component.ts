@@ -20,6 +20,7 @@ export class PropertyDocumentsComponent implements OnInit {
   propertyDocuments: any[] = [];
   showPropertyDocuments: boolean = false;
   loading: boolean = true;
+  propertyDetails: any[] = [];
 
   constructor(private route: ActivatedRoute, private PropertyService: PropertyService) {}
 
@@ -32,16 +33,16 @@ export class PropertyDocumentsComponent implements OnInit {
     },
   ];
 
-  propertyDetails = [
-    {
-      address: '123 willow av',
-      city: 'Ottawa',
-      province: 'Ontario',
-      country: 'Canada',
-      postal_code: 'K2G 1V6',
-      occupied_status: '1/2',
-    },
-  ];
+  // propertyDetails = [
+  //   {
+  //     address: '123 willow av',
+  //     city: 'Ottawa',
+  //     province: 'Ontario',
+  //     country: 'Canada',
+  //     postal_code: 'K2G 1V6',
+  //     occupied_status: '1/2',
+  //   },
+  // ];
 
   users = [
     {
@@ -55,6 +56,7 @@ export class PropertyDocumentsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.propertyId = +params['propertyId'];
+      console.log("Property ID:", this.propertyId);
       if (this.propertyId){
         this.loadPropertyDocuments();
     }
@@ -71,20 +73,20 @@ export class PropertyDocumentsComponent implements OnInit {
 
     this.PropertyService.getPropertyById(this.propertyId).subscribe({
       next: (data: any) => {
-        this.propertyDocuments = data;
+        this.propertyDetails = data;
         this.loading = false;
-        console.log(this.propertyDocuments);
       }
     })
 
     this.PropertyService.getPropertyDocuments(this.propertyId).subscribe({
-      next: (data: any) => {
-        this.propertyDocuments = data;
+      next: (documents: any) => {
+        this.propertyDocuments = documents;
         this.loading = false;
       }
     })
   }
 
+  
   ToggleShowPropertyDocumentsTable() {
     console.log('This is working inside the property documents component');
     this.showPropertyDocuments = !this.showPropertyDocuments;

@@ -20,7 +20,7 @@ interface IAuthService {
 })
 export class PropertyService {
   private apiUrl = 'http://localhost:5000/api/RentalProperty';
-  
+
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getHeaders(): HttpHeaders {
@@ -35,7 +35,7 @@ export class PropertyService {
   }
 
   getPropertyById(id: number) {
-    return this.http.get<Property>(`${this.apiUrl}/${id}`, {
+    return this.http.get<Property>(`${this.apiUrl}/getProperty/${id}`, {
       headers: this.getHeaders(),
     });
   }
@@ -45,5 +45,4 @@ export class PropertyService {
       headers: this.getHeaders(),
     });
   }
-
 }

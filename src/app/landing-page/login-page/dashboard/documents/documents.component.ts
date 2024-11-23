@@ -130,10 +130,13 @@ export class DocumentsComponent {
     return [...new Set(this.property.map((property) => property.Province))];
   }
 
+  getUniqueCities(province: string) {
+    return [...new Set(this.property.filter((property) => property.Province === province).map((property) => property.City))];
+  }
+
   onProvinceChange(event: Event) {
     const target = event.target as HTMLSelectElement;
     this.selectedProvince = target.value;
-    console.log('Selected province:', this.selectedProvince);
   }
 
   onPropertyClick(propertyId: number) {

@@ -10,10 +10,8 @@
       <div class="filter-address-options">
           <div class="filter-address-city">
             <label for="filter-city">City: </label>
-            <select name="city" id="filter-city">
-              <option value="Ottawa">Ottawa</option>
-              <option value="Toronto">Toronto</option>
-              <option value="Vancouver">Vancouver</option>
+            <select name="city" id="filter-city" *ngFor="let city of getUniqueCities(selectedProvince)" >
+              <option [value]="city">{{ city }}</option>
             </select>
           </div>
           <div class="filter-address-province">
