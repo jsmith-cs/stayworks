@@ -92,7 +92,7 @@ export class OverviewComponent implements OnInit {
           title: {
             display: true,
             align: 'center',
-            text: 'Months $',
+            text: 'Months',
           },
         },
       },
