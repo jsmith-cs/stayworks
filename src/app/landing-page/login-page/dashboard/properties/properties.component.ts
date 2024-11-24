@@ -84,7 +84,7 @@ export class PropertiesComponent implements OnInit {
     this.refreshDocList();
     var userId = localStorage.getItem("userId");
     this.landLordId = Number( userId ? userId:0);
-    console.log(this.landLordId);
+    // console.log(this.landLordId);
   }
 
   get f(){
