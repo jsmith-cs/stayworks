@@ -1,4 +1,8 @@
-
+.overview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
 .property-container {
 overflow: auto;
 }
