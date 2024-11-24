@@ -8,35 +8,29 @@
       <div class="filter-address-search"></div>
 
       <div class="filter-address-options">
-          <div class="filter-address-city">
-            <label for="filter-city">City: </label>
-            <select name="city" id="filter-city" *ngFor="let city of getUniqueCities(selectedProvince)" >
-              <option [value]="city">{{ city }}</option>
-            </select>
-          </div>
-          <div class="filter-address-province">
-            <label for="filter-province">Province: </label>
-            <select
-              name="province"
-              id="filter-province"
-              [(ngModel)]="selectedProvince"
-              (change)="onProvinceChange($event)"
+        <div class="filter-address-province">
+          <label for="filter-province">Province: </label>
+          <select
+            name="province"
+            id="filter-province"
+            [(ngModel)]="selectedProvince"
+            (change)="onProvinceChange($event)"
+          >
+            <option
+              *ngFor="let province of provinces "
+              [value]="province"
             >
-              <option
-                *ngFor="let province of getUniqueProvinces()"
-                [value]="province"
-              >
-                {{ province }}
-              </option>
-            </select>
-          </div>
-          <div class="filter-address-country">
-            <input type="radio" name="country" id="filter-country" />
-            <label for="filter-country">Canada</label>
-          </div>
-          <div class="filter-reset">
-            <button (click)="onResetFilter()">Reset</button>
-          </div>
+              {{ province }}
+            </option>
+          </select>
+        </div>
+        <div class="filter-address-country">
+          <input type="radio" name="country" id="filter-country" checked disabled/>
+          <label for="filter-country">Canada</label>
+        </div>
+        <div class="filter-reset">
+          <button (click)="onResetFilter()">Reset</button>
+        </div>
       </div>
     </div>
   </div>

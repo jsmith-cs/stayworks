@@ -23,7 +23,6 @@ import { blob } from "stream/consumers";
   selector: 'app-properties',
   standalone: true,
   imports: [
-    RouterOutlet,
     MatButtonModule,
     ButtonModule,
     SidebarModule,

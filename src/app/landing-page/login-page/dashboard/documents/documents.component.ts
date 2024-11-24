@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PropertyService } from '@app/services/property.service';
+import { BehaviorSubject, map, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-documents',
@@ -13,96 +14,26 @@ import { PropertyService } from '@app/services/property.service';
   styleUrl: './documents.component.css',
 })
 export class DocumentsComponent {
+  private destroy$ = new BehaviorSubject<boolean>(false);
+  private propertiesSubject = new BehaviorSubject<any[]>([]); 
+  properties$ = this.propertiesSubject.asObservable();
+
+  provinces: any[] = [];
   tenantAmount: string = '2';
   selectedProvince: string = '';
   loading: boolean = true;
   error: string | null = null;
   property: any[] = [];
+  allProperties: any[] = [];
+
+  uniqueProvinces = this.properties$.pipe(
+    map((properties: any) => [...new Set(properties.map((property: any) => property.Province))].sort()),
+  )
+
   constructor(
     private router: Router,
     private propertyService: PropertyService
   ) {}
-
-  // property = [
-  //   {
-  //     propertyId: 1,
-  //     street_address:
-  //       '128 jon stsssssssssssssssssssssssssss sssssssssssssssssssssssssss',
-  //     city: 'Ottawa',
-  //     province: 'Ontario',
-  //     country: 'Canada',
-  //     documents: '3 documents',
-  //     recent_files: `assets/pdf.png`,
-  //     file_name: 'Recent file 1',
-  //     tenantAmount: '2',
-  //   },
-  //   {
-  //     propertyId: 2,
-  //     street_address: '256 smith st',
-  //     city: 'Ottawa',
-  //     province: 'Alberta',
-  //     country: 'Canada',
-  //     documents: '5 documents',
-  //     recent_files: `assets/pdf.png`,
-  //     file_name: 'Recent file 1',
-  //     tenantAmount: '2',
-  //   },
-  //   {
-  //     propertyId: 3,
-  //     street_address: '384 oak st',
-  //     city: 'Ottawa',
-  //     province: 'Ontario',
-  //     country: 'Canada',
-  //     documents: '2 documents',
-  //     recent_files: `assets/pdf.png`,
-  //     file_name: 'Recent file 1',
-  //     tenantAmount: '2',
-  //   },
-  //   {
-  //     propertyId: 3,
-  //     street_address: '384 oak st',
-  //     city: 'Ottawa',
-  //     province: 'Ontario',
-  //     country: 'Canada',
-  //     documents: '2 documents',
-  //     recent_files: `assets/pdf.png`,
-  //     file_name: 'Recent file 1',
-  //     tenantAmount: '2',
-  //   },
-  //   {
-  //     propertyId: 3,
-  //     street_address: '384 oak st',
-  //     city: 'Ottawa',
-  //     province: 'Ontario',
-  //     country: 'Canada',
-  //     documents: '2 documents',
-  //     recent_files: `assets/pdf.png`,
-  //     file_name: 'Recent file 1',
-  //     tenantAmount: '2',
-  //   },
-  //   {
-  //     propertyId: 3,
-  //     street_address: '384 oak st',
-  //     city: 'Ottawa',
-  //     province: 'Ontario',
-  //     country: 'Canada',
-  //     documents: '2 documents',
-  //     recent_files: `assets/pdf.png`,
-  //     file_name: 'Recent file 1',
-  //     tenantAmount: '2',
-  //   },
-  //   {
-  //     propertyId: 3,
-  //     street_address: '384 oak st',
-  //     city: 'Ottawa',
-  //     province: 'Ontario',
-  //     country: 'Canada',
-  //     documents: '2 documents',
-  //     recent_files: `assets/pdf.png`,
-  //     file_name: 'Recent file 1',
-  //     tenantAmount: '2',
-  //   },
-  // ];
 
   ngOnInit() {
     this.loadProperties();
@@ -112,11 +43,14 @@ export class DocumentsComponent {
     this.loading = true;
     this.error = null;
 
-    this.propertyService.getProperties().subscribe({
+    this.propertyService.getProperties()
+    .subscribe({
       next: (properties: any) => {
         console.log(properties);
+        this.allProperties = properties;
         this.property = properties;
         this.loading = false;
+        this.provinces = [...new Set(properties.map((property: any) => property.Province))].sort();
       },
       error: (error) => {
         console.error(error);
@@ -126,17 +60,41 @@ export class DocumentsComponent {
     });
   }
 
-  getUniqueProvinces() {
-    return [...new Set(this.property.map((property) => property.Province))];
-  }
+   getUniqueProvinces(event: Event) {
+    const province = (event.target as HTMLSelectElement).value;
+    this.selectedProvince = province;
+    if (this.selectedProvince ) {
+      this.loading = true;
 
-  getUniqueCities(province: string) {
-    return [...new Set(this.property.filter((property) => property.Province === province).map((property) => property.City))];
+     this.propertyService.getPropertyByProvince(province)
+     .pipe(takeUntil(this.destroy$))
+     .subscribe({
+        next: (properties: any) => {
+          this.property = properties;
+
+          console.log(properties + 'PROPERTIES');
+          this.loading = false;
+        },
+        error: (error) => {
+          console.error(error);
+          this.loading = false;
+          this.error = error.message;
+        },
+      });
+    }
+   
   }
 
   onProvinceChange(event: Event) {
     const target = event.target as HTMLSelectElement;
     this.selectedProvince = target.value;
+    
+    if (this.selectedProvince ) {
+      this.property = this.allProperties.filter(property => property.Province === this.selectedProvince);      
+    }else{ 
+      this.property = this.allProperties;
+    }
+
   }
 
   onPropertyClick(propertyId: number) {
@@ -145,6 +103,7 @@ export class DocumentsComponent {
 
   onResetFilter() {
     this.selectedProvince = '';
+    this.property = this.allProperties;
   }
 
   onPropertyDocumentsIDClick() {

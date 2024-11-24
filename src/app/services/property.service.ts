@@ -1,3 +1,4 @@
+import { map, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
@@ -20,6 +21,7 @@ interface IAuthService {
 })
 export class PropertyService {
   private apiUrl = 'http://localhost:5000/api/RentalProperty';
+  private idApi = 'http://localhost:3000';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -35,14 +37,20 @@ export class PropertyService {
   }
 
   getPropertyById(id: number) {
-    return this.http.get<Property>(`${this.apiUrl}/getProperty/${id}`, {
+    return this.http.get<Property>(`${this.idApi}/getProperty/${id}`, {
+      headers: this.getHeaders(),
+    });
+  }
+  getPropertyByProvince(province: string) {
+    return this.http.get<Property>(`${this.idApi}/getPropertyByCity/${province}`, {
       headers: this.getHeaders(),
     });
   }
 
   getPropertyDocuments(id: number) {
-    return this.http.get<Property>(`${this.apiUrl}/${id}/documents`, {
+    return this.http.get<Property>(`${this.idApi}/listFiles/${id}`, {
       headers: this.getHeaders(),
+      responseType: 'json',
     });
   }
 }

@@ -11,38 +11,39 @@
       </tr>
       <tr
         class="property-details"
-        *ngFor="let propertyDetails of propertyDetails"
+        *ngIf="propertyDetails"
       >
         <td>{{ propertyDetails.address }}</td>
-        <td>{{ propertyDetails.city }}</td>
-        <td>{{ propertyDetails.province }}</td>
-        <td>{{ propertyDetails.country }}</td>
-        <td>{{ propertyDetails.postal_code }}</td>
-        <td>{{ propertyDetails.occupied_status }}</td>
-        <td class="info_icon">
+        <td>{{ propertyDetails.City}}</td>
+        <td>{{ propertyDetails.Province }}</td>
+        <td>{{ propertyDetails.Country }}</td>
+        <!-- <td>{{ propertyDetails.occupied_status }}</td> -->
+        <!-- <td class="info_icon">
           <img src="assets/information_icon.svg" alt="information icon" />
-        </td>
+        </td> -->
       </tr>
     </table>
 
-    <table class="property-documents-table" *ngIf="showPropertyDocuments">
-      <tr>
-        <th>Document ID</th>
-        <th>Document Name</th>
-        <th>Date Uploaded</th>
-        <th>Document Type</th>
-        <th>File</th>
-      </tr>
-        <tr *ngFor="let document of documents">
-          <td>{{ document.document_id }}</td>
-          <td>{{ document.document_name }}</td>
-          <td>{{ document.date_uploaded }}</td>
-          <td>{{ document.document_type }}</td>
+    <div *ngIf="!loading && showPropertyDocuments">
+      <table class="property-documents-table" *ngIf="propertyDocuments && propertyDocuments.length > 0">
+        <tr>
+          <th>Document ID</th>
+          <th>Document Name</th>
+          <th>Date Uploaded</th>
+          <th>Document Type</th>
+          <th>File</th>
+        </tr>
+        <tr *ngFor="let document of propertyDocuments">
+          <td>{{ document.docId }}</td>
+          <td>{{ document.fileName }}</td>
+          <td>{{ document.docType }}</td>
+          <td>{{ document.createdAt | date : "medium" }}</td>
           <td class="file_icon">
             <img src="assets/file_icon.svg" alt="file icon" />
           </td>
         </tr>
-    </table>
+      </table>
+    </div>
     <button
       class="show-hide-button-wrapper"
       type="button"

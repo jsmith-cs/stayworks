@@ -8,6 +8,15 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+interface PropertyDetails {
+  propertyId: number;
+  address: string;
+  City: string;
+  Province: string;
+  Country: string;
+  landlordId: number;
+}
+
 @Component({
   selector: 'app-property-documents',
   standalone: true,
@@ -16,33 +25,27 @@ import { CommonModule } from '@angular/common';
   styleUrl: './property-documents.component.css',
 })
 export class PropertyDocumentsComponent implements OnInit {
-  propertyId: number | null = null;
-  propertyDocuments: any[] = [];
+  [x: string]: any;
+  propertyId: number = 0;
   showPropertyDocuments: boolean = false;
   loading: boolean = true;
-  propertyDetails: any[] = [];
+  propertyDocuments: any[] = [];
+  propertyDetails: PropertyDetails | null = null;
 
-  constructor(private route: ActivatedRoute, private PropertyService: PropertyService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private PropertyService: PropertyService
+  ) {}
 
-  documents = [
+  defaultDocuments = [
     {
-      document_id: 1,
-      document_name: 'Contract',
-      date_uploaded: '2023-01-01',
-      document_type: 'Contract',
+      docId: 1,
+      docType: '',
+      updatedAt: '',
+      fileName: '',
+      location: '',
     },
   ];
-
-  // propertyDetails = [
-  //   {
-  //     address: '123 willow av',
-  //     city: 'Ottawa',
-  //     province: 'Ontario',
-  //     country: 'Canada',
-  //     postal_code: 'K2G 1V6',
-  //     occupied_status: '1/2',
-  //   },
-  // ];
 
   users = [
     {
@@ -56,39 +59,50 @@ export class PropertyDocumentsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.propertyId = +params['propertyId'];
-      console.log("Property ID:", this.propertyId);
-      if (this.propertyId){
+      console.log('Property ID:', this.propertyId);
+      if (this.propertyId) {
+        this.propertyDocuments = this.defaultDocuments;
+        this.loading = false;
+        this.loadProperty();
         this.loadPropertyDocuments();
-    }
+      }
     });
 
     this.showPropertyDocuments = false;
   }
 
-  loadPropertyDocuments() {
-  
-    if (!this.propertyId) {
-      return;
-    }
-
+  loadProperty() {
     this.PropertyService.getPropertyById(this.propertyId).subscribe({
       next: (data: any) => {
         this.propertyDetails = data;
+        console.log(this.propertyDetails + "Property Details");
+      },
+      complete: () => {
         this.loading = false;
-      }
-    })
+      },
+    });
+  }
+
+  loadPropertyDocuments() {
+    this.loading = true;
 
     this.PropertyService.getPropertyDocuments(this.propertyId).subscribe({
       next: (documents: any) => {
-        this.propertyDocuments = documents;
+        this.loading = true;
+
+        if (documents && documents.length > 0) {
+          this.propertyDocuments = documents;
+        } else {
+          this.propertyDocuments = this.defaultDocuments;
+        }
+      },
+      complete: () => {
         this.loading = false;
-      }
-    })
+      },
+    });
   }
 
-  
   ToggleShowPropertyDocumentsTable() {
-    console.log('This is working inside the property documents component');
     this.showPropertyDocuments = !this.showPropertyDocuments;
   }
 
