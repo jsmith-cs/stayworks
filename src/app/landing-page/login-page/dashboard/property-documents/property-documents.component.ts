@@ -31,6 +31,8 @@ export class PropertyDocumentsComponent implements OnInit {
 
   public landLordId = 0;
 
+  public landLordId = 0 ;
+
   constructor(
     private route: ActivatedRoute,
     private PropertyService: PropertyService,
@@ -80,8 +82,8 @@ export class PropertyDocumentsComponent implements OnInit {
         this.loadPropertyDocuments();
       }
     });
-    var userId = localStorage.getItem('userId');
-    this.landLordId = Number(userId ? userId : 0);
+    var userId = localStorage.getItem("userId");
+    this.landLordId = Number( userId ? userId:0);
     this.showPropertyDocuments = false;
   }
 
