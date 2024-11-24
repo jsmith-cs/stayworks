@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TableModule } from 'primeng/table';
+
 import {
   RouterLink,
   RouterLinkActive,
@@ -31,7 +33,7 @@ import { blob } from "stream/consumers";
     CommonModule,
     CardModule,
     RouterModule,
-    FormsModule, ReactiveFormsModule //Needed for forms
+    FormsModule, ReactiveFormsModule,TableModule //Needed for forms
   ],
   templateUrl: './properties.component.html',
   styleUrl: './properties.component.css',
@@ -58,6 +60,7 @@ export class PropertiesComponent implements OnInit {
      city: new FormControl('', [Validators.required]),
      province: new FormControl('', [Validators.required]),
      country: new FormControl('', [Validators.required]),
+     postalCode: new FormControl('', [Validators.required]),
  });
 
 
@@ -165,15 +168,18 @@ export class PropertiesComponent implements OnInit {
     var city = this.propertyForm.value.city;
     var province = this.propertyForm.value.province;
     var country = this.propertyForm.value.country;
+    var postalCode = this.propertyForm.value.postalCode;
     var landLordId = this.landLordId.toString();
 
     if (address !== null && address !== undefined && city !== undefined  && city !== null 
       && province !== null && province !== undefined && country !== null && country !== undefined
-      && landLordId !== null && landLordId !== undefined) {
+      && landLordId !== null && landLordId !== undefined
+      && postalCode !== null && postalCode !== undefined) {
         formData2.append('address', address);
         formData2.append('city',city);
         formData2.append('province',province);
         formData2.append('country',country);
+        formData2.append('postalCode',postalCode);
         formData2.append('landLordId',landLordId);
         
         formData2.forEach((value, key) => {

@@ -8,15 +8,7 @@
     </div>
     <button class="logout-btn" (click)="logout()">Logout</button>
   </header>
-  <div>
-    <!--       
-      <div class="dashboard-sidebar">
-        <div class="sidebar-header">
-          <button type="button" (click)="navigateToTenantManagement()">
-            Tenant Management
-          </button>
-        </div>
-      </div> -->
+
 
     <div class="content-wrapper">
       <div class="left-pane">
@@ -31,22 +23,6 @@
         <router-outlet></router-outlet>
       </div>
 
-      <!-- <div class="dashboard-body">
-        </div> -->
-    </div>
-  </div>
+      </div>
 
-  <!-- <ng-container *ngIf="!isInTenantManagement">
-      <div class="user-info">
-        <p *ngIf="userId">User ID: {{ userId }}</p>
-      </div>
-      
-      <div class="dashboard-features">
-        <div class="feature-tile" (click)="navigateToTenantManagement()">
-          <h3>Tenant Management</h3>
-          <p>Manage your tenants and view profiles</p>
-          <span class="arrow-icon">➜</span>
-        </div>
-      </div>
-    </ng-container> -->
 </div>
