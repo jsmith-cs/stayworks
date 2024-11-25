@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // interface PropertyDetails {
 //   City: string;
@@ -18,7 +19,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-property-documents',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './property-documents.component.html',
   styleUrl: './property-documents.component.css',
 })
@@ -47,6 +48,12 @@ export class PropertyDocumentsComponent implements OnInit {
       location: '',
     },
   ];
+  public fileList = [
+    {docType: "Lease", docId:1,fileName:'---',CreatedAt:''},
+    {docType: "Lease",docId:2,fileName:'----',CreatedAt:''},
+    {docType: "Lease",docId:3,fileName:'---',CreatedAt:''},
+    {docType: "Lease",docId:4,fileName:'---',CreatedAt:''}
+  ];
 
   propertyDetails = [
     {
@@ -68,6 +75,60 @@ export class PropertyDocumentsComponent implements OnInit {
       tenant_status: 'Long-Term',
     },
   ];
+   // File Form
+   fileType = '';
+   myForm = new FormGroup({
+     file: new FormControl('', [Validators.required]),
+     fileSource: new FormControl('', [Validators.required]),
+     fileType: new FormControl('', [Validators.required]),
+   });
+
+
+   onFileChange(event:any) {
+
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.myForm.patchValue({
+        fileSource: file
+      });
+    }
+  } 
+  submit(){
+    const formData = new FormData();
+  
+    const fileSourceValue = this.myForm.get('fileSource')?.value;
+    var fileType1 = this.myForm.value.fileType;
+    if (fileSourceValue !== null && fileSourceValue !== undefined && fileType1 !== undefined  && fileType1 !== null 
+      && this.propertyId !== null && this.propertyId !== undefined) {
+        formData.append('file', fileSourceValue);
+        formData.append('fileType',fileType1);
+        formData.append('propertyId',this.propertyId.toString());
+
+    }
+    this.http.post(`${this.baseUrl}upload/`, formData)
+      .subscribe(res => {
+        console.log(res);
+        alert('Uploaded Successfully.');
+        this.refreshDocList();
+      })
+
+    
+  }
+
+  refreshDocList()
+  {
+    this.getListFiles().subscribe((data)=> {
+      this.fileList = data;
+      console.log(this.fileList);
+    }
+    
+    );
+  }
+  getListFiles(): Observable<any> {
+    return this.http.get(`${this.baseUrl}listFiles/${this.propertyId}`,{
+      responseType:'json'
+    });
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
