@@ -11,6 +11,8 @@
 /stayworks-backend/backend_models/db.js
 /stayworks-backend/server.js
 /stayworks/stayworks-backend/config/database.js
+/stayworks-backend/backend_models/server.js
+/stayworks/stayworks-backend/config/database.js
 /node_modules
 npm-debug.log
 yarn-error.log
