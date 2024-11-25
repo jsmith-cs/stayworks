@@ -41,6 +41,13 @@ export class PropertyService {
       headers: this.getHeaders(),
     });
   }
+
+  getPropertyByPropertyId(id: number) {
+    return this.http.get<Property>(`${this.idApi}/getPropertyByPropertyId/${id}`, {
+      headers: this.getHeaders(),
+    });
+  }
+
   getPropertyByProvince(province: string) {
     return this.http.get<Property>(`${this.idApi}/getPropertyByCity/${province}`, {
       headers: this.getHeaders(),

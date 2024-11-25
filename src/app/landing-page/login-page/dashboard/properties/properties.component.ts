@@ -79,6 +79,9 @@ export class PropertiesComponent implements OnInit {
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.refreshDocList();
+    var userId = localStorage.getItem("userId");
+    this.landLordId = Number( userId ? userId:0);
+    console.log(this.landLordId);
   }
 
   get f(){

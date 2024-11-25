@@ -1,6 +1,6 @@
 import { Component, Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PropertyService } from '@app/services/property.service';
@@ -37,6 +37,9 @@ export class DocumentsComponent {
 
   ngOnInit() {
     this.loadProperties();
+  }
+  ngOptimizedImage() {
+
   }
 
   loadProperties() {

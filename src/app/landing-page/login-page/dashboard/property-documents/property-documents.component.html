@@ -9,37 +9,49 @@
         <th>Postal Code</th>
         <th>Occupied Status</th>
       </tr>
-      <tr
-        class="property-details"
-        *ngIf="propertyDetails"
-      >
-        <td>{{ propertyDetails.address }}</td>
-        <td>{{ propertyDetails.City}}</td>
-        <td>{{ propertyDetails.Province }}</td>
-        <td>{{ propertyDetails.Country }}</td>
-        <!-- <td>{{ propertyDetails.occupied_status }}</td> -->
-        <!-- <td class="info_icon">
+        <tr *ngFor="let propertyDetails of propertyDetails">
+          <td>{{ propertyDetails.address }}</td>
+          <td>{{ propertyDetails.City }}</td>
+          <td>{{ propertyDetails.Province }}</td>
+          <td>{{ propertyDetails.Country }}</td>
+          <td *ngIf="propertyDetails.PostalCode == null || propertyDetails.PostalCode == ''">N/A</td> <td *ngIf="propertyDetails.PostalCode != null ">{{ propertyDetails.PostalCode }}</td>
+          <!-- <td class="info_icon">
           <img src="assets/information_icon.svg" alt="information icon" />
         </td> -->
-      </tr>
+        </tr>
     </table>
 
     <div *ngIf="!loading && showPropertyDocuments">
-      <table class="property-documents-table" *ngIf="propertyDocuments && propertyDocuments.length > 0">
+      <table
+        class="property-documents-table"
+        *ngIf="propertyDocuments && propertyDocuments.length > 0"
+      >
         <tr>
           <th>Document ID</th>
           <th>Document Name</th>
           <th>Date Uploaded</th>
           <th>Document Type</th>
-          <th>File</th>
+          <th>File Download</th>
         </tr>
         <tr *ngFor="let document of propertyDocuments">
           <td>{{ document.docId }}</td>
           <td>{{ document.fileName }}</td>
+          <td>{{ document.CreatedAt | date : "medium" }}</td>
           <td>{{ document.docType }}</td>
-          <td>{{ document.createdAt | date : "medium" }}</td>
           <td class="file_icon">
-            <img src="assets/file_icon.svg" alt="file icon" />
+            <a
+              href=""
+              onclick="return false;"
+              (click)="onClickRetrieve(document.docId)"
+            >
+              <img
+                src="assets/file-image-icon.png"
+                alt="file icon"
+                style="filter: invert(100%)"
+                width="30"
+                fetchpriority="high"
+              />
+            </a>
           </td>
         </tr>
       </table>
@@ -52,10 +64,20 @@
       <div class="show-hide-documents">
         <div class="show-documents" *ngIf="!showPropertyDocuments">
           <p>Show Documents</p>
-          <img src="assets/chevron-down.svg" height="30" alt="down chevron" />
+          <img
+            src="assets/chevron-down.svg"
+            height="30"
+            alt="down chevron"
+            fetchpriority="high"
+          />
         </div>
         <div class="hide-documents" *ngIf="showPropertyDocuments">
-          <img src="assets/chevron-up.svg" height="30" alt="up chevron" />
+          <img
+            src="assets/chevron-up.svg"
+            height="30"
+            alt="up chevron"
+            fetchpriority="high"
+          />
           <p>Hide Documents</p>
         </div>
       </div>

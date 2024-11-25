@@ -1,21 +1,19 @@
 import { PropertyService } from './../../../../services/property.service';
-import {
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
-interface PropertyDetails {
-  propertyId: number;
-  address: string;
-  City: string;
-  Province: string;
-  Country: string;
-  landlordId: number;
-}
+// interface PropertyDetails {
+//   City: string;
+//   Country: string;
+//   PostalCode: any;
+//   Province: string;
+//   address: string;
+//   propertyId: number;
+//   landlordId: number;
+// }
 
 @Component({
   selector: 'app-property-documents',
@@ -25,25 +23,40 @@ interface PropertyDetails {
   styleUrl: './property-documents.component.css',
 })
 export class PropertyDocumentsComponent implements OnInit {
-  [x: string]: any;
+  private baseUrl = 'http://localhost:3000/';
   propertyId: number = 0;
   showPropertyDocuments: boolean = false;
   loading: boolean = true;
   propertyDocuments: any[] = [];
-  propertyDetails: PropertyDetails | null = null;
+
+  public landLordId = 0;
 
   constructor(
     private route: ActivatedRoute,
-    private PropertyService: PropertyService
+    private PropertyService: PropertyService,
+    private http: HttpClient
   ) {}
 
   defaultDocuments = [
     {
-      docId: 1,
+      docId: null,
       docType: '',
-      updatedAt: '',
+      UpdatedAt: '',
+      CreatedAt: '',
       fileName: '',
       location: '',
+    },
+  ];
+
+  propertyDetails = [
+    {
+      address: '',
+      City: '',
+      Country: '',
+      PostalCode: '',
+      Province: '',
+      propertyId: 0,
+      landlordId: 0,
     },
   ];
 
@@ -67,15 +80,29 @@ export class PropertyDocumentsComponent implements OnInit {
         this.loadPropertyDocuments();
       }
     });
-
+    var userId = localStorage.getItem('userId');
+    this.landLordId = Number(userId ? userId : 0);
     this.showPropertyDocuments = false;
   }
 
+  onClickRetrieve(a: any) {
+    console.log('button Clicked');
+    this.getFile(a).subscribe((blob) => {
+      const fileUrl = URL.createObjectURL(blob);
+
+      window.open(fileUrl, '_blank'); // Open the file in a new tab
+    });
+  }
+  getFile(docId: string): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}file/` + `${docId}`, {
+      responseType: 'blob', // Receive file as a Blob
+    });
+  }
+
   loadProperty() {
-    this.PropertyService.getPropertyById(this.propertyId).subscribe({
-      next: (data: any) => {
-        this.propertyDetails = data;
-        console.log(this.propertyDetails + "Property Details");
+    this.PropertyService.getPropertyByPropertyId(this.propertyId).subscribe({
+      next: (property: any) => {
+        this.propertyDetails = property;
       },
       complete: () => {
         this.loading = false;
@@ -92,6 +119,7 @@ export class PropertyDocumentsComponent implements OnInit {
 
         if (documents && documents.length > 0) {
           this.propertyDocuments = documents;
+          console.log(this.propertyDocuments);
         } else {
           this.propertyDocuments = this.defaultDocuments;
         }
