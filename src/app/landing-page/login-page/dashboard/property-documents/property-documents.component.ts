@@ -31,8 +31,6 @@ export class PropertyDocumentsComponent implements OnInit {
 
   public landLordId = 0;
 
-  public landLordId = 0 ;
-
   constructor(
     private route: ActivatedRoute,
     private PropertyService: PropertyService,

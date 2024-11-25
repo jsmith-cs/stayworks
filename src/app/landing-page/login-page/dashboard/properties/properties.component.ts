@@ -46,7 +46,7 @@ export class PropertiesComponent implements OnInit {
 
 
    private baseUrl = 'http://localhost:3000/';
-   public propertyList = [];
+   public propertyList = [{propertyId:0,address: "---", City:1,Country:'---',PostalCode:'---'},];
    public fileList = [
      {docType: "Lease", docId:1,fileName:'---',CreatedAt:''},
      {docType: "Lease",docId:2,fileName:'----',CreatedAt:''},
@@ -81,9 +81,12 @@ export class PropertiesComponent implements OnInit {
 
   ngOnInit() {
     this.primengConfig.ripple = true;
-    this.refreshDocList();
     var userId = localStorage.getItem("userId");
     this.landLordId = Number( userId ? userId:0);
+    this.refreshDocList();
+    this.refreshPropertyList()
+    
+   
     // console.log(this.landLordId);
   }
 
@@ -195,8 +198,9 @@ export class PropertiesComponent implements OnInit {
     .subscribe(res => {
       console.log(res);
       alert('Uploaded Successfully.');
-      this.refreshDocList();
+      this.refreshPropertyList();
     })
+
   }
 
 
@@ -215,6 +219,15 @@ export class PropertiesComponent implements OnInit {
     }
     
     );
+  }
+
+  onClickRetrieveProperty(pId:any){
+    console.log(pId);
+    // this.getFile(a).subscribe((blob) => {
+    //   const fileUrl = URL.createObjectURL(blob);
+
+    //   window.open(fileUrl, '_blank');  // Open the file in a new tab
+    // });
   }
 
 

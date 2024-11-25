@@ -6,3 +6,8 @@
 .property-container {
 overflow: auto;
 }
+
+.dBlue{
+  background-color: #3a7ca5;
+  color: white;
+}
