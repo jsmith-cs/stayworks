@@ -125,6 +125,21 @@ app.get('/listFiles/:propertyId',(req,res) =>{
   })();
 })
 
+app.get('/getProperty/:pId',(req,res) =>{
+  (async () => {
+    try {
+      
+      property = await RentalProperty.getProperty(req.params.pId);
+
+      res.json(property);
+      // console.log(req.params.name);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  })();
+
+})
+
 app.get('/overview/:landlordId',(req,res) =>{
 
   (async () => {

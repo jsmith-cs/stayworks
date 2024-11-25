@@ -42,7 +42,9 @@ export class PropertiesComponent implements OnInit {
    //Property Id goes here or Change Pid at Init
    public pId = 1;
    public landLordId = 1 ;
-
+   public currentPropertyInfo = {
+    address:""
+   };
 
 
    private baseUrl = 'http://localhost:3000/';
@@ -64,7 +66,6 @@ export class PropertiesComponent implements OnInit {
  });
 
 
-  
 
    // File Form
    fileType = '';
@@ -221,13 +222,18 @@ export class PropertiesComponent implements OnInit {
     );
   }
 
+  getProperty(): Observable<any> {
+    return this.http.get(`${this.baseUrl}getProperty/${this.pId}`,{
+      responseType:'json'
+    });
+  }
+
   onClickRetrieveProperty(pId:any){
     console.log(pId);
-    // this.getFile(a).subscribe((blob) => {
-    //   const fileUrl = URL.createObjectURL(blob);
-
-    //   window.open(fileUrl, '_blank');  // Open the file in a new tab
-    // });
+    this.pId = pId;
+    this.getProperty().subscribe((data)=> {
+      this.currentPropertyInfo = data;
+    });
   }
 
 

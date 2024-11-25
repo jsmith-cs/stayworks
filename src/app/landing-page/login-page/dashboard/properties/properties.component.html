@@ -27,7 +27,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let p of propertyList">
-              <td><a href="" onclick="return false;" (click)="onClickRetrieveProperty(p.propertyId)">{{p.address}}</a></td>
+              <td><a href="" onclick="return false;" (click)="onClickRetrieveProperty(p.propertyId)" data-bs-toggle="modal" data-bs-target="#modalPropertyInfo">{{p.address}}</a></td>
               <td>{{p.City}}</td>
               <td>{{p.Country}}</td>
               <td>{{p.PostalCode}}</td>
@@ -38,7 +38,7 @@
       </div>
 
 
-      <div class="d-flex flex-row bd-highlight mb-3">
+      <!-- <div class="d-flex flex-row bd-highlight mb-3">
         <div class="p-2 bd-highlight"><h3 class="bi bi-archive-fill"> My Documents</h3></div>
         <div class="p-2 bd-highlight"></div>
         <div class="p-2 bd-highlight"><button type="button" class="btn dBlue" data-bs-toggle="modal" data-bs-target="#modalAddDocument">
@@ -65,7 +65,7 @@
       
           </tbody>
         </table>
-      </div>
+      </div> -->
     </div>
 
     
@@ -197,6 +197,32 @@
     </div>
   </div>
 
+  <div class="modal fade" id="modalPropertyInfo" tabindex="-1" aria-labelledby="modalPropertyInfo" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{this.currentPropertyInfo.address}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">       
+          <button type="button" class="btn dBlue" data-bs-toggle="modal" data-bs-target="#modalAddDocument">
+            <i class="bi bi-file-earmark-arrow-up"></i> + Add Documents
+          </button>
+          <br>
+          <br>
+          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalAddDocument">
+            <i class="bi bi-currency-dollar"></i> + Add Expense 
+          </button>
+
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
