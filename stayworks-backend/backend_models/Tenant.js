@@ -13,7 +13,7 @@ class Tenant {
             console.log(`Tenants found`);
           }
         //   console.log(properties);
-          return properties;
+          return properties[0];
         } catch (error) {
           console.error("Error fetching properties for landlord:", error);
           throw error;

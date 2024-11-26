@@ -5,6 +5,7 @@ const path = require("path");
 const express = require("express");
 const Documents = require('./backend_models/Documents');
 const RentalProperty = require('./backend_models/RentalProperty');
+const Tenant = require("./backend_models/Tenant");
 const app = express();
 
 const port = 3000;
@@ -146,14 +147,15 @@ app.get('/overview/:landlordId',(req,res) =>{
     try {
       
       properties = await RentalProperty.getPropertiesByLandlord(req.params.landlordId);
-      Tenants = 0;
-      eRevenue = 0;
-      eExpense = 0;
+      Tenants = await Tenant.getAllTenants(req.params.landlordId);
+      console.log(Tenants);
+      eRevenue = "0.00";
+      eExpense = "0.50";
 
-      res.json({"Properties" : properties.length,
-                "Tenants" : tenants,
-                "Revenue": eRevenue,
-                "Expense": eExpense
+      res.json({"properties" : properties.length,
+                "tenants" : Tenants.length,
+                "revenue": eRevenue,
+                "expense": eExpense
       });
       // console.log(req.params.name);
     } catch (error) {
