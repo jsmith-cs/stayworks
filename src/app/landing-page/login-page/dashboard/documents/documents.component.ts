@@ -67,9 +67,7 @@ export class DocumentsComponent {
         this.loading = false;
     });
     this.loadProperties();
-  }
-  ngOptimizedImage() {
-
+    this.refreshDocList();
   }
 
   loadProperties() {
@@ -134,7 +132,9 @@ export class DocumentsComponent {
     return this.http.get(`${this.baseUrl}listFiles/${this.propertyId}`,{
       responseType:'json'
     });
-  }  onProvinceChange(event: Event) {
+  }  
+  
+  onProvinceChange(event: Event) {
     const target = event.target as HTMLSelectElement;
     this.selectedProvince = target.value;
     
@@ -145,7 +145,14 @@ export class DocumentsComponent {
     }
 
   }
-
+  onFileClick (docId: number) {
+      this.http.get(`${this.baseUrl}file/` + `${docId}`, { responseType: 'blob' })
+      .subscribe((data) => {
+        const blob = new Blob([data], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        window.open(url);
+      });
+  }
   onPropertyClick(propertyId: number) {
     this.router.navigate(['/dashboard/property-documents/', propertyId]);
   }

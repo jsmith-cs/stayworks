@@ -60,9 +60,6 @@ export class PropertiesComponent implements OnInit {
      country: new FormControl('', [Validators.required]),
  });
 
-
-  
-
    // File Form
    fileType = '';
    myForm = new FormGroup({
@@ -70,9 +67,6 @@ export class PropertiesComponent implements OnInit {
      fileSource: new FormControl('', [Validators.required]),
      fileType: new FormControl('', [Validators.required]),
    });
-
-
-
 
   constructor(private primengConfig: PrimeNGConfig,private http: HttpClient) {}
 

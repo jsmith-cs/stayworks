@@ -100,8 +100,8 @@
         </div>
         <td>
           <div class="property_recently_used_card">
-            <div class="property_card_doc">
-              <img src="assets/download-file.png" alt="image icon" width="30" />
+            <div class="property_card_doc" (click)="onFileClick(fileList[prop.propertyId].docId)" >
+              <img src="assets/download-file.png" alt="image icon" width="30"  />
               <p>{{ prop.fileName }}</p>
             </div>
           </div>
