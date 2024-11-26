@@ -6,16 +6,6 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-// interface PropertyDetails {
-//   City: string;
-//   Country: string;
-//   PostalCode: any;
-//   Province: string;
-//   address: string;
-//   propertyId: number;
-//   landlordId: number;
-// }
-
 @Component({
   selector: 'app-property-documents',
   standalone: true,
@@ -84,6 +74,7 @@ export class PropertyDocumentsComponent implements OnInit {
    });
 
 
+
    onFileChange(event:any) {
 
     if (event.target.files.length > 0) {
@@ -119,12 +110,12 @@ export class PropertyDocumentsComponent implements OnInit {
   {
     this.getListFiles().subscribe((data)=> {
       this.fileList = data;
-      console.log(this.fileList);
     }
     
     );
   }
   getListFiles(): Observable<any> {
+    console.log(this.fileList);
     return this.http.get(`${this.baseUrl}listFiles/${this.propertyId}`,{
       responseType:'json'
     });
@@ -139,6 +130,7 @@ export class PropertyDocumentsComponent implements OnInit {
         this.loading = false;
         this.loadProperty();
         this.loadPropertyDocuments();
+        console.log(this.fileList);
       }
     });
     var userId = localStorage.getItem('userId');
