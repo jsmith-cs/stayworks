@@ -204,13 +204,18 @@
           <h5 class="modal-title" id="exampleModalLabel">{{this.currentPropertyInfo.address}}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">       
+        <div class="modal-body">
+          <button type="button" class="btn dBlue" data-bs-dismiss="modal" (click)="showAddForm()" id="btnTenants">
+            <i class="bi bi-person-fill-add"></i> + Tenants
+          </button>
+          <br> 
+          <br>          
           <button type="button" class="btn dBlue" data-bs-toggle="modal" data-bs-target="#modalAddDocument">
-            <i class="bi bi-file-earmark-arrow-up"></i> + Add Documents
+            <i class="bi bi-file-earmark-arrow-up-fill"></i> + Add Documents
           </button>
           <br>
           <br>
-          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalAddDocument">
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalAddDocument">
             <i class="bi bi-currency-dollar"></i> + Add Expense 
           </button>
 
@@ -223,7 +228,12 @@
       </div>
     </div>
   </div>
-
+    <app-tenant-form 
+      *ngIf="showForm" 
+      [tenant]="selectedTenant" 
+      (save)="saveTenant($event)" 
+      (cancel)="cancelForm()">
+  </app-tenant-form>
 
 
   

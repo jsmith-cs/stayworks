@@ -20,6 +20,9 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { blob } from "stream/consumers";
+import { TenantService } from '../../../../services/tenant.service';
+import { AuthService } from '../../../../services/auth.service';
+import { TenantFormComponent } from '../tenant-list/tenant-form/tenant-form.component';
 
 @Component({
   selector: 'app-properties',
@@ -33,7 +36,9 @@ import { blob } from "stream/consumers";
     CommonModule,
     CardModule,
     RouterModule,
-    FormsModule, ReactiveFormsModule,TableModule //Needed for forms
+    FormsModule, ReactiveFormsModule,
+    TableModule, //Needed for forms
+    TenantFormComponent
   ],
   templateUrl: './properties.component.html',
   styleUrl: './properties.component.css',
@@ -42,9 +47,12 @@ export class PropertiesComponent implements OnInit {
    //Property Id goes here or Change Pid at Init
    public pId = 1;
    public landLordId = 1 ;
+   tenants: any[] = [];
+   showForm = false;
    public currentPropertyInfo = {
     address:""
    };
+   selectedTenant: any = {};
 
 
    private baseUrl = 'http://localhost:3000/';
@@ -78,7 +86,12 @@ export class PropertiesComponent implements OnInit {
 
 
 
-  constructor(private primengConfig: PrimeNGConfig,private http: HttpClient) {}
+  constructor(private primengConfig: PrimeNGConfig,private http: HttpClient,private tenantService: TenantService,
+    private authService: AuthService) {
+
+
+
+  }
 
   ngOnInit() {
     this.primengConfig.ripple = true;
@@ -236,6 +249,51 @@ export class PropertiesComponent implements OnInit {
     });
   }
 
+  // Add Tenant Form Here
+
+  showAddForm() {
+    let a = document.getElementById("btnTenants");
+    if (a)
+    {
+      a.setAttribute('data-dismiss','modal');
+    }
+    this.selectedTenant = {};
+    this.showForm = true;
+  }
+
+  cancelForm() {
+    this.showForm = false;
+    this.selectedTenant = {};
+  }
+  
+  saveTenant(tenant: any) {
+    tenant.landlord_ID = this.authService.getUserId();
+    tenant.pId = this.pId;
+    
+    if (tenant.id) {
+      this.tenantService.updateTenant(tenant.id, tenant).subscribe(
+        (updatedTenant) => {
+          console.log('Tenant updated successfully:', updatedTenant);
+          // this.loadTenants();
+          this.cancelForm();
+        },
+        error => {
+          console.error('Error updating tenant', error);
+        }
+      );
+    } else {
+      this.tenantService.addTenant(tenant).subscribe(
+        (newTenant) => {
+          console.log('Tenant added successfully:', newTenant);
+          // this.loadTenants();
+          this.cancelForm();
+        },
+        error => {
+          console.error('Error adding tenant', error);
+        }
+      );
+    }
+  }
 
   
   title = 'stayworks_test';
