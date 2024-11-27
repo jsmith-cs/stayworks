@@ -198,10 +198,10 @@
   </div>
 
   <div class="modal fade" id="modalPropertyInfo" tabindex="-1" aria-labelledby="modalPropertyInfo" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{this.currentPropertyInfo.address}}</h5>
+          <h3 class="modal-title" id="exampleModalLabel"><i class="bi bi-house-fill"></i> {{this.currentPropertyInfo.address}}</h3>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -220,6 +220,33 @@
           </button>
 
 
+
+          <div class="main-content">
+            <!-- <button (click)="showAddForm()" class="add-button">Add Tenant</button> -->
+            <h3> <i class="bi bi-people-fill"></i> Your Tenants </h3>
+            <div *ngIf="tenants.length === 0" class="no-tenants">
+              No tenants yet. Click the button above to add a tenant.
+            </div>
+            <ul class="tenant-list" *ngIf="tenants.length > 0">
+              <li *ngFor="let tenant of tenants" class="tenant-item">
+                <div class="tenant-info">
+                  <h3 class="tenant-name">{{ tenant.first_name }} {{ tenant.last_name }}</h3>
+                  <p class="tenant-contact">
+                    <span class="email">{{ tenant.email }}</span>
+                    <span class="phone">{{ tenant.phone }}</span>
+                  </p>
+                </div>
+                <div class="tenant-actions">
+                  <button (click)="viewTenant(tenant)"  data-bs-dismiss="modal" class="view-button">View</button>
+                  <button (click)="editTenant(tenant)"  data-bs-dismiss="modal" class="edit-button">Edit</button>
+                  <button (click)="confirmDeleteTenant(tenant.id)"  data-bs-dismiss="modal" class="delete-button">Delete</button>
+                </div>
+              </li>
+            </ul>
+           
+          </div>
+          
+
           
         </div>
         <div class="modal-footer">
@@ -233,7 +260,12 @@
       [tenant]="selectedTenant" 
       (save)="saveTenant($event)" 
       (cancel)="cancelForm()">
-  </app-tenant-form>
+    </app-tenant-form>
+    <app-tenant-view
+      *ngIf="showViewPanel"
+      [tenant]="selectedTenant"
+      (close)="closeViewPanel()">
+    </app-tenant-view>
 
 
   

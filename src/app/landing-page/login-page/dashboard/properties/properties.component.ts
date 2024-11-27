@@ -23,6 +23,7 @@ import { blob } from "stream/consumers";
 import { TenantService } from '../../../../services/tenant.service';
 import { AuthService } from '../../../../services/auth.service';
 import { TenantFormComponent } from '../tenant-list/tenant-form/tenant-form.component';
+import { TenantViewComponent } from '../tenant-list/tenant-view/tenant-view.component';
 
 @Component({
   selector: 'app-properties',
@@ -38,7 +39,7 @@ import { TenantFormComponent } from '../tenant-list/tenant-form/tenant-form.comp
     RouterModule,
     FormsModule, ReactiveFormsModule,
     TableModule, //Needed for forms
-    TenantFormComponent
+    TenantFormComponent,TenantViewComponent
   ],
   templateUrl: './properties.component.html',
   styleUrl: './properties.component.css',
@@ -49,11 +50,13 @@ export class PropertiesComponent implements OnInit {
    public landLordId = 1 ;
    tenants: any[] = [];
    showForm = false;
+   showViewPanel = false;
+   selectedTenant: any = {};
+
    public currentPropertyInfo = {
     address:""
    };
-   selectedTenant: any = {};
-
+  
 
    private baseUrl = 'http://localhost:3000/';
    public propertyList = [{propertyId:0,address: "---", City:1,Country:'---',PostalCode:'---'},];
@@ -99,7 +102,7 @@ export class PropertiesComponent implements OnInit {
     this.landLordId = Number( userId ? userId:0);
     this.refreshDocList();
     this.refreshPropertyList()
-    
+    this.loadTenants();
    
     // console.log(this.landLordId);
   }
@@ -244,9 +247,11 @@ export class PropertiesComponent implements OnInit {
   onClickRetrieveProperty(pId:any){
     console.log(pId);
     this.pId = pId;
+
     this.getProperty().subscribe((data)=> {
       this.currentPropertyInfo = data;
     });
+    
   }
 
   // Add Tenant Form Here
@@ -269,7 +274,7 @@ export class PropertiesComponent implements OnInit {
   saveTenant(tenant: any) {
     tenant.landlord_ID = this.authService.getUserId();
     tenant.pId = this.pId;
-    
+
     if (tenant.id) {
       this.tenantService.updateTenant(tenant.id, tenant).subscribe(
         (updatedTenant) => {
@@ -295,6 +300,112 @@ export class PropertiesComponent implements OnInit {
     }
   }
 
+  closeViewPanel() {
+    this.showViewPanel = false;
+    this.selectedTenant = {};
+  }
+
+  loadTenants() {
+    this.tenantService.getTenants().subscribe(
+      data => {
+        console.log('Tenants loaded:', data);
+        this.tenants = data;
+      },
+      error => console.error('Error loading tenants', error)
+    );
+  }
+
+
+  editTenant(tenant: any) {
+    console.log('Editing tenant:', tenant);
+    this.tenantService.getTenant(tenant.id).subscribe(
+      (data) => {
+        this.selectedTenant = this.formatTenantForForm(data);
+        this.showForm = true;
+      },
+      error => console.error('Error fetching tenant details', error)
+    );
+  }
+
+  viewTenant(tenant: any) {
+    this.selectedTenant = tenant;
+    this.showViewPanel = true;
+  }
+
+  formatTenantForForm(tenant: any) {
+    const formatDate = (dateString: string) => {
+      if (!dateString) return { day: '', month: '', year: '' };
+      const date = new Date(dateString);
+      return {
+        day: date.getDate(),
+        month: this.getMonthName(date.getMonth()),
+        year: date.getFullYear()
+      };
+    };
+
+    const dob = formatDate(tenant.date_of_birth);
+    const leaseStart = formatDate(tenant.lease_start_date);
+    const leaseEnd = formatDate(tenant.lease_end_date);
+    const leaseSigned = formatDate(tenant.lease_signed);
+
+    return {
+      id: tenant.id,
+      firstName: tenant.first_name,
+      lastName: tenant.last_name,
+      email: tenant.email,
+      phone: tenant.phone,
+      dobDay: dob.day,
+      dobMonth: dob.month,
+      dobYear: dob.year,
+      streetAddress: tenant.street_address,
+      city: tenant.city,
+      province: tenant.province,
+      postalCode: tenant.postal_code,
+      leaseStartDay: leaseStart.day,
+      leaseStartMonth: leaseStart.month,
+      leaseStartYear: leaseStart.year,
+      leaseEndDay: leaseEnd.day,
+      leaseEndMonth: leaseEnd.month,
+      leaseEndYear: leaseEnd.year,
+      rentAmount: tenant.rent_amount,
+      securityDeposit: tenant.security_deposit,
+      emergencyContactName: tenant.emergency_contact_name,
+      emergencyContactPhone: tenant.emergency_contact_phone,
+      occupation: tenant.occupation,
+      employer: tenant.employer,
+      hasPets: tenant.has_pets,
+      petDetails: tenant.pet_details,
+      leaseSignedDay: leaseSigned.day,
+      leaseSignedMonth: leaseSigned.month,
+      leaseSignedYear: leaseSigned.year
+    };
+  }
   
+  getMonthName(monthIndex: number): string {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                   'July', 'August', 'September', 'October', 'November', 'December'];
+    return months[monthIndex];
+  }
+
+  confirmDeleteTenant(id: number) {
+    const tenant = this.tenants.find(t => t.id === id);
+    if (tenant) {
+      const confirmMessage = `Are you sure you want to delete the tenant ${tenant.first_name} ${tenant.last_name}?`;
+      if (confirm(confirmMessage)) {
+        this.deleteTenant(id);
+      }
+    }
+  }
+
+  deleteTenant(id: number) {
+    this.tenantService.deleteTenant(id).subscribe(
+      () => {
+        console.log('Tenant deleted successfully');
+        this.loadTenants();
+      },
+      error => console.error('Error deleting tenant', error)
+    );
+  }
+
   title = 'stayworks_test';
 }
