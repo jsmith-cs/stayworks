@@ -205,25 +205,27 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <button type="button" class="btn dBlue" data-bs-dismiss="modal" (click)="showAddForm()" id="btnTenants">
-            <i class="bi bi-person-fill-add"></i> + Tenants
-          </button>
-          <br> 
-          <br>          
-          <button type="button" class="btn dBlue" data-bs-toggle="modal" data-bs-target="#modalAddDocument">
-            <i class="bi bi-file-earmark-arrow-up-fill"></i> + Add Documents
-          </button>
-          <br>
-          <br>
-          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalAddDocument">
-            <i class="bi bi-currency-dollar"></i> + Add Expense 
-          </button>
+          <div>      
+            <button type="button" class="btn dBlue" data-bs-toggle="modal" data-bs-target="#modalAddDocument">
+              <i class="bi bi-file-earmark-arrow-up-fill"></i> + Add Documents
+            </button>
+            <br>
+            <br>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalAddDocument">
+              <i class="bi bi-currency-dollar"></i> + Add Expense 
+            </button>
+            <br>
+            <br>
+          </div>
+          
 
 
 
           <div class="main-content">
             <!-- <button (click)="showAddForm()" class="add-button">Add Tenant</button> -->
-            <h3> <i class="bi bi-people-fill"></i> Your Tenants </h3>
+            <h3> <i class="bi bi-people-fill"></i> Your Tenants <button type="button" class="btn dBlue" data-bs-dismiss="modal" (click)="showAddForm()" id="btnTenants">
+              <i class="bi bi-person-fill-add"></i> +
+            </button></h3>
             <div *ngIf="tenants.length === 0" class="no-tenants">
               No tenants yet. Click the button above to add a tenant.
             </div>

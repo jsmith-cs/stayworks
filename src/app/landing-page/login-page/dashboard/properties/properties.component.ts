@@ -102,7 +102,7 @@ export class PropertiesComponent implements OnInit {
     this.landLordId = Number( userId ? userId:0);
     this.refreshDocList();
     this.refreshPropertyList()
-    this.loadTenants();
+    
    
     // console.log(this.landLordId);
   }
@@ -251,6 +251,7 @@ export class PropertiesComponent implements OnInit {
     this.getProperty().subscribe((data)=> {
       this.currentPropertyInfo = data;
     });
+    this.loadTenants();
     
   }
 
@@ -306,12 +307,16 @@ export class PropertiesComponent implements OnInit {
   }
 
   loadTenants() {
-    this.tenantService.getTenants().subscribe(
+    console.log('asd');
+    this.tenantService.getPTenants(this.pId).subscribe(
       data => {
         console.log('Tenants loaded:', data);
         this.tenants = data;
       },
-      error => console.error('Error loading tenants', error)
+      error => {
+        console.error('Error loading tenants', error);
+        this.tenants = [];
+      }
     );
   }
 

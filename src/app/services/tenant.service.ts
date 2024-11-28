@@ -33,7 +33,7 @@ interface Tenant {
 })
 export class TenantService {
   private apiUrl = 'http://localhost:5000/api/Tenants';
-
+  private prop_apiUrl = 'http://localhost:5000/api/PTenants';
   constructor(
     private http: HttpClient,
     private authService: AuthService
@@ -53,6 +53,13 @@ export class TenantService {
 
   getTenant(id: number): Observable<Tenant> {
     return this.http.get<Tenant>(`${this.apiUrl}/${id}`, {
+      headers: this.getHeaders()
+    });
+  }
+
+  getPTenants(pId:any): Observable<Tenant[]> {
+    const landlordId = this.authService.getUserId();
+    return this.http.get<Tenant[]>(`${this.prop_apiUrl}/${pId}`, {
       headers: this.getHeaders()
     });
   }
