@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 
 import {
@@ -24,6 +24,7 @@ import { TenantService } from '../../../../services/tenant.service';
 import { AuthService } from '../../../../services/auth.service';
 import { TenantFormComponent } from '../tenant-list/tenant-form/tenant-form.component';
 import { TenantViewComponent } from '../tenant-list/tenant-view/tenant-view.component';
+
 
 @Component({
   selector: 'app-properties',
@@ -49,6 +50,7 @@ export class PropertiesComponent implements OnInit {
    public pId = 1;
    public landLordId = 1 ;
    tenants: any[] = [];
+   expense: any[] = [];
    showForm = false;
    showViewPanel = false;
    selectedTenant: any = {};
@@ -88,6 +90,15 @@ export class PropertiesComponent implements OnInit {
 
 
 
+   expenseForm = new FormGroup({
+    propertyId: new FormControl(['', [Validators.required]]),
+    expenseDate: new FormControl(['', [Validators.required]]),
+    category: new FormControl(['', [Validators.required]]),
+    amount: new FormControl(['', [Validators.required, Validators.min(0.01)]]),
+    description: new FormControl(['']),
+  });
+
+
 
   constructor(private primengConfig: PrimeNGConfig,private http: HttpClient,private tenantService: TenantService,
     private authService: AuthService) {
@@ -103,8 +114,19 @@ export class PropertiesComponent implements OnInit {
     this.refreshDocList();
     this.refreshPropertyList()
     
+    // this.expenseForm.value.isRecurring = [false];
    
     // console.log(this.landLordId);
+
+    var a = document.getElementById("isRecurring") as HTMLInputElement;
+    console.log(a);
+    a.checked = false;
+    if (a)
+    {
+      a.checked = false;
+    }
+
+
   }
 
   get f(){
@@ -307,7 +329,7 @@ export class PropertiesComponent implements OnInit {
   }
 
   loadTenants() {
-    console.log('asd');
+
     this.tenantService.getPTenants(this.pId).subscribe(
       data => {
         console.log('Tenants loaded:', data);
@@ -411,6 +433,50 @@ export class PropertiesComponent implements OnInit {
       error => console.error('Error deleting tenant', error)
     );
   }
+
+
+  // Expenses
+
+
+
+  //Create Expense
+
+  saveExpense() {
+    const formData2 = new FormData();
+
+
+    //Pass the form data here
+    
+    var expenseDate = this.expenseForm.value.expenseDate;
+    var category = this.expenseForm.value.category;
+    var amount = this.expenseForm.value.amount;
+    var description = this.expenseForm.value.description;
+
+
+    if (expenseDate !== null && expenseDate !== undefined && category !== undefined  && category !== null 
+      && amount !== null && amount !== undefined && description !== null && description !== undefined) {
+        formData2.append('propertyId', this.pId.toString());
+        formData2.append('expenseDate', expenseDate.toString());
+        formData2.append('category',category.toString());
+        formData2.append('amount',amount.toString());
+        formData2.append('description',description.toString());
+        
+        formData2.forEach((value, key) => {
+          console.log(`${key}: ${value}`);
+      });
+       
+    }
+
+    this.http.post(`${this.baseUrl}newExpense/`, formData2)
+    .subscribe(res => {
+      console.log(res);
+      alert('Expense Uploaded Successfully.');
+      this.expenseForm.reset();
+    })
+
+  }
+
+
 
   title = 'stayworks_test';
 }

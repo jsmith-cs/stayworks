@@ -6,6 +6,7 @@ const express = require("express");
 const Documents = require('./backend_models/Documents');
 const RentalProperty = require('./backend_models/RentalProperty');
 const Tenant = require("./backend_models/Tenant");
+const Expenses = require("./backend_models/Expenses");
 const app = express();
 
 const port = 3000;
@@ -140,6 +141,38 @@ app.get('/getProperty/:pId',(req,res) =>{
   })();
 
 })
+
+app.post('/newExpense', upload.none(),(req, res) =>{
+
+
+  const {
+    propertyId,expenseDate, category, amount,description, isRecurring,recurrFrequency,recurrStartDate,recurrEndDate
+  } = req.body;
+
+  // console.log(req.body.postalCode);
+  (async () => {
+    try {
+      const newExpense = await Expenses.createExpense({
+            propertyId: propertyId,
+            expenseDate: expenseDate,
+            category: category,
+            amount: amount,
+            description: description,
+            isRecurring: isRecurring,
+            recurrFrequency:recurrFrequency,
+            recurrStartDate:recurrStartDate,
+            recurrEndDate:recurrEndDate
+          });
+          console.log('Created Expense:', newExpense);
+          res.json(newExpense);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  })();
+  
+});
+
+
 
 app.get('/overview/:landlordId',(req,res) =>{
 
