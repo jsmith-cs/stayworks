@@ -39,7 +39,7 @@
     <table class="documents-table">
       <tr class="documents-header">
         <th></th>
-        <th class="recently_used">Recently Used</th>
+        <!-- <th class="recently_used">Recently Used</th> -->
       </tr>
       <tr class="row_card" *ngFor="let prop of property">
         <div>
@@ -98,14 +98,14 @@
             </div>
           </td>
         </div>
-        <td>
+        <!-- <td>
           <div class="property_recently_used_card">
-            <div class="property_card_doc" (click)="onFileClick(fileList[prop.propertyId].docId)" >
+            <div class="property_card_doc" (click)="onFileClick(prop.docId)" >
               <img src="assets/download-file.png" alt="image icon" width="30"  />
               <p>{{ prop.fileName }}</p>
             </div>
           </div>
-        </td>
+        </td> -->
       </tr>
     </table>
   </div>

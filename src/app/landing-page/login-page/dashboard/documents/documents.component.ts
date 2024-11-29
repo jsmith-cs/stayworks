@@ -26,6 +26,7 @@ export class DocumentsComponent {
   property: any[] = [];
   allProperties: any[] = [];
   propertyId: number = 0;
+  document: any[] = [];
   uniqueProvinces = this.properties$.pipe(
     map((properties: any) => [...new Set(properties.map((property: any) => property.Province))].sort()),
   )
@@ -43,6 +44,7 @@ export class DocumentsComponent {
     {docType: "Lease",docId:3,fileName:'---',CreatedAt:''},
     {docType: "Lease",docId:4,fileName:'---',CreatedAt:''}
   ];
+
 
    onFileChange(event:any) {
 
@@ -70,6 +72,9 @@ export class DocumentsComponent {
     this.refreshDocList();
   }
 
+
+
+
   loadProperties() {
     this.loading = true;
     this.error = null;
@@ -77,9 +82,27 @@ export class DocumentsComponent {
     this.propertyService.getProperties()
     .subscribe({
       next: (properties: any) => {
-        console.log(properties);
         this.allProperties = properties;
         this.property = properties;
+
+        this.getListFiles().subscribe((documents: any)=> {
+          
+          const doc = documents.reduce((acc: any, doc: any) => {
+            acc[doc.propertyId] = doc;
+            console.log(acc);
+            return acc;
+          }, {} as { [key: number]: any });
+
+          properties.forEach((property: any) => {
+
+              this.http.get(`${this.baseUrl}/listFiles/${property.propertyId}`,{ responseType: 'json' })
+              .subscribe((data: any)  => {
+                this.fileList = [...this.fileList, ...data]
+              })
+          });
+
+        })
+
         this.loading = false;
         this.provinces = [...new Set(properties.map((property: any) => property.Province))].sort();
       },
@@ -91,7 +114,7 @@ export class DocumentsComponent {
     });
 
     this.propertyService.getPropertyDocuments
-
+    
   }
 
    getUniqueProvinces(event: Event) {
