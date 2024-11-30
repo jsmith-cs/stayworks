@@ -10,16 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // Database connection
-const pool = mysql.createPool({
-  host: 'stayworks.duckdns.org',
-  port: 3306,
-  user: 'root',
-  password: 'sbKUjZ7~A21-',
-  database: 'STAYWORKSTestEnv',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
-});
+
 
 // Verify database connection
 pool.getConnection((err, connection) => {
@@ -489,6 +480,42 @@ app.get('/api/RentalProperty', authenticateToken, (req, res) => {
       }
       console.log(`Found ${results.length} properties for landlord ${landlordId}`);
       res.json(results);
+      
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+});
+});
+
+// Maintenance Routes
+app.get('/api/Maintenance/maintenance-requests', authenticateToken, (req, res) => {
+  const landlordId = req.user.id;
+  console.log('User ID:', landlordId);
+  pool.query('SELECT * FROM Maintenance WHERE landlord_ID = ?', [landlordId], (error, results) => {
+    if (error) {
+      console.error('Error fetching maintenance requests:', error);
+      return res.status(500).json({ message: 'Error fetching maintenance requests', error: error.toString() });
+    }
+    res.json(results);
+  });
+});
+
+app.post('/api/Maintenance/maintenance-requests', authenticateToken, (req, res) => {
+  console.log('Request body:', req.body);
+  const { title, description, property_name, unit_number, priority, status } = req.body;
+  const landlord_ID = req.user.id;
+  
+  pool.query(
+    'INSERT INTO Maintenance (landlord_ID, title, description, property_name, unit_number, priority, status) VALUES (?, ?, ?, ?, ?, ?, ?)',
+    [landlord_ID, title, description, property_name, unit_number, priority, status],
+    (error, result) => {
+      if (error) {
+        console.error('Error creating maintenance request:', error);
+        return res.status(500).json({ message: 'Error creating maintenance request', error: error.toString() });
+      }
+      res.status(201).json({ id: result.insertId, message: 'Maintenance request created successfully' });
     }
   );
 });
@@ -497,6 +524,45 @@ app.get('/api/RentalProperty', authenticateToken, (req, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
+app.put('/api/Maintenance/maintenance-requests/:id', authenticateToken, (req, res) => {
+  const { id } = req.params;
+  const { title, description, property_name, unit_number, priority, status } = req.body;
+  const landlord_ID = req.user.id;
+
+  pool.query(
+    'UPDATE Maintenance SET title = ?, description = ?, property_name = ?, unit_number = ?, priority = ?, status = ? WHERE id = ? AND landlord_ID = ?',
+    [title, description, property_name, unit_number, priority, status, id, landlord_ID],
+    (error, result) => {
+      if (error) {
+        console.error('Error updating maintenance request:', error);
+        return res.status(500).json({ message: 'Error updating maintenance request', error: error.toString() });
+      }
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: 'Maintenance request not found or you do not have permission to update it' });
+      }
+      res.json({ message: 'Maintenance request updated successfully' });
+    }
+  );
+});
+})
+
+app.delete('/api/Maintenance/maintenance-requests/:id', authenticateToken, (req, res) => {
+  const { id } = req.params;
+  const landlord_ID = req.user.id;
+  pool.execute(
+    'DELETE FROM Maintenance WHERE id = ? AND landlord_ID = ?',
+    [id, landlord_ID],
+    (error, result) => {
+      if (error) {
+        console.error('Error deleting maintenance request:', error);
+        return res.status(500).json({ message: 'Error deleting maintenance request', error: error.toString() });
+      }
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: 'Maintenance request not found or you do not have permission to delete it' });
+      }
+      res.json({ message: 'Maintenance request deleted successfully' });
+    }
+  );
 });
 
 // Start server
@@ -504,3 +570,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 .dashboard-container {
@@ -23,6 +24,20 @@
   text-align: left;
   margin-left: 10px;
   margin-top: 5px;
+=======
+.dashboard-container {
+  padding: 40px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #D9DCD6;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+>>>>>>> remotes/origin/rishav_branch
 }
 
 .header-left {
@@ -32,13 +47,19 @@
 }
 
 .logo {
+<<<<<<< HEAD
   height: 55px;
+=======
+  display: flex;
+  align-items: center;
+>>>>>>> remotes/origin/rishav_branch
 }
 
 .logo img {
   height: 70px;
 }
 
+<<<<<<< HEAD
 .logout-btn:hover {
   background-color: #16425b;
   color: #d9dcd6;
@@ -113,6 +134,30 @@
   display: flex;
   flex: 1;
 }
+=======
+h1 {
+  color: #16425B;
+  margin: 0;
+}
+
+.logout-btn {
+  background-color: #D9DCD6;
+  color: #16425B;
+  border: 2px solid #16425B;
+  border-radius: 25px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.logout-btn:hover {
+  background-color: #16425B;
+  color: #D9DCD6;
+}
+
+>>>>>>> remotes/origin/rishav_branch
 .user-info {
   background-color: white;
   padding: 20px;
@@ -122,7 +167,11 @@
 }
 
 .user-info p {
+<<<<<<< HEAD
   color: #16425b;
+=======
+  color: #16425B;
+>>>>>>> remotes/origin/rishav_branch
   font-size: 1.1rem;
   margin: 0;
 }
@@ -136,7 +185,11 @@
 }
 
 .feature-tile {
+<<<<<<< HEAD
   background-color: #16425b;
+=======
+  background-color: #16425B;
+>>>>>>> remotes/origin/rishav_branch
   padding: 25px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -158,14 +211,22 @@
 }
 
 .feature-tile h3 {
+<<<<<<< HEAD
   color: #d9dcd6;
+=======
+  color: #D9DCD6;
+>>>>>>> remotes/origin/rishav_branch
   margin: 0 0 10px 0;
   font-size: 1.3rem;
   font-weight: 600;
 }
 
 .feature-tile p {
+<<<<<<< HEAD
   color: #d9dcd6;
+=======
+  color: #D9DCD6;
+>>>>>>> remotes/origin/rishav_branch
   margin: 0;
   font-size: 0.9rem;
 }
@@ -174,7 +235,11 @@
   position: absolute;
   bottom: 15px;
   right: 15px;
+<<<<<<< HEAD
   color: #d9dcd6;
+=======
+  color: #D9DCD6;
+>>>>>>> remotes/origin/rishav_branch
   opacity: 0;
   transition: opacity 0.3s ease;
   font-size: 1.2rem;
@@ -182,6 +247,7 @@
 
 .feature-tile:hover .arrow-icon {
   opacity: 1;
+<<<<<<< HEAD
 }
 
 /* .dashboard-sidebar ul {
@@ -239,3 +305,6 @@
   max-width: 95%;
   overflow-y: hidden;
 } */
+=======
+}
+>>>>>>> remotes/origin/rishav_branch

@@ -16,6 +16,7 @@ import { DocumentsComponent } from './landing-page/login-page/dashboard/document
 import { ProfileComponent } from './landing-page/login-page/dashboard/profile/profile.component';
 import { OverviewComponent } from './landing-page/login-page/dashboard/overview/overview.component';
 import { PropertiesComponent } from './landing-page/login-page/dashboard/properties/properties.component';
+import { MaintenanceRequestComponent } from './landing-page/login-page/dashboard/maintenance-request/maintenance-request.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -51,4 +52,5 @@ export const routes: Routes = [
   { path: 'about', component: AboutusPageComponent },
   { path: 'contact', component: ContactusPageComponent },
   { path: 'terms', component: TermsAndConditionsComponent },
+  { path: 'maintenance', component: MaintenanceRequestComponent, canActivate: [AuthGuard] },
 ];

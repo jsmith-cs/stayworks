@@ -1,14 +1,24 @@
+<<<<<<< HEAD
+=======
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+>>>>>>> remotes/origin/rishav_branch
 .form-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+<<<<<<< HEAD
     background-color: rgba(0, 0, 0, 0.5);
+=======
+    background-color: rgba(22, 66, 91, 0.7);
+>>>>>>> remotes/origin/rishav_branch
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+<<<<<<< HEAD
   }
   
   .form-container {
@@ -88,10 +98,129 @@
   }
   
   .form-actions {
+=======
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 750px;
+    max-height: 85vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-container h3 {
+    color: #16425B;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #81c3d7;
+}
+
+.form-row {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 12px;
+    min-width: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 4px;
+    color: #16425B;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+input, select {
+    width: 100%;
+    max-width: 100%;
+    padding: 6px 10px;
+    height: 32px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    min-height: 80px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #3A7CA5;
+    box-shadow: 0 0 0 2px rgba(58, 124, 165, 0.1);
+}
+
+.date-inputs {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.date-inputs input[type="number"] {
+    width: 70px;
+}
+
+.date-inputs select {
+    width: 140px;
+}
+
+.date-inputs .year-input {
+    width: 90px;
+}
+
+.pet-radio-group {
+    display: flex;
+    gap: 20px;
+    padding: 5px 0;
+}
+
+.pet-radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.pet-radio-group input[type="radio"] {
+    width: auto;
+    height: auto;
+    margin: 0;
+}
+
+.form-actions {
+>>>>>>> remotes/origin/rishav_branch
     display: flex;
     justify-content: flex-end;
     gap: 10px;
     margin-top: 20px;
+<<<<<<< HEAD
     padding-top: 20px;
     border-top: 1px solid #e0e0e0;
   }
@@ -140,3 +269,82 @@
       padding: 15px;
     }
   }
+=======
+    padding-top: 15px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.save-button, .cancel-button {
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.save-button {
+    background-color: #16425B;
+    color: white;
+    border: none;
+}
+
+.save-button:hover:not(:disabled) {
+    background-color: #2F6690;
+}
+
+.save-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.cancel-button {
+    background-color: #ffffff;
+    color: #16425B;
+    border: 1px solid #16425B;
+}
+
+.cancel-button:hover {
+    background-color: #f8f9fa;
+}
+
+.form-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.form-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.form-container::-webkit-scrollbar-thumb {
+    background: #3A7CA5;
+    border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        padding: 15px;
+        width: 95%;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-group {
+        margin-bottom: 8px;
+    }
+
+    .date-inputs {
+        gap: 10px;
+    }
+
+    .date-inputs input[type="number"],
+    .date-inputs select,
+    .date-inputs .year-input {
+        width: 33%;
+    }
+}
+>>>>>>> remotes/origin/rishav_branch

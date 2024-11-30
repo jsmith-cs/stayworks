@@ -1,0 +1,81 @@
+<div class="app-container">
+  <header class="top-pane">
+      <div class="header-left">
+          <img src="assets/tenant-management-title.png" alt="Stayworks Logo" class="logo">
+          <h1 class="title">Maintenance Request Tracker</h1>
+      </div>
+      <button (click)="logout()" class="logout-btn">Logout</button>
+  </header>
+  <div class="content-wrapper">
+      <div class="left-pane">
+          <nav>
+              <button routerLink="/dashboard" class="nav-button">Back to Dashboard</button>
+              <button routerLink="/properties" class="nav-button">Manage Properties</button>
+              <button routerLink="/tenant-management" class="nav-button">Manage Tenants</button>
+              <button routerLink="/analytics" class="nav-button">View Analytics</button>
+              <button routerLink="/account" class="nav-button">My Account</button>
+          </nav>
+      </div>
+      <div class="main-content">
+          <div class="content-panel">
+              <div class="content-header">
+                  <h2>Maintenance Requests</h2>
+                  <button (click)="showAddForm()" class="add-button">
+                      <i class="fas fa-plus"></i> New Request
+                  </button>
+              </div>
+              
+              <div *ngIf="maintenanceRequests.length === 0" class="no-requests">
+                  <i class="fas fa-clipboard-list empty-icon"></i>
+                  <p>No maintenance requests yet. Click the button above to add a request.</p>
+              </div>
+
+              <div class="request-grid" *ngIf="maintenanceRequests.length > 0">
+                  <div *ngFor="let request of maintenanceRequests" class="request-card" [ngClass]="request.priority.toLowerCase()">
+                      <div class="card-header">
+                          <span class="priority-badge">{{ request.priority }}</span>
+                          <div class="status-dropdown">
+                              <select [(ngModel)]="request.status" 
+                                      (change)="updateRequestStatus(request)"
+                                      [ngClass]="request.status.toLowerCase().replace(' ', '-')">
+                                  <option value="Pending">Pending</option>
+                                  <option value="In Progress">In Progress</option>
+                                  <option value="Completed">Completed</option>
+                              </select>
+                          </div>
+                      </div>
+
+                      <div class="card-body">
+                          <h3 class="request-title">{{ request.title }}</h3>
+                          <div class="property-info">
+                              <i class="fas fa-building"></i>
+                              <span>{{ request.property_name }}</span>
+                              <span *ngIf="request.unit_number" class="unit-number">
+                                  <i class="fas fa-door-closed"></i> Unit {{ request.unit_number }}
+                              </span>
+                          </div>
+                          <p class="request-description">{{ request.description }}</p>
+                      </div>
+
+                      <div class="card-footer">
+                          <button (click)="editRequest(request)" class="edit-button">
+                              <i class="fas fa-edit"></i> Edit
+                          </button>
+                          <button (click)="confirmDeleteRequest(request.id)" class="delete-button">
+                              <i class="fas fa-trash"></i> Delete
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <app-maintenance-form 
+              *ngIf="showForm" 
+              [request]="selectedRequest"
+              [properties]="properties"
+              (save)="saveRequest($event)" 
+              (cancel)="cancelForm()">
+          </app-maintenance-form>
+      </div>
+  </div>
+</div>
