@@ -19,7 +19,7 @@
         </div>
         <div class="overview-card">
             <div class="overview-card-title">
-                <h4>Expect Revenue This Month</h4>
+                <h4>Expected Revenue This Month</h4>
             </div>
             <div class="overview-card-content">
                 <h1>${{this.overview.revenue}}</h1>
@@ -27,7 +27,7 @@
         </div>
         <div class="overview-card">
             <div class="overview-card-title">
-                <h4>Expeceted Expenses This Month</h4>
+                <h4>Expected Expenses This Month</h4>
             </div>
             <div class="overview-card-content">
                 <h1>${{this.overview.expense}}</h1>
@@ -36,10 +36,11 @@
         
        
     </div>
-    <div class="overview-chart">
-        <canvas id="MyChart">{{chart}} </canvas>
-
+    <div class="row">
+        <div class="overview-chart col-sm"><canvas id="MyChart"> </canvas></div>
+        <div class="overview-chart col-sm"><canvas id="LineChart"> </canvas></div>
     </div>
+
  
 
 </div>

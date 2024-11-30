@@ -8,6 +8,7 @@ const RentalProperty = require('./backend_models/RentalProperty');
 const Tenant = require("./backend_models/Tenant");
 const Expenses = require("./backend_models/Expenses");
 const Revenue = require("./backend_models/Revenue");
+const ChartingData = require("./backend_models/ChartingData");
 const exp = require("constants");
 const app = express();
 
@@ -188,11 +189,11 @@ app.get('/overview/:landlordId',(req,res) =>{
       eExpense = "0.00";
       eRevenue = "0.00";
 
-      const propertyExpenses2 = await Expenses.getThisMonthExpense(5);
+      const propertyExpenses2 = await Expenses.getThisMonthExpense(req.params.landlordId);
       console.log('Expenses for Property ID 1:', propertyExpenses2[0].MonthExpense);
       eExpense = propertyExpenses2[0].MonthExpense;
 
-      const r = await Revenue.getThisMonthRevenue(5);
+      const r = await Revenue.getThisMonthRevenue(req.params.landlordId);
       console.log('Revenue for Landlord ID:', r);
       eRevenue = r.Revenue;
 
@@ -202,6 +203,20 @@ app.get('/overview/:landlordId',(req,res) =>{
                 "expense": eExpense
       });
       // console.log(req.params.name);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  })();
+})
+
+app.get('/chartingData/:landlordId',(req,res) =>{
+
+(async () => {
+    try {
+
+        const r = await ChartingData.overview(5);
+        console.log('Overview Data:', r);
+        res.json(r);
     } catch (error) {
       console.error("Error:", error);
     }
