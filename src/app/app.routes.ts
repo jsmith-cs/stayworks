@@ -9,6 +9,7 @@ import { ContactusPageComponent } from './landing-page/contactus-page/contactus-
 import { DashboardComponent } from './landing-page/login-page/dashboard/dashboard.component';
 import { TenantListComponent } from './landing-page/login-page/dashboard/tenant-list/tenant-list.component';
 import { TermsAndConditionsComponent } from './landing-page/terms-and-conditions/terms-and-conditions.component';
+import { MaintenanceRequestComponent } from './landing-page/login-page/dashboard/maintenance-request/maintenance-request.component';
 import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'signup', component: SignupPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'maintenance', component: MaintenanceRequestComponent, canActivate: [AuthGuard] },
   { path: 'tenant-management', component: TenantListComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutusPageComponent },
   { path: 'contact', component: ContactusPageComponent },

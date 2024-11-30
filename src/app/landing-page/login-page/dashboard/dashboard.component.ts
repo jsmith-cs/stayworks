@@ -63,4 +63,8 @@ export class DashboardComponent implements OnInit {
   navigateToTenantManagement() {
     this.router.navigate(['/tenant-management']);
   }
+
+  navigateToMaintenance() {
+    this.router.navigate(['/maintenance']);
+  }
 }
