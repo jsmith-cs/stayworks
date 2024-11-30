@@ -7,6 +7,8 @@ const Documents = require('./backend_models/Documents');
 const RentalProperty = require('./backend_models/RentalProperty');
 const Tenant = require("./backend_models/Tenant");
 const Expenses = require("./backend_models/Expenses");
+const Revenue = require("./backend_models/Revenue");
+const exp = require("constants");
 const app = express();
 
 const port = 3000;
@@ -182,8 +184,17 @@ app.get('/overview/:landlordId',(req,res) =>{
       properties = await RentalProperty.getPropertiesByLandlord(req.params.landlordId);
       Tenants = await Tenant.getAllTenants(req.params.landlordId);
       console.log(Tenants);
+
+      eExpense = "0.00";
       eRevenue = "0.00";
-      eExpense = "0.50";
+
+      const propertyExpenses2 = await Expenses.getThisMonthExpense(5);
+      console.log('Expenses for Property ID 1:', propertyExpenses2[0].MonthExpense);
+      eExpense = propertyExpenses2[0].MonthExpense;
+
+      const r = await Revenue.getThisMonthRevenue(5);
+      console.log('Revenue for Landlord ID:', r);
+      eRevenue = r.Revenue;
 
       res.json({"properties" : properties.length,
                 "tenants" : Tenants.length,

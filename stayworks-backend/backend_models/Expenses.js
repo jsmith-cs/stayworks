@@ -102,7 +102,7 @@ class Expenses{
       const expenses = await sequelize.query('SELECT *,CONCAT(CONVERT(MONTH(expenseDate),CHAR),"-",CONVERT(YEAR(expenseDate),CHAR)) as `MonthYear` FROM `Expenses` inner join `RentalProperty` on `Expenses`.propertyId = `RentalProperty`.propertyId where landLordId = ? and isRecurring = 0;',{replacements: [landLordId],type:QueryTypes.SELECT})
 
       if (expenses.length === 0) {
-        console.log("No properties found for this landlord.");
+        console.log("No Expenses found for this landlord.");
       }
       return expenses;
     } catch (error) {
@@ -114,11 +114,27 @@ class Expenses{
   static async get12MonthExpense(landLordId) {
     try {
         
-        let q = 'SELECT E.MonthYear,SUM(E.amount) as MonthExpense from (SELECT amount ,CONCAT(CONVERT(MONTH(expenseDate),CHAR),"-",CONVERT(YEAR(expenseDate),CHAR)) as `MonthYear` FROM `Expenses` inner join `RentalProperty` on `Expenses`.propertyId = `RentalProperty`.propertyId where landLordId = ? and isRecurring = 0) as E group by E.MonthYear ';
+        let q = 'SELECT * FROM STAYWORKSTestEnv.monthlyExpensesByLandlordId where landlordId = ? ;';
       const expenses = await sequelize.query(q,{replacements: [landLordId],type:QueryTypes.SELECT})
 
       if (expenses.length === 0) {
-        console.log("No properties found for this landlord.");
+        console.log("No Expenses found for this landlord.");
+      }
+      return expenses;
+    } catch (error) {
+      console.error("Error fetching properties for landlord:", error);
+      throw error;
+    }
+  }
+
+  static async getThisMonthExpense(landLordId) {
+    try {
+        
+        let q = 'SELECT * FROM STAYWORKSTestEnv.monthlyExpensesByLandlordId where landlordId = ? and EOM = LAST_DAY(NOW());';
+      const expenses = await sequelize.query(q,{replacements: [landLordId],type:QueryTypes.SELECT})
+
+      if (expenses.length === 0) {
+        console.log("No Expenses found for this landlord.");
       }
       return expenses;
     } catch (error) {
@@ -130,30 +146,37 @@ class Expenses{
 
 module.exports = Expenses;
 
-  (async () => {
-    try {
+  // (async () => {
+  //   try {
 
-        // const newExpense = await Expenses.createExpense({
-        //     propertyId: 1,
-        //     expenseDate: '2024-11-28',
-        //     category: 'Utilities',
-        //     amount: 150.75,
-        //     description: 'Electricity bill',
-        //     isRecurring: false,
-        //   });
-        //   console.log('Created Expense:', newExpense);
+  //       // const newExpense = await Expenses.createExpense({
+  //       //     propertyId: 1,
+  //       //     expenseDate: '2024-11-28',
+  //       //     category: 'Utilities',
+  //       //     amount: 150.75,
+  //       //     description: 'Electricity bill',
+  //       //     isRecurring: false,
+  //       //   });
+  //       //   console.log('Created Expense:', newExpense);
 
-        // const propertyExpenses = await Expenses.getAllExpenses({propertyId : 1});
-        // console.log('Expenses for Property ID 1:', propertyExpenses);
+  //       // const propertyExpenses = await Expenses.getAllExpenses({propertyId : 1});
+  //       // console.log('Expenses for Property ID 1:', propertyExpenses);
 
-        const propertyExpenses1 = await Expenses.getExpenseByLandlordId(1);
-        console.log('Expenses for Property ID 1:', propertyExpenses1);
+  //       // const propertyExpenses1 = await Expenses.getExpenseByLandlordId(1);
+  //       // console.log('Expenses for Property ID 1:', propertyExpenses1);
 
-         // READ a single expense by ID
-        // const expense = await Expenses.getExpenseById(1);
-        // console.log('Retrieved Expense:', expense);
+
+  //       // const propertyExpenses1 = await Expenses.get12MonthExpense(5);
+  //       // console.log('Expenses for Property ID 1:', propertyExpenses1);
+
+  //       // const propertyExpenses2 = await Expenses.getThisMonthExpense(5);
+  //       // console.log('Expenses for Property ID 1:', propertyExpenses2[0].MonthExpense);
+
+  //        // READ a single expense by ID
+  //       // const expense = await Expenses.getExpenseById(1);
+  //       // console.log('Retrieved Expense:', expense);
      
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  })();
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+  // })();
