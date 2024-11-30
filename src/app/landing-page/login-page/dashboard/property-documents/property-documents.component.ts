@@ -10,7 +10,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-
 @Component({
   selector: 'app-property-documents',
   standalone: true,
@@ -21,6 +20,7 @@ import {
 export class PropertyDocumentsComponent implements OnInit {
   private baseUrl = 'http://localhost:3000/';
   propertyId: number = 0;
+
   showPropertyDocuments: boolean = false;
   loading: boolean = true;
   propertyDocuments: any[] = [];
@@ -49,6 +49,8 @@ export class PropertyDocumentsComponent implements OnInit {
     { docType: 'Lease', docId: 3, fileName: '---', CreatedAt: '' },
     { docType: 'Lease', docId: 4, fileName: '---', CreatedAt: '' },
   ];
+
+  tenants: any[] = [];
 
   propertyDetails = [
     {
@@ -121,10 +123,9 @@ export class PropertyDocumentsComponent implements OnInit {
   }
 
   getListFiles() {
-    return this.http
-      .get(`${this.baseUrl}listFiles/${this.propertyId}`, {
-        responseType: 'json',
-      })
+    return this.http.get(`${this.baseUrl}listFiles/${this.propertyId}`, {
+      responseType: 'json',
+    });
   }
 
   onClickRetrieve(a: any) {
@@ -150,6 +151,7 @@ export class PropertyDocumentsComponent implements OnInit {
         this.loading = false;
         this.loadProperty();
         this.loadPropertyDocuments();
+        this.loadTenants();
         console.log(this.fileList);
       }
     });
@@ -162,6 +164,18 @@ export class PropertyDocumentsComponent implements OnInit {
     this.PropertyService.getPropertyByPropertyId(this.propertyId).subscribe({
       next: (property: any) => {
         this.propertyDetails = property;
+      },
+      complete: () => {
+        this.loading = false;
+      },
+    });
+  }
+
+  loadTenants() {
+    this.PropertyService.getPropertyTenantsByPropertyId(this.propertyId).subscribe({
+      next: (tenants: any) => {
+        this.tenants = tenants;
+        console.log(this.tenants);
       },
       complete: () => {
         this.loading = false;

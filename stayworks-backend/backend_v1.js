@@ -5,6 +5,7 @@ const path = require("path");
 const express = require("express");
 const Documents = require('./backend_models/Documents');
 const RentalProperty = require('./backend_models/RentalProperty');
+const Tenant = require("./backend_models/Tenant");
 const app = express();
 
 const port = 3000;
@@ -151,6 +152,43 @@ app.get('/listFiles/:propertyId',(req,res) =>{
 })
 
 
+
+app.get('/overview/:landlordId',(req,res) =>{
+
+  (async () => {
+    try {
+      
+      properties = await RentalProperty.getPropertiesByLandlord(req.params.landlordId);
+      Tenants = await Tenant.getAllTenants(req.params.landlordId);
+      console.log(Tenants);
+      eRevenue = "0.00";
+      eExpense = "0.50";
+
+      res.json({"properties" : properties.length,
+                "tenants" : Tenants.length,
+                "revenue": eRevenue,
+                "expense": eExpense
+      });
+      // console.log(req.params.name);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  })();
+})
+
+app.get('/getTenants/:propertyId',(req,res) =>{
+
+  (async () => {
+    try {
+      tenantsByPropertyId = await Tenant.getTenantByPropertyId(req.params.propertyId);
+      res.json(tenantsByPropertyId);
+      // console.log(req.params.name);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  })();
+
+})
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
   });

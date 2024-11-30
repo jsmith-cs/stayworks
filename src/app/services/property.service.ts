@@ -43,21 +43,33 @@ export class PropertyService {
   }
 
   getPropertyByPropertyId(id: number) {
-    return this.http.get<Property>(`${this.idApi}/getPropertyByPropertyId/${id}`, {
-      headers: this.getHeaders(),
-    });
+    return this.http.get<Property>(
+      `${this.idApi}/getPropertyByPropertyId/${id}`,
+      {
+        headers: this.getHeaders(),
+      }
+    );
   }
 
   getPropertyByProvince(province: string) {
-    return this.http.get<Property>(`${this.idApi}/getPropertyByCity/${province}`, {
-      headers: this.getHeaders(),
-    });
+    return this.http.get<Property>(
+      `${this.idApi}/getPropertyByCity/${province}`,
+      {
+        headers: this.getHeaders(),
+      }
+    );
   }
 
   getPropertyDocuments(id: number) {
     return this.http.get<Property>(`${this.idApi}/listFiles/${id}`, {
       headers: this.getHeaders(),
       responseType: 'json',
+    });
+  }
+
+  getPropertyTenantsByPropertyId(id: number) {
+    return this.http.get<Property>(`${this.idApi}/getTenants/${id}`, {
+      headers: this.getHeaders(),
     });
   }
 }
