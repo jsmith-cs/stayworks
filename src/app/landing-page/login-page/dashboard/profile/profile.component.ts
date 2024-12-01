@@ -1,10 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  RouterLink,
-  RouterLinkActive,
-  RouterModule,
-  RouterOutlet,
-} from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { ButtonModule } from 'primeng/button';
 import { PrimeNGConfig } from 'primeng/api';
@@ -18,7 +12,6 @@ import { ReactiveFormsModule } from '@angular/forms';
   selector: 'app-profile',
   standalone: true,
   imports: [
-    RouterOutlet,
     MatButtonModule,
     ButtonModule,
     SidebarModule,
@@ -26,8 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     MenubarModule,
     CommonModule,
     CardModule,
-    RouterLink,
-    RouterLinkActive,
     ReactiveFormsModule,
   ],
   templateUrl: './profile.component.html',

@@ -52,8 +52,8 @@ export class OverviewComponent implements OnInit {
           17000, 18000, 19000, 20000, 22000, 22000, 22000, 19000, 20000, 22000,
           22000, 22000,
         ],
-        borderColor: '#3a7ca5',
-        backgroundColor: '#3a7ca5',
+        borderColor: '#36A2EB',
+        backgroundColor: '#36A2EB',
       },
       {
         label: 'Expense',

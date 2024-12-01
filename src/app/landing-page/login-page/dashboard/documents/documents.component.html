@@ -16,16 +16,19 @@
             [(ngModel)]="selectedProvince"
             (change)="onProvinceChange($event)"
           >
-            <option
-              *ngFor="let province of provinces "
-              [value]="province"
-            >
+            <option *ngFor="let province of provinces" [value]="province">
               {{ province }}
             </option>
           </select>
         </div>
         <div class="filter-address-country">
-          <input type="radio" name="country" id="filter-country" checked disabled/>
+          <input
+            type="radio"
+            name="country"
+            id="filter-country"
+            checked
+            disabled
+          />
           <label for="filter-country">Canada</label>
         </div>
         <div class="filter-reset">
@@ -54,7 +57,7 @@
                   alt="image icon"
                   height="100"
                   placeholder
-                  />
+                />
               </div>
               <div class="property_card_address">
                 <div class="street_address">
