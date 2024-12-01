@@ -10,16 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // Database connection
-const pool = mysql.createPool({
-  host: 'stayworks.duckdns.org',
-  port: 3306,
-  user: 'root',
-  password: 'sbKUjZ7~A21-',
-  database: 'STAYWORKSTestEnv',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
-});
+
 
 
 // Verify database connection

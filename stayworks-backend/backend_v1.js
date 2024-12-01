@@ -6,6 +6,10 @@ const express = require("express");
 const Documents = require('./backend_models/Documents');
 const RentalProperty = require('./backend_models/RentalProperty');
 const Tenant = require("./backend_models/Tenant");
+const Expenses = require("./backend_models/Expenses");
+const Revenue = require("./backend_models/Revenue");
+const ChartingData = require("./backend_models/ChartingData");
+const exp = require("constants");
 const app = express();
 
 const port = 3000;
@@ -25,42 +29,16 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.get('/getProperty/:pId', (req, res) => {
 
-  (async () => {
-    try {
 
-      a = await RentalProperty.getPropertiesByLandlord(req.params.pId);
-      res.json(a);
-      // console.log(req.params.name);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  })();
- 
-});
-
-app.get('/getPropertyByPropertyId/:propertyId', (req, res) => {
+app.get('/getProperties/:landlordID', (req, res) => {
 
   (async () => {
     try {
       
-      a = await RentalProperty.getPropertyByPropertyId(req.params.propertyId);
+      a = await RentalProperty.getPropertiesByLandlord(req.params.landlordID);
       res.json(a);
       // console.log(req.params.name);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  })();
- 
-});
-
-app.get('/getProperty/:province', (req, res) => {
-
-  (async () => {
-    try {
-      a = await RentalProperty.getPropertyByProvince(req.params.Province);
-      res.json(a);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -70,12 +48,13 @@ app.get('/getProperty/:province', (req, res) => {
 
 app.post('/newProperty', upload.none(),(req, res) =>{
 
+  // console.log(req.body.postalCode);
   (async () => {
     try {
       //   Create a new rental property for a landlord
 
       const newProperty = new RentalProperty(req.body.address,req.body.city,req.body.province,req.body.country,
-        req.body.landLordId);
+        req.body.postalCode,req.body.landLordId);
       const np = await newProperty.create();
       console.log(np)
       res.json(np);
@@ -145,6 +124,99 @@ app.get('/listFiles/:propertyId',(req,res) =>{
         const fList= await Documents.getDocsByPropertyId(req.params.propertyId);
         console.log(fList);
         res.json(fList[0]);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  })();
+})
+
+app.get('/getProperty/:pId',(req,res) =>{
+  (async () => {
+    try {
+      
+      property = await RentalProperty.getProperty(req.params.pId);
+
+      res.json(property);
+      // console.log(req.params.name);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  })();
+
+})
+
+app.post('/newExpense', upload.none(),(req, res) =>{
+
+
+  const {
+    propertyId,expenseDate, category, amount,description, isRecurring,recurrFrequency,recurrStartDate,recurrEndDate
+  } = req.body;
+
+  // console.log(req.body.postalCode);
+  (async () => {
+    try {
+      const newExpense = await Expenses.createExpense({
+            propertyId: propertyId,
+            expenseDate: expenseDate,
+            category: category,
+            amount: amount,
+            description: description,
+            isRecurring: isRecurring,
+            recurrFrequency:recurrFrequency,
+            recurrStartDate:recurrStartDate,
+            recurrEndDate:recurrEndDate
+          });
+          console.log('Created Expense:', newExpense);
+          res.json(newExpense);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  })();
+  
+});
+
+
+
+app.get('/overview/:landlordId',(req,res) =>{
+
+  (async () => {
+    try {
+      
+      properties = await RentalProperty.getPropertiesByLandlord(req.params.landlordId);
+      Tenants = await Tenant.getAllTenants(req.params.landlordId);
+      console.log(Tenants);
+
+      eExpense = "0.00";
+      eRevenue = "0.00";
+
+      const propertyExpenses2 = await Expenses.getThisMonthExpense(req.params.landlordId);
+      console.log('Expenses for Property ID 1:', propertyExpenses2[0].MonthExpense);
+      eExpense = propertyExpenses2[0].MonthExpense;
+
+      const r = await Revenue.getThisMonthRevenue(req.params.landlordId);
+      console.log('Revenue for Landlord ID:', r);
+      eRevenue = r.Revenue;
+
+      res.json({"properties" : properties.length,
+                "tenants" : Tenants.length,
+                "revenue": eRevenue,
+                "expense": eExpense
+      });
+      // console.log(req.params.name);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  })();
+})
+
+app.get('/chartingData/:landlordId',(req,res) =>{
+
+(async () => {
+    try {
+
+        const r = await ChartingData.overview(5);
+        console.log('Overview Data:', r);
+        res.json(r);
     } catch (error) {
       console.error("Error:", error);
     }

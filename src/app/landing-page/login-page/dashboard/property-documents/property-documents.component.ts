@@ -126,6 +126,9 @@ export class PropertyDocumentsComponent implements OnInit {
     return this.http.get(`${this.baseUrl}listFiles/${this.propertyId}`, {
       responseType: 'json',
     });
+    var userId = localStorage.getItem("userId");
+    this.landLordId = Number( userId ? userId:0);
+    this.showPropertyDocuments = false;
   }
 
   onClickRetrieve(a: any) {

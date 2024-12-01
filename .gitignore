@@ -9,6 +9,10 @@
 # Node
 /stayworks-backend/node_modules
 /stayworks-backend/backend_models/db.js
+/stayworks-backend/server.js
+/stayworks/stayworks-backend/config/database.js
+/stayworks-backend/backend_models/server.js
+/stayworks/stayworks-backend/config/database.js
 /node_modules
 npm-debug.log
 yarn-error.log
@@ -38,9 +42,6 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
-
-stayworks\stayworks-backend\server.js
-stayworks\stayworks-backend\config\database.js
 
 # System files
 .DS_Store

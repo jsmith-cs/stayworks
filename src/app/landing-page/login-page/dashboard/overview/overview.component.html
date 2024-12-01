@@ -1,21 +1,46 @@
 <div>
     <div class="overview">
 
-        <div class="overview-card"  *ngFor="let overview of overview_card" [ngClass]="[overview.class]">
+        <div class="overview-card">
             <div class="overview-card-title">
-                <h4>{{overview.label}}</h4>
+                <h4>Properties</h4>
             </div>
             <div class="overview-card-content">
-                <h1>{{overview.content}}</h1>
+                <h1>{{this.overview.properties}}</h1>
             </div>
         </div>
-    </div>
-    <div class="overview-chart">
-        <canvas id="MyChart">{{chart}} </canvas>
-    </div>
-            
-
+        <div class="overview-card">
+            <div class="overview-card-title">
+                <h4>Tenants</h4>
+            </div>
+            <div class="overview-card-content">
+                <h1>{{this.overview.tenants}}</h1>
+            </div>
+        </div>
+        <div class="overview-card">
+            <div class="overview-card-title">
+                <h4>Expected Revenue This Month</h4>
+            </div>
+            <div class="overview-card-content">
+                <h1>${{this.overview.revenue}}</h1>
+            </div>
+        </div>
+        <div class="overview-card">
+            <div class="overview-card-title">
+                <h4>Expected Expenses This Month</h4>
+            </div>
+            <div class="overview-card-content">
+                <h1>${{this.overview.expense}}</h1>
+            </div>
+        </div>
         
-    
+       
+    </div>
+    <div class="row">
+        <div class="overview-chart col-sm"><canvas id="MyChart"> </canvas></div>
+        <div class="overview-chart col-sm"><canvas id="LineChart"> </canvas></div>
+    </div>
+
+ 
 
 </div>

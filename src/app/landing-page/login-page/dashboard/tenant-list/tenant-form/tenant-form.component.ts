@@ -92,6 +92,9 @@ export class TenantFormComponent implements OnInit, OnChanges {
       };
       this.save.emit(formData);
     }
+    else{
+      console.log("issue");
+    }
   }
 
   onCancel() {

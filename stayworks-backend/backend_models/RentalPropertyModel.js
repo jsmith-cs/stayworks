@@ -24,6 +24,11 @@ const RentalPropertyModel = sequelize.define('RentalProperty', {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+    PostalCode: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
+    
     landlordId: {
       type: DataTypes.INTEGER,
       allowNull: false,
