@@ -27,14 +27,14 @@ class ChartingData {
 
 module.exports = ChartingData;
 
-(async () => {
-    try {
+// (async () => {
+//     try {
 
-        const r = await ChartingData.overview(5);
-        console.log('Overview Data:', r);
-        const output = r.map(e => e.cEOM);
-        console.log(output);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  })();
+//         const r = await ChartingData.overview(5);
+//         console.log('Overview Data:', r);
+//         const output = r.map(e => e.cEOM);
+//         console.log(output);
+//     } catch (error) {
+//       console.error("Error:", error);
+//     }
+//   })();

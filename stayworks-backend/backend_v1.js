@@ -145,6 +145,36 @@ app.get('/getProperty/:pId',(req,res) =>{
 
 })
 
+app.get('/listAllFiles/:landlordId',(req,res) =>{
+
+  // console.log(1);
+  (async () => {
+    try {
+        const fList= await Documents.getDocsByLandlordId(req.params.landlordId);
+        console.log(fList);
+        res.json(fList[0]);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  })();
+})
+
+app.get('/getProperty/:pId',(req,res) =>{
+  (async () => {
+    try {
+      
+      property = await RentalProperty.getProperty(req.params.pId);
+
+      res.json(property);
+      // console.log(req.params.name);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  })();
+
+})
+
+
 app.post('/newExpense', upload.none(),(req, res) =>{
 
 

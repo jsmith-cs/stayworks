@@ -185,7 +185,7 @@ export class PropertiesComponent implements OnInit {
 
   //getList of Files for Property
   getListFiles(): Observable<any> {
-    return this.http.get(`${this.baseUrl}listFiles/${this.pId}`,{
+    return this.http.get(`${this.baseUrl}listAllFiles/${this.landLordId}`,{
       responseType:'json'
     });
   }

@@ -47,9 +47,29 @@ class Documents {
             console.log("No Docs found for this property.");
           } else {
             console.log(`Docs found`);
+            
           }
         //   console.log(properties);
-          return properties;
+        return properties;
+        } catch (error) {
+          console.error("Error fetching properties for landlord:", error);
+          throw error;
+        }
+      }
+
+      static async getDocsByLandlordId(landlordId) {
+        try {
+          const properties = await sequelize.query(' SELECT * FROM Documents inner join RentalProperty on RentalProperty.propertyId = Documents.propertyId where landlordId = '+ landlordId+ ';')
+    
+          if (properties.length === 0) {
+            console.log("No Docs found for this property.");
+            
+          } else {
+            console.log(`Docs found`);
+            return properties;
+          }
+        //   console.log(properties);
+          
         } catch (error) {
           console.error("Error fetching properties for landlord:", error);
           throw error;
@@ -68,7 +88,7 @@ class Documents {
 // (async () => {
 //     try {
 
-//         const test= await Documents.getDocsByPropertyId(1);
+//         const test= await Documents.getDocsByLandlordId(5);
 //         console.log(test);
 //     } catch (error) {
 //       console.error("Error:", error);
