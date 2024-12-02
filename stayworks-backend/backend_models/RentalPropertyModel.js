@@ -1,8 +1,10 @@
-const {Model,DataTypes, where} = require('../node_modules/sequelize');
-const PersonModel = require('./PersonModel'); 
-const sequelize = require('./db'); // Assuming db.js initializes Sequelize
+const { Model, DataTypes, where } = require("../node_modules/sequelize");
+const PersonModel = require("./PersonModel");
+const sequelize = require("./db"); // Assuming db.js initializes Sequelize
 
-const RentalPropertyModel = sequelize.define('RentalProperty', {
+const RentalPropertyModel = sequelize.define(
+  "RentalProperty",
+  {
     propertyId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -28,29 +30,30 @@ const RentalPropertyModel = sequelize.define('RentalProperty', {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-    
+
     landlordId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: PersonModel, // Landlord is also a Person
-        key: 'personId',
+        key: "personId",
       },
     },
-  }, {
-    tableName: 'RentalProperty',
+  },
+  {
+    tableName: "RentalProperty",
     timestamps: false,
-  });
-  
-    // Associations: Set up relationships between models
-    // PersonModel.hasMany(RentalPropertyModel, { foreignKey: 'landlordId', as: 'RentalsAsLandlord', where: {role: 'landlord'} });
+  }
+);
 
-    // RentalPropertyModel.belongsTo(PersonModel, { foreignKey: 'landlordId', as: 'Landlord' });
+// Associations: Set up relationships between models
+// PersonModel.hasMany(RentalPropertyModel, { foreignKey: 'landlordId', as: 'RentalsAsLandlord', where: {role: 'landlord'} });
 
+// RentalPropertyModel.belongsTo(PersonModel, { foreignKey: 'landlordId', as: 'Landlord' });
 
-    // RentalPropertyModel.hasMany(PropertyTenantsModel, {
-    //   foreignKey: 'propertyId',
-    //   as: 'Tenants',
-    // });
+// RentalPropertyModel.hasMany(PropertyTenantsModel, {
+//   foreignKey: 'propertyId',
+//   as: 'Tenants',
+// });
 
-  module.exports = RentalPropertyModel;
+module.exports = RentalPropertyModel;

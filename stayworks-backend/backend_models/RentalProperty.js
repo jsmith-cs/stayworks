@@ -4,14 +4,14 @@ const sequelize = require('./db');
 // const Landlord = require('./Landlord');
 
 class RentalProperty {
-  constructor( address,city,province,country, landlordId) {
+  constructor( address,city,province,country, postalCode,landlordId) {
 
     this.address = address;
     this.landlordId = landlordId;
     this.city = city;
     this.province = province;
     this.country = country;
-
+    this.postalCode = postalCode;
   }
 
   // Method to create a new rental property and associate it with a landlord
@@ -27,13 +27,15 @@ class RentalProperty {
         throw new Error("Landlord not found!");
       }
 
-      console.log(this.city)
+      console.log(this.city);
+      console.log(this.postalCode);
       // Create a new rental property
       const newProperty = await RentalPropertyModel.create({
         address: this.address,
         City: this.city,
         Province: this.province,
         Country: this.country,
+        PostalCode:this.postalCode,
         landlordId: this.landlordId, // Associate the landlord with the property
       });
 
@@ -55,16 +57,6 @@ class RentalProperty {
     }
   }
 
-  static async getPropertyByProvince(province){
-    try {
-      const properties = await sequelize.query(' SELECT * FROM `RentalProperty` where `City` = '+province+';')
-      return properties[0];
-    } catch (error) {
-      console.error("Error fetching properties for landlord:", error);
-      throw error;
-    }
-  }
-
 
   static async getPropertiesByLandlord(landlordId) {
     try {
@@ -73,16 +65,6 @@ class RentalProperty {
       if (properties.length === 0) {
         console.log("No properties found for this landlord.");
       }
-      return properties[0];
-    } catch (error) {
-      console.error("Error fetching properties for landlord:", error);
-      throw error;
-    }
-  }
-
-  static async getPropertyByPropertyId(propertyId){
-    try {
-      const properties = await sequelize.query(' SELECT * FROM `RentalProperty` where `propertyId` = '+propertyId+';')
       return properties[0];
     } catch (error) {
       console.error("Error fetching properties for landlord:", error);
@@ -99,10 +81,10 @@ class RentalProperty {
 
 //       // const alandlord = await RentalProperty.getPropertiesByLandlord(1);
 //       //   Create a new rental property for a landlord
-//       // const newProperty = new RentalProperty("789 abc St","Brampton","Ontario","Canada",
-//       //   "1");
-//       // const np = await newProperty.create();
-//       // console.log(np)
+//       const newProperty = new RentalProperty("789 abc St","Brampton","Ontario","Canada",'asdasda',
+//         "1");
+//       const np = await newProperty.create();
+//       console.log(np)
 //       // console.log("New rental property created:", newProperty);
   
 //       // Fetch properties for a landlord
