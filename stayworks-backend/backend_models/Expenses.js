@@ -146,37 +146,37 @@ class Expenses{
 
 module.exports = Expenses;
 
-  // (async () => {
-  //   try {
+  (async () => {
+    try {
 
-  //       // const newExpense = await Expenses.createExpense({
-  //       //     propertyId: 1,
-  //       //     expenseDate: '2024-11-28',
-  //       //     category: 'Utilities',
-  //       //     amount: 150.75,
-  //       //     description: 'Electricity bill',
-  //       //     isRecurring: false,
-  //       //   });
-  //       //   console.log('Created Expense:', newExpense);
+        // const newExpense = await Expenses.createExpense({
+        //     propertyId: 1,
+        //     expenseDate: '2024-11-28',
+        //     category: 'Utilities',
+        //     amount: 150.75,
+        //     description: 'Electricity bill',
+        //     isRecurring: false,
+        //   });
+        //   console.log('Created Expense:', newExpense);
 
-  //       // const propertyExpenses = await Expenses.getAllExpenses({propertyId : 1});
-  //       // console.log('Expenses for Property ID 1:', propertyExpenses);
+        // const propertyExpenses = await Expenses.getAllExpenses({propertyId : 1});
+        // console.log('Expenses for Property ID 1:', propertyExpenses);
 
-  //       // const propertyExpenses1 = await Expenses.getExpenseByLandlordId(1);
-  //       // console.log('Expenses for Property ID 1:', propertyExpenses1);
+        const propertyExpenses1 = await Expenses.getExpenseByLandlordId(5);
+        console.log('Expenses for Property ID 1:', propertyExpenses1);
 
 
-  //       // const propertyExpenses1 = await Expenses.get12MonthExpense(5);
-  //       // console.log('Expenses for Property ID 1:', propertyExpenses1);
+        // const propertyExpenses1 = await Expenses.get12MonthExpense(5);
+        // console.log('Expenses for Property ID 1:', propertyExpenses1);
 
-  //       // const propertyExpenses2 = await Expenses.getThisMonthExpense(5);
-  //       // console.log('Expenses for Property ID 1:', propertyExpenses2[0].MonthExpense);
+        // const propertyExpenses2 = await Expenses.getThisMonthExpense(5);
+        // console.log('Expenses for Property ID 1:', propertyExpenses2[0].MonthExpense);
 
-  //        // READ a single expense by ID
-  //       // const expense = await Expenses.getExpenseById(1);
-  //       // console.log('Retrieved Expense:', expense);
+         // READ a single expense by ID
+        // const expense = await Expenses.getExpenseById(1);
+        // console.log('Retrieved Expense:', expense);
      
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   }
-  // })();
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  })();

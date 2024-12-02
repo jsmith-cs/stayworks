@@ -174,6 +174,7 @@ app.get('/getProperty/:pId',(req,res) =>{
 
 })
 
+//Expenses
 
 app.post('/newExpense', upload.none(),(req, res) =>{
 
@@ -205,6 +206,53 @@ app.post('/newExpense', upload.none(),(req, res) =>{
   
 });
 
+
+app.get('/getExpenses/:landlordId',(req,res) =>{
+
+  (async () => {
+      try {
+  
+          const landlordExpenses = await Expenses.getExpenseByLandlordId(req.params.landlordId);
+          console.log('Expenses for landlord:', landlordExpenses);
+          res.json(landlordExpenses);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    })();
+  })
+
+
+  app.get('/deleteExpense/:expenseId',(req,res) =>{
+
+    (async () => {
+        try {
+    
+            const expense = await Expenses.deleteExpense(req.params.expenseId);
+            console.log('Deleted Expense', expense);
+            res.json(expense);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      })();
+    })
+  
+
+
+//Charting Data Overview
+
+app.get('/chartingData/:landlordId',(req,res) =>{
+
+  (async () => {
+      try {
+  
+          const r = await ChartingData.overview(5);
+          console.log('Overview Data:', r);
+          res.json(r);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    })();
+  })
 
 
 app.get('/overview/:landlordId',(req,res) =>{
