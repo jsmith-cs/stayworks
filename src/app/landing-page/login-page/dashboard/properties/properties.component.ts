@@ -4,7 +4,10 @@ import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 
 import {
+  RouterLink,
+  RouterLinkActive,
   RouterModule,
+  RouterOutlet,
 } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { ButtonModule } from 'primeng/button';
@@ -16,6 +19,7 @@ import { SplitterModule } from 'primeng/splitter';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { blob } from "stream/consumers";
 import { TenantService } from '../../../../services/tenant.service';
 import { AuthService } from '../../../../services/auth.service';
 import { TenantFormComponent } from '../tenant-list/tenant-form/tenant-form.component';
@@ -46,7 +50,7 @@ export class PropertiesComponent implements OnInit {
    public pId = 1;
    public landLordId = 1 ;
    tenants: any[] = [];
-   expense: any[] = [];
+   expenses: any[] = [];
    showForm = false;
    showViewPanel = false;
    selectedTenant: any = {};
@@ -64,6 +68,8 @@ export class PropertiesComponent implements OnInit {
      {docType: "Lease",docId:3,fileName:'---',CreatedAt:''},
      {docType: "Lease",docId:4,fileName:'---',CreatedAt:''}
    ];
+
+
 
    //Property Form
    propertyForm = new FormGroup({
@@ -109,7 +115,7 @@ export class PropertiesComponent implements OnInit {
     this.landLordId = Number( userId ? userId:0);
     this.refreshDocList();
     this.refreshPropertyList()
-    
+    this.refreshExpenses();
     // this.expenseForm.value.isRecurring = [false];
    
     // console.log(this.landLordId);
@@ -181,7 +187,7 @@ export class PropertiesComponent implements OnInit {
 
   //getList of Files for Property
   getListFiles(): Observable<any> {
-    return this.http.get(`${this.baseUrl}listFiles/${this.pId}`,{
+    return this.http.get(`${this.baseUrl}listAllFiles/${this.landLordId}`,{
       responseType:'json'
     });
   }
@@ -468,11 +474,35 @@ export class PropertiesComponent implements OnInit {
       console.log(res);
       alert('Expense Uploaded Successfully.');
       this.expenseForm.reset();
+      this.refreshExpenses()
     })
 
   }
 
+  refreshExpenses(){
+    return this.http.get(`${this.baseUrl}getExpenses/`+`${this.landLordId}`, {
+      responseType: 'json' // Receive file as a Blob
+    }).subscribe(res => {
+      // console.log(res);
+      this.expenses = [res];
+      console.log(this.expenses);
+    });
+  }
 
+  deleteExpense(expenseId:number){
+    if(confirm("Are you sure you want to remove this expense?")){
+
+      this.http.get(`${this.baseUrl}deleteExpense/`+`${expenseId}`, {
+        responseType: 'json' // Receive file as a Blob
+      }).subscribe(res => {
+        // console.log(res);
+        console.log(expenseId);
+        alert("Deleted expense!")
+        this.refreshExpenses();
+      });
+      
+    }
+  }
 
   title = 'stayworks_test';
 }

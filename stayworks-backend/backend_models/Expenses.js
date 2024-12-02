@@ -135,6 +135,7 @@ class Expenses{
 
       if (expenses.length === 0) {
         console.log("No Expenses found for this landlord.");
+        return [{"MonthExpense": "0.00"}];
       }
       return expenses;
     } catch (error) {
@@ -162,8 +163,8 @@ module.exports = Expenses;
   //       // const propertyExpenses = await Expenses.getAllExpenses({propertyId : 1});
   //       // console.log('Expenses for Property ID 1:', propertyExpenses);
 
-  //       // const propertyExpenses1 = await Expenses.getExpenseByLandlordId(1);
-  //       // console.log('Expenses for Property ID 1:', propertyExpenses1);
+  //       const propertyExpenses1 = await Expenses.getExpenseByLandlordId(5);
+  //       console.log('Expenses for Property ID 1:', propertyExpenses1);
 
 
   //       // const propertyExpenses1 = await Expenses.get12MonthExpense(5);

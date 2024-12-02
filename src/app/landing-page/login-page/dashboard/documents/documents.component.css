@@ -226,4 +226,21 @@ label{
   align-items: center;
   justify-content: center;
 }
-
+.filter-reset button{
+  background-color: #d9dcd6;
+  color: #16425b;
+  border: none;
+  border-radius: 25px;
+  width: 100px;
+  height: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+}
+.filter-reset button:hover {
+  cursor: pointer;
+  background-color: #16425b;
+  color: #d9dcd6;
+  
+  border: 1px solid #d9dcd6;
+  transition: all 0.1s ease-in-out;
+}
